@@ -1,0 +1,76 @@
+import type { AggregatedResult, Job, SourceError, SourceName } from "./types";
+import { dedupKey } from "./types";
+import { fetchJobicy } from "./sources/jobicy";
+import { fetchHimalayas } from "./sources/himalayas";
+import { fetchArbeitnow } from "./sources/arbeitnow";
+import { fetchRemoteOk } from "./sources/remoteok";
+import { fetchWwr } from "./sources/wwr";
+
+const FETCHERS: Record<SourceName, () => Promise<Job[]>> = {
+  jobicy: fetchJobicy,
+  himalayas: fetchHimalayas,
+  arbeitnow: fetchArbeitnow,
+  remoteok: fetchRemoteOk,
+  wwr: fetchWwr,
+};
+
+const ALL_SOURCES: SourceName[] = ["jobicy", "himalayas", "arbeitnow", "remoteok", "wwr"];
+
+/**
+ * Stateless live aggregation. No DB, no cache writes — relies on Next.js
+ * fetch `revalidate` + per-provider timeouts. One source failing never
+ * blocks the others.
+ */
+export async function aggregateJobs(sources?: SourceName[]): Promise<AggregatedResult> {
+  const wanted = sources && sources.length > 0 ? sources : ALL_SOURCES;
+  const settled = await Promise.allSettled(wanted.map((s) => FETCHERS[s]()));
+
+  const jobs: Job[] = [];
+  const errors: SourceError[] = [];
+  const counts: AggregatedResult["counts"] = {
+    jobicy: 0,
+    himalayas: 0,
+    arbeitnow: 0,
+    remoteok: 0,
+    wwr: 0,
+  };
+
+  settled.forEach((s, i) => {
+    const source = wanted[i];
+    if (s.status === "fulfilled") {
+      for (const j of s.value) {
+        jobs.push(j);
+        counts[source] += 1;
+      }
+    } else {
+      const msg =
+        s.reason instanceof Error ? s.reason.message : String(s.reason);
+      errors.push({ source, message: msg });
+    }
+  });
+
+  // Sort newest-first, then dedupe by source+sourceId (keep newest).
+  jobs.sort((a, b) => +new Date(b.postedAt) - +new Date(a.postedAt));
+  const seen = new Set<string>();
+  const deduped = jobs.filter((j) => {
+    const k = dedupKey(j);
+    if (seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+
+  return { jobs: deduped, total: deduped.length, errors, counts };
+}
+
+/** Stateless detail lookup — re-fetch live, find by composite key. */
+export async function findJob(source: SourceName, sourceId: string): Promise<Job | null> {
+  const decoded = decodeURIComponent(sourceId);
+  const { jobs } = await aggregateJobs([source]);
+  return (
+    jobs.find((j) => j.sourceId === decoded || j.sourceId === sourceId) ?? null
+  );
+}
+
+export function isSourceName(v: string): v is SourceName {
+  return (ALL_SOURCES as string[]).includes(v);
+}
