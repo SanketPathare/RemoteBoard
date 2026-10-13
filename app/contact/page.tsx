@@ -13,10 +13,9 @@ export default function ContactPage() {
       <p className="font-mono text-xs text-[#999999]">$ contact</p>
       <h1 className="headline mt-2 text-3xl font-extrabold text-black sm:text-4xl dark:text-white">Get in touch</h1>
       <p className="mt-3 leading-7 text-[#666666] dark:text-[#888888]">
-        Questions about a listing? Note that RemoteBoard doesn’t employ the
-        posters and can’t accept applications — please apply on the original
-        provider page linked from each job card. For site issues, source
-        corrections, or takedown requests, email us:
+        Questions about a listing? RemoteBoard can’t accept applications —
+        use the Apply button on the job card to continue. For site issues,
+        listing corrections, or takedown requests, email us:
       </p>
       <a
         href="mailto:hello@example.com?subject=RemoteBoard%20feedback"

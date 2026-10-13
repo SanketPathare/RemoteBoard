@@ -10,7 +10,6 @@ export interface FilingTick {
   company: string;
   postedAt: string;
   detailUrl: string;
-  sourceName: string;
 }
 
 function usePrefersReducedMotion(): boolean {

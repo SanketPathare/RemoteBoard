@@ -13,15 +13,14 @@ import {
   BarChart3,
 } from "lucide-react";
 import { aggregateJobs } from "@/lib/aggregate";
-import { SOURCE_META } from "@/lib/types";
 import { JobList } from "@/components/JobList";
 import { HomeSearch } from "@/components/HomeSearch";
 import { FilingsTicker } from "@/components/FilingsTicker";
 
 export const metadata: Metadata = {
-  title: "RemoteBoard — Live Remote Jobs from Trusted Sources",
+  title: "RemoteBoard — Find Your Next Remote Job",
   description:
-    "Search live remote jobs from Jobicy, Himalayas, Arbeitnow, Remote OK, and We Work Remotely. Filter by location, category, and salary. Every Apply button opens the original posting.",
+    "Search live remote jobs by role, location, category, and salary. Apply directly to the original listing.",
 };
 
 export const revalidate = 600;
@@ -39,7 +38,7 @@ const FEATURES = [
   {
     icon: Zap,
     title: "Live feed",
-    desc: "Aggregated from five trusted boards, refreshed every 10 minutes with no manual curation.",
+    desc: "Fresh remote opportunities, updated regularly and ready to explore.",
   },
   {
     icon: Globe,
@@ -49,17 +48,17 @@ const FEATURES = [
   {
     icon: ShieldCheck,
     title: "No sign-up",
-    desc: "Zero accounts, zero tracking. Browse freely and apply on the original provider's page.",
+    desc: "Zero accounts, zero tracking. Browse freely and apply directly to the original listing.",
   },
   {
     icon: BarChart3,
     title: "Pay transparency",
-    desc: "Salary shown when the provider discloses it — never estimated, never hidden.",
+    desc: "Salary is shown when listed — never estimated or hidden.",
   },
 ];
 
 export default async function HomePage() {
-  const { jobs, errors, counts } = await aggregateJobs();
+  const { jobs, errors } = await aggregateJobs();
   const latest = jobs.slice(0, 9);
   const total = jobs.length;
   const ticks = jobs.slice(0, 12).map((j) => ({
@@ -67,7 +66,6 @@ export default async function HomePage() {
     company: j.company,
     postedAt: j.postedAt,
     detailUrl: j.detailUrl,
-    sourceName: j.sourceName,
   }));
 
   return (
@@ -80,35 +78,18 @@ export default async function HomePage() {
 
         <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-24 text-center sm:px-6 sm:pb-28 sm:pt-32">
 
-          {/* Live badge */}
-          <div className="anim-fade-up inline-flex items-center gap-2.5 rounded-full border border-[#333] bg-[#0a0a0a]/90 px-3.5 py-1.5 text-xs">
-            <span className="relative flex h-2 w-2 shrink-0" aria-hidden>
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-40" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
-            </span>
-            <span className="font-mono text-[#a3a3a3]">
-              {total > 0 ? (
-                <><span className="badge-live font-semibold">{total.toLocaleString()}</span>{" "}
-                <span>open positions</span></>
-              ) : (
-                <span>live positions</span>
-              )}
-            </span>
-            <span className="text-[#525252]">·</span>
-            <span className="font-mono text-[#737373]">no sign-up</span>
-          </div>
+        
 
           {/* Headline */}
-          <h1 className="headline anim-fade-up anim-delay-1 mx-auto mt-9 max-w-5xl text-[clamp(3.25rem,8vw,6.75rem)] font-semibold leading-[0.98]">
-            <span className="headline-gradient">Find work</span>
+          <h1 className="headline anim-fade-up anim-delay-1 mx-auto mt-9 max-w-7xl text-[clamp(3.25rem,8vw,6.75rem)] font-semibold leading-[0.98]">
+            <span className="headline-gradient">Find work worth doing.</span>
             <br />
-            <span className="headline-gradient">worth doing.</span>
           </h1>
 
           {/* Sub */}
           <p className="anim-fade-up anim-delay-2 mx-auto mt-7 max-w-2xl text-base leading-7 text-[#a3a3a3] sm:text-lg sm:leading-8">
-            One board for every live remote posting. Traced to its source,
-            with pay and eligibility shown exactly as reported.
+            One place to explore live remote roles, with pay and eligibility
+            details shown whenever they are available.
           </p>
 
           {/* CTA buttons */}
@@ -226,33 +207,7 @@ export default async function HomePage() {
 
       <div className="divider mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" />
 
-      {/* ── Sources ── */}
-      <section
-        aria-label="Job sources"
-        className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8"
-      >
-        <p className="font-mono text-xs text-[#737373]">Aggregated from</p>
-        <ul className="rail mt-4 flex flex-wrap gap-2">
-          {(Object.keys(SOURCE_META) as (keyof typeof SOURCE_META)[]).map((s) => (
-            <li key={s}>
-              <Link
-                href={`/jobs?source=${s}`}
-                className="inline-flex items-center gap-2 rounded-full border border-[#333] bg-[#0a0a0a] px-3.5 py-1.5 text-xs font-medium text-[#a3a3a3] transition hover:border-[#737373] hover:text-white"
-              >
-                <span aria-hidden className={`h-1.5 w-1.5 rounded-full source-dot-${s}`} />
-                {SOURCE_META[s].label}
-                <span className="font-mono text-[11px] text-[#737373]">
-                  {counts[s] || 0}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <div className="divider mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" />
-
-      {/* ── Latest filings ── */}
+      {/* ── Latest listings ── */}
       <section
         aria-labelledby="latest-heading"
         className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
@@ -268,7 +223,7 @@ export default async function HomePage() {
             </h2>
             <p className="mt-2 font-mono text-xs text-[#737373]">
               {errors.length > 0 ? (
-                <>partial results · {errors.length} provider{errors.length === 1 ? "" : "s"} unreachable</>
+                <>partial results · some listings are temporarily unavailable</>
               ) : (
                 <>newest first · refreshed every 10 minutes</>
               )}
@@ -287,10 +242,7 @@ export default async function HomePage() {
         ) : (
           <div className="rounded-xl border border-dashed border-[#404040] bg-[#080808] p-14 text-center">
             <p className="text-sm leading-7 text-[#a3a3a3]">
-              Providers are temporarily unreachable. Try again in a minute, or browse directly on{" "}
-              <a className="font-medium text-white underline underline-offset-4" href="https://jobicy.com">Jobicy</a>{" "}
-              and{" "}
-              <a className="font-medium text-white underline underline-offset-4" href="https://himalayas.app">Himalayas</a>.
+              Listings are temporarily unavailable. Please try again in a moment.
             </p>
           </div>
         )}

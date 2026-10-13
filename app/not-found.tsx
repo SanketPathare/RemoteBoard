@@ -6,7 +6,7 @@ export default function NotFound() {
       <p className="text-xs font-medium text-[#a3a3a3]">404</p>
       <h1 className="headline mt-4 text-3xl font-extrabold text-white">Page not found</h1>
       <p className="mt-3 text-sm leading-6 text-[#a3a3a3]">
-        The page (or expired job filing) you&apos;re looking for doesn&apos;t exist.
+        The page (or expired job listing) you&apos;re looking for doesn&apos;t exist.
       </p>
       <Link
         href="/jobs"

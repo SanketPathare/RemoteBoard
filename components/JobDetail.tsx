@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import { timeAgo } from "@/lib/format";
 import type { Job } from "@/lib/types";
-import { SourceBadge } from "./SourceBadge";
 import { SafeHtml } from "./SafeHtml";
 
 export function JobDetail({ job }: { job: Job }) {
@@ -57,7 +56,7 @@ export function JobDetail({ job }: { job: Job }) {
       rel={rel}
       className="inline-flex min-h-[48px] w-full items-center justify-center gap-1.5 rounded-md bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-[#d4d4d4]"
     >
-      Apply now on {job.sourceName} <ArrowUpRight className="h-4 w-4" aria-hidden />
+      Apply now <ArrowUpRight className="h-4 w-4" aria-hidden />
     </a>
   );
 
@@ -68,7 +67,7 @@ export function JobDetail({ job }: { job: Job }) {
       rel="noopener noreferrer"
       className="inline-flex min-h-[48px] items-center justify-center gap-1.5 rounded-md border border-[#404040] px-5 py-3 text-sm font-medium text-[#d4d4d4] transition hover:border-[#737373] hover:bg-[#111] hover:text-white"
     >
-      <ExternalLink className="h-4 w-4" aria-hidden /> Read the original filing
+      <ExternalLink className="h-4 w-4" aria-hidden /> View original listing
     </a>
   );
 
@@ -78,7 +77,7 @@ export function JobDetail({ job }: { job: Job }) {
         href="/jobs"
         className="inline-flex w-fit items-center gap-1.5 rounded-md px-1 py-1 text-xs text-[#a3a3a3] transition hover:text-white hover:underline"
       >
-        <ArrowLeft className="h-4 w-4" aria-hidden /> back to all filings
+        <ArrowLeft className="h-4 w-4" aria-hidden /> back to all jobs
       </Link>
 
       <div className="grid items-start gap-4 sm:gap-5 lg:grid-cols-[minmax(0,1fr)_320px]">
@@ -95,7 +94,6 @@ export function JobDetail({ job }: { job: Job }) {
                   {job.company}
                 </p>
               </div>
-              <SourceBadge source={job.source} />
             </div>
 
             <dl className="mt-6 grid gap-x-6 gap-y-3 border-t border-[#262626] pt-5 sm:grid-cols-2">
@@ -142,9 +140,9 @@ export function JobDetail({ job }: { job: Job }) {
             )}
             <SafeHtml html={job.descriptionHtml} className="job-description mt-4" />
             <p className="mt-6 border-t border-[#262626] pt-4 text-xs leading-5 text-[#a3a3a3]">
-              filed by {job.sourceName} ·{" "}
+              Listing details may change.{" "}
               <a href={job.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-4">
-                read the original filing
+                check the original listing
               </a>
             </p>
           </section>
@@ -167,7 +165,7 @@ export function JobDetail({ job }: { job: Job }) {
             {applyBtn}
             {originalBtn}
             <p className="font-mono text-[11px] leading-5 text-[#999999]">
-              you apply on {job.sourceName} · nothing tracked here · confirm details on the original filing
+              nothing is tracked here · confirm details on the original listing
             </p>
           </div>
         </aside>

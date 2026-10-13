@@ -32,13 +32,13 @@ export function JobGridSkeleton({ count = 9 }: { count?: number }) {
   return (
     <div
       role="status"
-      aria-label="Loading filings"
+      aria-label="Loading job listings"
       className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 xl:grid-cols-3"
     >
       {Array.from({ length: count }).map((_, i) => (
         <JobCardSkeleton key={i} />
       ))}
-      <span className="sr-only">Loading filings…</span>
+      <span className="sr-only">Loading job listings…</span>
     </div>
   );
 }

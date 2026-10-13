@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { ChevronDown, RotateCcw, SlidersHorizontal } from "lucide-react";
 import type { JobFilters } from "@/lib/filters";
-import { SOURCE_META } from "@/lib/types";
 
 interface Props {
   filters: JobFilters;
@@ -56,25 +55,6 @@ export function FilterPanel({ filters, onChange, onClear, locations, categories,
         />
         <span className="font-medium text-white">Pay listed</span>
       </label>
-
-      <div className="sm:col-span-2 lg:col-span-1 xl:col-span-2">
-        <label htmlFor="f-source" className="mb-1.5 block text-sm font-medium text-[#a3a3a3]">
-          Filed by
-        </label>
-        <select
-          id="f-source"
-          value={filters.source}
-          onChange={(e) => set({ source: e.target.value })}
-          className={inputCls}
-        >
-          <option value="all">All providers</option>
-          {(Object.keys(SOURCE_META) as (keyof typeof SOURCE_META)[]).map((s) => (
-            <option key={s} value={s}>
-              {SOURCE_META[s].label}
-            </option>
-          ))}
-        </select>
-      </div>
 
       <div className="sm:col-span-2 lg:col-span-1 xl:col-span-2">
         <label htmlFor="f-location" className="mb-1.5 block text-sm font-medium text-[#a3a3a3]">

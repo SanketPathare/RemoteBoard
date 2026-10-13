@@ -91,8 +91,8 @@ export function JobsExplorer({ initialQuery = "", initialSource = "all" }: { ini
         <p role="status" className="flex items-start gap-2 rounded-lg border border-[#404040] bg-[#111] px-4 py-3 text-[13px] leading-5 text-[#a3a3a3]">
           <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
           <span>
-            {errors.map((e) => e.source).join(", ")} {errors.length === 1 ? "is" : "are"} temporarily
-            unreachable. Showing filings from the remaining providers.
+            {errors.length} listing feed{errors.length === 1 ? " is" : "s are"} temporarily
+            unavailable. Showing the listings that are currently available.
           </span>
         </p>
       )}
@@ -145,7 +145,7 @@ export function JobsExplorer({ initialQuery = "", initialSource = "all" }: { ini
                   <div className="h-full rounded-full bg-white transition-all" style={{ width: `${pct}%` }} />
                 </div>
                 <p aria-live="polite" className="font-mono text-xs text-[#a3a3a3]">
-                  {Math.min(visible, filtered.length)} of {filtered.length} filings shown
+                  {Math.min(visible, filtered.length)} of {filtered.length} listings shown
                 </p>
                 {visible < filtered.length && (
                   <button

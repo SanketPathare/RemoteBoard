@@ -21,11 +21,11 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "RemoteBoard — Live Remote Jobs from Trusted Sources",
+    default: "RemoteBoard — Find Your Next Remote Job",
     template: "%s | RemoteBoard",
   },
   description:
-    "Browse live remote jobs aggregated from Jobicy, Himalayas, Arbeitnow, Remote OK, and We Work Remotely. Every Apply button opens the original provider posting.",
+    "Browse live remote jobs, search by role and location, and apply directly to the original listing.",
   openGraph: {
     type: "website",
     siteName: "RemoteBoard",

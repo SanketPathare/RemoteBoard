@@ -1,12 +1,8 @@
 import Link from "next/link";
 import { BriefcaseBusiness } from "lucide-react";
-import { SOURCE_META, type SourceName } from "@/lib/types";
-
-const SOURCES: SourceName[] = ["jobicy", "himalayas", "arbeitnow", "remoteok", "wwr"];
-
 const PAGES = [
   { href: "/jobs",    label: "Browse jobs",       desc: "Search and filter the live feed" },
-  { href: "/about",   label: "About & sources",   desc: "How aggregation works" },
+  { href: "/about",   label: "About RemoteBoard", desc: "How the job board works" },
   { href: "/contact", label: "Contact",            desc: "Report a broken link" },
   { href: "/privacy", label: "Privacy policy",     desc: "No accounts, no tracking" },
 ];
@@ -28,24 +24,9 @@ export function Footer() {
             RemoteBoard
           </Link>
           <p className="mt-4 max-w-sm text-sm leading-6 text-[#a3a3a3]">
-            A stateless ledger of live remote filings. No accounts, no database.
-            Every Apply button opens the original provider posting in a new tab.
+            A simple place to find remote work. No accounts, no database.
+            Apply directly to the original job listing.
           </p>
-          <ul className="mt-5 flex flex-wrap gap-2" aria-label="Job sources">
-            {SOURCES.map((s) => (
-              <li key={s}>
-                <a
-                  href={SOURCE_META[s].siteUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-full border border-[#333] px-2.5 py-1 text-xs text-[#a3a3a3] transition hover:border-[#737373] hover:text-white"
-                >
-                  <span aria-hidden className={`h-1.5 w-1.5 rounded-full source-dot-${s}`} />
-                  {SOURCE_META[s].label}
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
 
         {/* Navigation */}
@@ -76,9 +57,9 @@ export function Footer() {
             Good to know
           </p>
           <ul className="space-y-3 text-sm leading-6 text-[#a3a3a3]">
-            <li>Filings belong to their providers. Verify details before applying.</li>
+            <li>Check the original listing for the latest role details.</li>
             <li>Missing pay means undisclosed, never zero.</li>
-            <li>Worldwide appears only when the source confirms it.</li>
+            <li>Worldwide appears only when the listing confirms it.</li>
           </ul>
         </div>
       </div>
@@ -86,13 +67,13 @@ export function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-[#262626]">
         <div className="mx-auto flex max-w-7xl flex-col gap-1.5 px-4 py-5 text-xs text-[#737373] sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-          <p>© {new Date().getFullYear()} RemoteBoard. Aggregated only as each provider permits.</p>
+          <p>© {new Date().getFullYear()} RemoteBoard. Find your next remote role.</p>
           <p>
             See{" "}
             <Link href="/about" className="text-[#d4d4d4] hover:text-white hover:underline">
-              About
+              About RemoteBoard
             </Link>{" "}
-            for attribution and terms.
+            for more information.
           </p>
         </div>
       </div>

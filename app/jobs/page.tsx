@@ -25,8 +25,8 @@ export default async function JobsPage({
           Browse remote jobs
         </h1>
         <p className="mt-2 max-w-xl text-sm leading-6 text-[#666666] dark:text-[#888888]">
-          Live results from five providers. Filters apply instantly. The feed
-          is fetched once per source, not on every keystroke.
+          Explore current remote opportunities. Filters apply instantly as you
+          search and browse.
         </p>
       </div>
       <div className="mt-5 sm:mt-6">

@@ -1,119 +1,87 @@
 import type { Metadata } from "next";
-import { BadgeCheck, DatabaseZap, Globe2, Link2, Timer, UserX } from "lucide-react";
+import { BadgeCheck, BriefcaseBusiness, Globe2, Link2, Search, UserX } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About & Sources",
+  title: "About RemoteBoard",
   description:
-    "How RemoteBoard works: stateless live aggregation from five permitted providers, with attribution, rate-limit, and redistribution notes.",
+    "A simple, privacy-minded way to discover remote roles and apply directly to the original listing.",
 };
 
-const ROWS = [
+const FEATURES = [
   {
-    name: "Jobicy",
-    endpoint: "jobicy.com/api/v2/remote-jobs",
-    terms: "Public, no key (up to 200/req). Apply links point to the Jobicy listing unless a commercial key is used — we use the public URL as-is.",
-    attribution: "Credit + link back. Do not redistribute to Jooble / Google Jobs / LinkedIn. Check ≤ once/hour; listings carry a 6-hour delay.",
+    icon: Search,
+    title: "One place to search",
+    description: "Explore remote opportunities by title, location, category, and employment type.",
   },
   {
-    name: "Himalayas",
-    endpoint: "himalayas.app/jobs/api (+ /jobs/api/search)",
-    terms: "Free incl. commercial, no auth, max 20/req, cursor pagination. Rate-limited (429); data refreshes every 24h. Server-side calls only (no browser CORS).",
-    attribution: "Visible link to himalayas.app + “sourced from Himalayas” on every display.",
+    icon: Link2,
+    title: "Apply directly",
+    description: "Continue to the original listing when you are ready to apply.",
   },
   {
-    name: "Arbeitnow",
-    endpoint: "arbeitnow.com/api/job-board-api",
-    terms: "Free, no key, EU/Germany-focused with a remote flag. Provided “as is”, revocable.",
-    attribution: "Link back to Arbeitnow.com on any display.",
+    icon: BadgeCheck,
+    title: "Clear job details",
+    description: "See salary and eligibility information when it is available in the listing.",
   },
   {
-    name: "Remote OK",
-    endpoint: "remoteok.com/api",
-    terms: "Public array API; first element is legal text. Requires a real User-Agent header or requests fail — hence server-side fetching. Salary 0 means undisclosed.",
-    attribution: "Follow link (NOT nofollow) to the RemoteOK posting + name mention, or access is suspended. Logo is trademarked — we never render RemoteOK logos.",
+    icon: Globe2,
+    title: "Remote opportunities",
+    description: "Find roles across a range of locations, teams, and disciplines.",
   },
   {
-    name: "We Work Remotely",
-    endpoint: "weworkremotely.com category RSS feeds",
-    terms: "No JSON API; public RSS per category (ttl 60). Paid employer postings — reuse must stay minimal and attribution-sensitive.",
-    attribution: "Excerpt + prominent link to the original WWR listing. Never presented as our own posting.",
+    icon: UserX,
+    title: "No account needed",
+    description: "Browse and search without creating an account or profile.",
   },
-];
-
-const GUARANTEES = [
-  { icon: Link2, t: "Real Apply links", d: "Every Apply now button opens the genuine external posting in a new tab." },
-  { icon: BadgeCheck, t: "Nothing invented", d: "No fake jobs, salaries, or URLs. Missing fields render as “not listed”." },
-  { icon: Globe2, t: "Honest eligibility", d: "“Worldwide” appears only when the source confirms it." },
-  { icon: Timer, t: "Fetch once, filter locally", d: "No API calls on keystrokes — the feed loads once per source." },
-  { icon: UserX, t: "No accounts", d: "No login, no profiles, no application tracking." },
-  { icon: DatabaseZap, t: "No storage", d: "Nothing in localStorage, cookies, or any server database." },
+  {
+    icon: BriefcaseBusiness,
+    title: "Built for your next move",
+    description: "A focused job board to help you spend less time searching and more time finding the right role.",
+  },
 ];
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <div className="max-w-3xl">
-        <p className="font-mono text-xs text-[#999999]">$ about</p>
-        <h1 className="headline mt-2 text-3xl font-extrabold text-black sm:text-4xl dark:text-white">
-          A job board with no database
+        <p className="font-mono text-xs text-[#a3a3a3]">About RemoteBoard</p>
+        <h1 className="headline mt-3 text-4xl font-semibold text-white sm:text-5xl">
+          Find remote work that fits.
         </h1>
-        <p className="mt-3 leading-7 text-[#666666] dark:text-[#888888]">
-          RemoteBoard is a <strong className="text-black dark:text-white">stateless</strong> remote-job
-          aggregator. No database, no admin panel, no authentication, no stored
-          records. Each request fetches live data through a server Route Handler
-          (needed for CORS and User-Agent rules), normalizes it into one{" "}
-          <code className="rounded-md border border-[#EAEAEA] bg-[#FAFAFA] px-1.5 py-0.5 font-mono text-[13px] dark:border-[#333333] dark:bg-[#111111]">Job</code> shape,
-          dedupes by <code className="rounded-md border border-[#EAEAEA] bg-[#FAFAFA] px-1.5 py-0.5 font-mono text-[13px] dark:border-[#333333] dark:bg-[#111111]">source + provider id</code>,
-          and renders it. If one provider fails, the others still display.
+        <p className="mt-5 text-base leading-7 text-[#a3a3a3] sm:text-lg sm:leading-8">
+          RemoteBoard makes it easier to discover remote roles, compare the
+          details that matter, and continue to the original listing when you
+          are ready to apply. Browse freely — no account or profile required.
         </p>
       </div>
 
-      <h2 className="headline mt-10 text-xl font-bold text-black dark:text-white">What we guarantee</h2>
-      <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {GUARANTEES.map((g) => (
+      <h2 className="headline mt-14 text-2xl font-semibold text-white sm:text-3xl">
+        A simpler way to find your next role
+      </h2>
+      <ul className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {FEATURES.map((feature) => (
           <li
-            key={g.t}
-            className="glass-card card-sheen flex items-start gap-3 rounded-lg border border-[#EAEAEA] p-4 transition hover:border-[#999999] dark:border-[#333333] dark:hover:border-[#666666]"
+            key={feature.title}
+            className="glass-card feature-card flex items-start gap-4 rounded-xl border border-[#262626] p-5"
           >
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-[#EAEAEA] text-black dark:border-[#333333] dark:text-white">
-              <g.icon className="h-4 w-4" aria-hidden />
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#333] bg-[#111] text-[#d4d4d4]">
+              <feature.icon className="h-4 w-4" aria-hidden />
             </span>
             <span>
-              <span className="block text-sm font-semibold text-black dark:text-white">{g.t}</span>
-              <span className="mt-0.5 block text-[13px] leading-5 text-[#666666] dark:text-[#888888]">{g.d}</span>
+              <span className="block text-sm font-semibold text-white">
+                {feature.title}
+              </span>
+              <span className="mt-1 block text-[13px] leading-6 text-[#a3a3a3]">
+                {feature.description}
+              </span>
             </span>
           </li>
         ))}
       </ul>
 
-      <h2 className="headline mt-10 text-xl font-bold text-black dark:text-white">
-        Sources, limits and attribution
-      </h2>
-      <ul className="mt-4 grid grid-cols-1 gap-3 lg:grid-cols-2">
-        {ROWS.map((r) => (
-          <li
-            key={r.name}
-            className="glass-card card-sheen rounded-lg border border-[#EAEAEA] p-4 sm:p-5 dark:border-[#333333]"
-          >
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <p className="text-[15px] font-semibold text-black dark:text-white">{r.name}</p>
-              <code className="rounded-md border border-[#EAEAEA] bg-[#FAFAFA] px-2 py-0.5 font-mono text-[11px] text-[#666666] dark:border-[#333333] dark:bg-[#111111] dark:text-[#888888]">
-                {r.endpoint}
-              </code>
-            </div>
-            <p className="mt-2 text-[13px] leading-6 text-[#666666] dark:text-[#888888]">
-              <strong className="font-semibold text-black dark:text-white">Limits: </strong>
-              {r.terms}
-            </p>
-            <p className="mt-1.5 text-[13px] leading-6 text-[#666666] dark:text-[#888888]">
-              <strong className="font-semibold text-black dark:text-white">Attribution: </strong>
-              {r.attribution}
-            </p>
-          </li>
-        ))}
-      </ul>
-      <p className="mt-4 rounded-lg border border-[#EAEAEA] bg-[#FAFAFA] px-4 py-3 font-mono text-xs leading-6 text-[#666666] dark:border-[#333333] dark:bg-[#111111] dark:text-[#888888]">
-        none of these apis are unlimited · rate-limited and revocable · cached ~10 min · outages tolerated
+      <p className="mt-8 rounded-xl border border-[#262626] bg-[#080808] px-5 py-4 text-sm leading-6 text-[#a3a3a3]">
+        Job details can change. Check the original listing for the latest
+        information before applying.
       </p>
     </div>
   );

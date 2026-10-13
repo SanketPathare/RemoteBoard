@@ -18,9 +18,8 @@ export default function PrivacyPage() {
           <h2 className="headline text-lg font-bold text-black dark:text-white">1. No accounts, no job database</h2>
           <p>
             RemoteBoard has no sign-up, no login, and no database of jobs or
-            users. Job listings are fetched live from third-party providers
-            (Jobicy, Himalayas, Arbeitnow, Remote OK, We Work Remotely) on each
-            request and never saved. We do not store applications, resumes, or
+            users. Job listings are fetched live when requested and never
+            saved. We do not store applications, resumes, or
             profiles.
           </p>
         </section>
@@ -36,10 +35,10 @@ export default function PrivacyPage() {
         <section>
           <h2 className="headline text-lg font-bold text-black dark:text-white">3. External application links</h2>
           <p>
-            Every Apply button opens the original provider/employer page in a
-            new tab. Those sites have their own privacy policies and may set
-            cookies or collect application data. Review the provider’s policy
-            before applying — we are not responsible for their practices.
+            Every Apply button opens the original job listing in a new tab.
+            That destination may have its own privacy practices, set cookies,
+            or collect application data. Review its policy before applying —
+            we are not responsible for those practices.
           </p>
         </section>
         <section>

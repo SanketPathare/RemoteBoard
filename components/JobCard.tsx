@@ -5,7 +5,6 @@ import { ArrowRight, ArrowUpRight, Building2, MapPin, Clock } from "lucide-react
 import { useState } from "react";
 import { timeAgo } from "@/lib/format";
 import type { Job } from "@/lib/types";
-import { SourceBadge } from "./SourceBadge";
 
 function CompanyTile({ name }: { name: string }) {
   const letter = (name.trim()[0] || "?").toUpperCase();
@@ -53,8 +52,6 @@ export function JobCard({ job }: { job: Job }) {
 
   return (
     <article className="feature-card glass-card card-sheen group relative flex h-full flex-col overflow-hidden rounded-xl border border-[#262626] transition hover:border-[#525252]">
-      <span aria-hidden className={`source-tab-x source-tab-${job.source}`} />
-
       <div className="flex h-full flex-col gap-4 p-5 sm:p-5">
         {/* Header */}
         <div className="flex items-start gap-3">
@@ -119,14 +116,13 @@ export function JobCard({ job }: { job: Job }) {
           </div>
         )}
 
-        {/* Salary + source */}
+        {/* Salary */}
         <div className="flex flex-wrap items-center justify-between gap-2">
           <p className="text-sm font-semibold tabular-nums text-white">
             {job.salaryText ? `${job.salaryText}/yr` : (
               <span className="font-normal text-[#737373]">Pay undisclosed</span>
             )}
           </p>
-          <SourceBadge source={job.source} />
         </div>
 
         {/* Buttons */}

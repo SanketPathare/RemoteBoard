@@ -7,7 +7,7 @@ export function EmptyState({ onClear }: { onClear?: () => void }) {
         <SearchX className="h-6 w-6" aria-hidden />
       </span>
       <div>
-        <p className="text-base font-semibold text-white">No filings match these filters</p>
+        <p className="text-base font-semibold text-white">No listings match these filters</p>
         <p className="mx-auto mt-1 max-w-sm text-sm leading-6 text-[#a3a3a3]">
           Try a different keyword, widen the location, or clear the filters to see the full feed again.
         </p>
