@@ -243,13 +243,168 @@ textarea {
   background: #262626;
 }
 
-.rail {
-  scrollbar-width: thin;
-  scrollbar-color: #404040 transparent;
+/* ==========================================================================
+   Custom Scrollbar System (Cross-Browser Dark Mode)
+   ========================================================================== */
+
+/* 1. Global scrollbars for document and standard scroll containers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-.rail::-webkit-scrollbar { height: 4px; }
-.rail::-webkit-scrollbar-thumb { background: #404040; border-radius: 999px; }
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 9999px;
+  border: 2px solid #0a0a0a;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #484848;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #6e6e6e;
+}
+
+/* Crucial for Windows: hide native clumsy arrow buttons (< and >) */
+::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+::-webkit-scrollbar-corner {
+  background: #0a0a0a;
+}
+
+/* Firefox scrollbar defaults */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2a2a2a #0a0a0a;
+}
+
+/* 2. Sleek horizontal custom scrollbar (Filter pills, carousels, rails) */
+.custom-scrollbar-x {
+  scrollbar-width: thin;
+  scrollbar-color: #383838 rgba(255, 255, 255, 0.03);
+}
+
+.custom-scrollbar-x::-webkit-scrollbar {
+  height: 5px;
+}
+
+.custom-scrollbar-x::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 9999px;
+  margin: 0 4px;
+}
+
+.custom-scrollbar-x::-webkit-scrollbar-thumb {
+  background: #383838;
+  border-radius: 9999px;
+  transition: background-color 0.15s ease;
+}
+
+.custom-scrollbar-x::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+.custom-scrollbar-x::-webkit-scrollbar-thumb:active {
+  background: #737373;
+}
+
+.custom-scrollbar-x::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* 3. Sleek vertical custom scrollbar (Dropdown popovers, modals) */
+.custom-scrollbar,
+.custom-scrollbar-y {
+  scrollbar-width: thin;
+  scrollbar-color: #383838 transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar,
+.custom-scrollbar-y::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track,
+.custom-scrollbar-y::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb,
+.custom-scrollbar-y::-webkit-scrollbar-thumb {
+  background: #383838;
+  border-radius: 9999px;
+  transition: background-color 0.15s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover,
+.custom-scrollbar-y::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:active,
+.custom-scrollbar-y::-webkit-scrollbar-thumb:active {
+  background: #737373;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button,
+.custom-scrollbar-y::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Legacy rail alias */
+.rail {
+  scrollbar-width: thin;
+  scrollbar-color: #383838 transparent;
+}
+
+.rail::-webkit-scrollbar {
+  height: 4px;
+}
+
+.rail::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.rail::-webkit-scrollbar-thumb {
+  background: #383838;
+  border-radius: 9999px;
+}
+
+.rail::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+.rail::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Hide scrollbar utility when explicitly desired */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
 .job-description {
   @apply text-sm leading-7 text-[#a3a3a3];

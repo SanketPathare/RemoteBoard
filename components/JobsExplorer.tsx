@@ -3,11 +3,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, TriangleAlert } from "lucide-react";
 import { SearchBar } from "./SearchBar";
-import { FilterPanel } from "./FilterPanel";
+import { FilterPills } from "./FilterPills";
 import { JobList } from "./JobList";
 import { JobListSkeleton } from "./JobSkeleton";
 import { EmptyState, ErrorState } from "./States";
-import { EMPTY_FILTERS, facetValues, filterJobs, sortNewestFirst, type JobFilters } from "@/lib/filters";
+import { EMPTY_FILTERS, filterJobs, sortNewestFirst, type JobFilters } from "@/lib/filters";
 import type { Job, SourceError } from "@/lib/types";
 
 const PAGE_SIZE = 12;
@@ -150,10 +150,6 @@ export function JobsExplorer({ initialQuery = "", initialSource = "all" }: { ini
     [filtered, safePage],
   );
 
-  const locations     = useMemo(() => facetValues(all, (j) => j.location), [all]);
-  const categories    = useMemo(() => facetValues(all, (j) => j.category || j.tags[0]), [all]);
-  const employmentTypes = useMemo(() => facetValues(all, (j) => j.employmentType), [all]);
-
   function goToPage(p: number) {
     setPage(p);
     // Scroll results area back into view smoothly
@@ -170,12 +166,17 @@ export function JobsExplorer({ initialQuery = "", initialSource = "all" }: { ini
 
   return (
     <div className="flex flex-col gap-4 sm:gap-5">
-      {/* Sticky search bar */}
+      {/* Sticky search bar + Pill Filters */}
       <div className="glass-bar sticky top-16 z-30 -mx-4 border-b border-[#262626] px-4 py-3 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-7xl space-y-2.5">
           <SearchBar
             defaultValue={filters.query}
             onSearch={(q) => handleFilterChange({ ...filters, query: q })}
+          />
+          <FilterPills
+            filters={filters}
+            onChange={handleFilterChange}
+            onClear={() => handleFilterChange({ ...EMPTY_FILTERS, source: filters.source })}
           />
         </div>
       </div>
@@ -190,54 +191,40 @@ export function JobsExplorer({ initialQuery = "", initialSource = "all" }: { ini
         </p>
       )}
 
-      <div className="grid items-start gap-4 sm:gap-5 lg:grid-cols-[300px_minmax(0,1fr)]">
-        {/* Sidebar */}
-        <div className="lg:sticky lg:top-36">
-          <FilterPanel
-            filters={filters}
-            onChange={handleFilterChange}
-            onClear={() => handleFilterChange({ ...EMPTY_FILTERS, source: filters.source })}
-            locations={locations}
-            categories={categories}
-            employmentTypes={employmentTypes}
-            resultCount={filtered.length}
-            loading={loading}
-          />
-          {!loading && !loadError && filtered.length > 0 && (
-            <p className="mt-3 hidden rounded-lg border border-[#262626] bg-[#080808] px-4 py-3 font-mono text-xs leading-5 text-[#a3a3a3] lg:block">
-              newest first · pay and eligibility as reported
-            </p>
-          )}
-        </div>
-
-        {/* Results */}
-        <div className="min-w-0" ref={resultsRef}>
-          {loading ? (
-            <JobListSkeleton count={9} />
-          ) : loadError ? (
-            <ErrorState message={loadError} onRetry={() => fetchAll(filters.source)} />
-          ) : filtered.length === 0 ? (
-            <EmptyState onClear={() => handleFilterChange({ ...EMPTY_FILTERS, source: filters.source })} />
-          ) : (
-            <>
-              {/* Result count row */}
-              <div className="mb-4 flex items-center justify-between gap-4">
-                <p aria-live="polite" className="font-mono text-xs text-[#737373]">
-                  {from}–{to} of {filtered.length} listing{filtered.length !== 1 ? "s" : ""}
+      {/* Full-width Results Area */}
+      <div className="w-full min-w-0" ref={resultsRef}>
+        {loading ? (
+          <JobListSkeleton count={9} />
+        ) : loadError ? (
+          <ErrorState message={loadError} onRetry={() => fetchAll(filters.source)} />
+        ) : filtered.length === 0 ? (
+          <EmptyState onClear={() => handleFilterChange({ ...EMPTY_FILTERS, source: filters.source })} />
+        ) : (
+          <>
+            {/* Result count & meta row */}
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-[#1f1f1f] pb-3">
+              <div className="flex items-center gap-3">
+                <p aria-live="polite" className="font-mono text-xs text-[#a3a3a3]">
+                  <span className="font-semibold text-white">{filtered.length}</span> listings found
+                  {filtered.length > 0 && ` (${from}–${to})`}
                 </p>
-                {totalPages > 1 && (
-                  <p className="font-mono text-xs text-[#555]">
-                    Page {safePage} of {totalPages}
-                  </p>
-                )}
+                <span className="hidden text-[#333] sm:inline">·</span>
+                <span className="hidden font-mono text-[11px] text-[#737373] sm:inline">
+                  newest first · pay and eligibility as reported
+                </span>
               </div>
+              {totalPages > 1 && (
+                <p className="font-mono text-xs text-[#737373]">
+                  Page <span className="font-semibold text-white">{safePage}</span> of {totalPages}
+                </p>
+              )}
+            </div>
 
-              <JobList jobs={pageJobs} />
+            <JobList jobs={pageJobs} />
 
-              <Pagination page={safePage} totalPages={totalPages} onPage={goToPage} />
-            </>
-          )}
-        </div>
+            <Pagination page={safePage} totalPages={totalPages} onPage={goToPage} />
+          </>
+        )}
       </div>
     </div>
   );

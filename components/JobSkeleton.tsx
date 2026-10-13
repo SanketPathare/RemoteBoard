@@ -48,7 +48,7 @@ export function JobListSkeleton({ count = 9 }: { count?: number }) {
       </div>
 
       {/* Grid of skeleton job cards */}
-      <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 xl:grid-cols-3">
+      <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
         {Array.from({ length: count }).map((_, i) => (
           <li key={i} className="flex min-w-0">
             <div className="min-w-0 flex-1">

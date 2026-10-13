@@ -21,12 +21,15 @@ const inputCls =
 function activeCount(f: JobFilters): number {
   let n = 0;
   if (f.remoteOnly) n++;
-  if (f.salaryOnly) n++;
+  if (f.salaryOnly || f.minSalary > 0) n++;
   if (f.source !== "all") n++;
   if (f.location.trim()) n++;
   if (f.country.trim()) n++;
   if (f.category.trim()) n++;
   if (f.employmentType) n++;
+  if (f.programmingLanguage) n++;
+  if (f.experienceLevel) n++;
+  if (f.datePosted && f.datePosted !== "all") n++;
   return n;
 }
 
