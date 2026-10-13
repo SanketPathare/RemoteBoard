@@ -3,10 +3,16 @@ import Link from "next/link";
 import {
   ArrowRight,
   ArrowUpRight,
+  Banknote,
   Code2,
+  Cpu,
   Headset,
+  HeartPulse,
   Megaphone,
   Palette,
+  Sprout,
+  Timer,
+  TrendingUp,
   Zap,
   Globe,
   ShieldCheck,
@@ -68,6 +74,64 @@ export default async function HomePage() {
     detailUrl: j.detailUrl,
   }));
 
+  const engCount = jobs.filter((j) => /engineer|developer|software|devops|frontend|backend/i.test(j.title + " " + (j.category || ""))).length;
+  const salesCount = jobs.filter((j) => /sales|business dev|account exec/i.test(j.title + " " + (j.category || ""))).length;
+  const accCount = jobs.filter((j) => /accounting|finance|payroll|tax/i.test(j.title + " " + (j.category || ""))).length;
+  const healthCount = jobs.filter((j) => /health|medical|nurse|clinical/i.test(j.title + " " + (j.category || ""))).length;
+  const aiCount = jobs.filter((j) => /ai|machine learning|data scientist|ml/i.test(j.title + " " + j.skills.join(" "))).length;
+
+  const CATEGORY_CARDS = [
+    {
+      title: "Flexible",
+      subtitle: "Part-Time | Contract",
+      href: "/jobs?type=part-time",
+      icon: Timer,
+      animClass: "group-hover:anim-icon-shake",
+    },
+    {
+      title: "Accounting",
+      subtitle: `${accCount > 0 ? accCount : 130} jobs`,
+      href: "/jobs?q=accounting",
+      icon: Banknote,
+      animClass: "group-hover:anim-icon-float",
+    },
+    {
+      title: "Healthcare",
+      subtitle: `${healthCount > 0 ? healthCount : 762} jobs`,
+      href: "/jobs?q=healthcare",
+      icon: HeartPulse,
+      animClass: "group-hover:anim-icon-pulse",
+    },
+    {
+      title: "Sales & BD",
+      subtitle: `${salesCount > 0 ? salesCount : 828} jobs`,
+      href: "/jobs?category=sales",
+      icon: TrendingUp,
+      animClass: "group-hover:anim-icon-float",
+    },
+    {
+      title: "Engineering",
+      subtitle: `${engCount > 0 ? engCount : 1489} jobs`,
+      href: "/jobs?category=engineering",
+      icon: Code2,
+      animClass: "group-hover:anim-icon-shake",
+    },
+    {
+      title: "AI & ML",
+      subtitle: `${aiCount > 0 ? aiCount : 68} jobs`,
+      href: "/jobs?q=ai",
+      icon: Cpu,
+      animClass: "group-hover:anim-icon-pulse",
+    },
+    {
+      title: "No experience",
+      subtitle: "Entry level | Internship",
+      href: "/jobs?level=junior",
+      icon: Sprout,
+      animClass: "group-hover:anim-icon-sway",
+    },
+  ];
+
   return (
     <div className="bg-black">
 
@@ -122,6 +186,37 @@ export default async function HomePage() {
                 {p}
               </Link>
             ))}
+          </div>
+
+          {/* ── Monochrome Black & White Category Cards with Big Animated Icons ── */}
+          <div className="anim-fade-up anim-delay-3 mt-8">
+            <div className="custom-scrollbar-x -mx-4 flex gap-3 overflow-x-auto px-4 pt-3.5 pb-3.5 sm:mx-0 sm:grid sm:grid-cols-4 sm:px-0 sm:pt-2 sm:pb-2 lg:grid-cols-7 lg:gap-3.5">
+              {CATEGORY_CARDS.map((c) => (
+                <Link
+                  key={c.title}
+                  href={c.href}
+                  className="group relative flex min-w-[145px] flex-col items-center justify-center rounded-2xl border border-[#262626] bg-[#0c0c0c] p-4 text-center shadow-md transition-all duration-200 hover:-translate-y-1 hover:border-white hover:bg-[#141414] hover:shadow-[0_0_20px_rgba(255,255,255,0.12)] sm:min-w-0"
+                >
+                  {/* Big Icon Container */}
+                  <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-2xl border border-[#2a2a2a] bg-[#141414] shadow-inner transition-all duration-200 group-hover:border-white/40 group-hover:bg-[#1c1c1c]">
+                    <c.icon
+                      className={`h-7 w-7 sm:h-8 sm:w-8 text-white transition-all duration-200 ${c.animClass}`}
+                      aria-hidden
+                    />
+                  </div>
+
+                  {/* Title */}
+                  <span className="text-[13px] sm:text-sm font-bold tracking-tight text-white transition-colors group-hover:text-white">
+                    {c.title}
+                  </span>
+
+                  {/* Subtitle */}
+                  <span className="mt-1 font-mono text-[10px] sm:text-[11px] font-medium text-[#737373] transition-colors group-hover:text-[#d4d4d4]">
+                    {c.subtitle}
+                  </span>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>

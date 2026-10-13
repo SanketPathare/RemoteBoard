@@ -240,7 +240,39 @@ textarea {
 
 .filing-enter { animation: filing-slide 0.3s ease; }
 
+@keyframes iconPulseGlow {
+  0%, 100% { transform: scale(1.02); filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.3)); }
+  50% { transform: scale(1.12); filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7)); }
+}
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0) scale(1.03); }
+  50% { transform: translateY(-4px) scale(1.08); }
+}
+
+@keyframes iconRotateShake {
+  0% { transform: rotate(0deg) scale(1.03); }
+  25% { transform: rotate(-8deg) scale(1.08); }
+  75% { transform: rotate(8deg) scale(1.08); }
+  100% { transform: rotate(0deg) scale(1.03); }
+}
+
+@keyframes iconSway {
+  0%, 100% { transform: rotate(0deg) scale(1.03); }
+  33% { transform: rotate(-8deg) scale(1.08); }
+  66% { transform: rotate(8deg) scale(1.08); }
+}
+
+.anim-icon-pulse { animation: iconPulseGlow 1.2s infinite ease-in-out; }
+.anim-icon-float { animation: iconFloat 1.2s infinite ease-in-out; }
+.anim-icon-shake { animation: iconRotateShake 0.9s infinite ease-in-out; }
+.anim-icon-sway  { animation: iconSway 1.3s infinite ease-in-out; }
+
 @media (prefers-reduced-motion: reduce) {
+  .anim-icon-pulse,
+  .anim-icon-float,
+  .anim-icon-shake,
+  .anim-icon-sway,
   .filing-enter,
   .anim-fade-up { animation: none; }
   html { scroll-behavior: auto; }
