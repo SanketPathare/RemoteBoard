@@ -109,10 +109,14 @@ textarea {
 .source-dot-remotive { background: #f97316; }
 .source-dot-jobspresso { background: #a3e635; }
 .source-dot-remoteco { background: #e879f9; }
+.source-dot-remotefirst { background: #06b6d4; }
+.source-dot-startupjobs { background: #ec4899; }
 
 .source-tab-remotive { background: #f97316; }
 .source-tab-jobspresso { background: #a3e635; }
 .source-tab-remoteco { background: #e879f9; }
+.source-tab-remotefirst { background: #06b6d4; }
+.source-tab-startupjobs { background: #ec4899; }
 
 .glass-bar {
   background: rgba(0, 0, 0, 0.88);
