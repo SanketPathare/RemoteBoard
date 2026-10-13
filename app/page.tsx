@@ -71,22 +71,22 @@ export default async function HomePage() {
   }));
 
   return (
-    <div className="bg-[#0a0a0a]">
+    <div className="bg-black">
 
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden bg-black">
+      <section className="relative overflow-hidden border-b border-[#1f1f1f] bg-black">
         <div aria-hidden className="hero-grid pointer-events-none absolute inset-0" />
         <div aria-hidden className="hero-glow pointer-events-none absolute inset-0" />
 
-        <div className="relative mx-auto max-w-5xl px-4 pb-24 pt-24 text-center sm:px-6 sm:pb-32 sm:pt-32">
+        <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-24 text-center sm:px-6 sm:pb-28 sm:pt-32">
 
           {/* Live badge */}
-          <div className="anim-fade-up inline-flex items-center gap-2.5 rounded-full border border-[#1f1f1f] bg-[#0a0a0a] px-3.5 py-1.5 text-xs">
+          <div className="anim-fade-up inline-flex items-center gap-2.5 rounded-full border border-[#333] bg-[#0a0a0a]/90 px-3.5 py-1.5 text-xs">
             <span className="relative flex h-2 w-2 shrink-0" aria-hidden>
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#0070f3] opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#0070f3]" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-40" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
             </span>
-            <span className="font-mono text-[#555]">
+            <span className="font-mono text-[#a3a3a3]">
               {total > 0 ? (
                 <><span className="badge-live font-semibold">{total.toLocaleString()}</span>{" "}
                 <span>open positions</span></>
@@ -94,25 +94,25 @@ export default async function HomePage() {
                 <span>live positions</span>
               )}
             </span>
-            <span className="text-[#2a2a2a]">·</span>
-            <span className="font-mono text-[#444]">no sign-up</span>
+            <span className="text-[#525252]">·</span>
+            <span className="font-mono text-[#737373]">no sign-up</span>
           </div>
 
           {/* Headline */}
-          <h1 className="headline anim-fade-up anim-delay-1 mx-auto mt-8 max-w-4xl text-[clamp(2.6rem,7vw,5.25rem)] font-extrabold leading-[1.04]">
+          <h1 className="headline anim-fade-up anim-delay-1 mx-auto mt-9 max-w-5xl text-[clamp(3.25rem,8vw,6.75rem)] font-semibold leading-[0.98]">
             <span className="headline-gradient">Find work</span>
             <br />
             <span className="headline-gradient">worth doing.</span>
           </h1>
 
           {/* Sub */}
-          <p className="anim-fade-up anim-delay-2 mx-auto mt-6 max-w-xl text-base leading-7 text-[#555] sm:text-lg">
+          <p className="anim-fade-up anim-delay-2 mx-auto mt-7 max-w-2xl text-base leading-7 text-[#a3a3a3] sm:text-lg sm:leading-8">
             One board for every live remote posting. Traced to its source,
             with pay and eligibility shown exactly as reported.
           </p>
 
           {/* CTA buttons */}
-          <div className="anim-fade-up anim-delay-2 mx-auto mt-8 flex max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center">
+          <div className="anim-fade-up anim-delay-2 mx-auto mt-9 flex max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center">
             <Link href="/jobs" className="btn-primary min-h-[48px] gap-2 px-7 text-base">
               Browse all jobs <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
@@ -122,7 +122,7 @@ export default async function HomePage() {
           </div>
 
           {/* Search */}
-          <div className="anim-fade-up anim-delay-3 mx-auto mt-10 max-w-2xl text-left">
+          <div className="anim-fade-up anim-delay-3 mx-auto mt-12 max-w-2xl text-left">
             <HomeSearch />
           </div>
 
@@ -131,12 +131,12 @@ export default async function HomePage() {
             className="rail anim-fade-up anim-delay-3 mt-5 flex items-center justify-center gap-1.5 overflow-x-auto pb-1"
             aria-label="Popular searches"
           >
-            <span className="shrink-0 font-mono text-xs text-[#333]">Popular:</span>
+            <span className="shrink-0 font-mono text-xs text-[#737373]">Popular:</span>
             {POPULAR.map((p) => (
               <Link
                 key={p}
                 href={`/jobs?q=${encodeURIComponent(p)}`}
-                className="shrink-0 rounded-full border border-[#1f1f1f] px-2.5 py-1 font-mono text-xs text-[#444] transition hover:border-[#333] hover:text-[#aaa]"
+                className="shrink-0 rounded-full border border-[#333] px-2.5 py-1 font-mono text-xs text-[#a3a3a3] transition hover:border-[#737373] hover:text-white"
               >
                 {p}
               </Link>
@@ -154,19 +154,19 @@ export default async function HomePage() {
         className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
       >
         <h2 id="features-heading" className="sr-only">Why RemoteBoard</h2>
-        <ul className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[#1f1f1f] bg-[#1f1f1f] sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-[#262626] bg-[#262626] sm:grid-cols-2 lg:grid-cols-4">
           {FEATURES.map((f, i) => (
             <li
               key={i}
-              className="feature-card glass-card card-sheen group flex flex-col gap-3 bg-[#0a0a0a] p-7"
+              className="feature-card glass-card card-sheen group flex flex-col gap-3 bg-[#080808] p-7"
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#222] bg-[#111] text-[#888] transition group-hover:border-[#0070f3]/30 group-hover:text-[#0070f3]">
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#333] bg-[#111] text-[#a3a3a3] transition group-hover:border-[#737373] group-hover:text-white">
                 <f.icon className="h-5 w-5" aria-hidden />
               </span>
               <span className="text-[15px] font-semibold tracking-tight text-white">
                 {f.title}
               </span>
-              <span className="text-[13px] leading-6 text-[#555]">
+              <span className="text-[13px] leading-6 text-[#a3a3a3]">
                 {f.desc}
               </span>
             </li>
@@ -183,17 +183,17 @@ export default async function HomePage() {
       >
         <div className="mb-10 flex items-end justify-between gap-4">
           <div>
-            <p className="font-mono text-xs text-[#0070f3]">Browse by role</p>
+            <p className="font-mono text-xs text-[#a3a3a3]">Browse by role</p>
             <h2
               id="categories-heading"
-              className="subhead mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl"
+              className="subhead mt-2 text-2xl font-semibold tracking-tight text-white sm:text-3xl"
             >
               Find your discipline
             </h2>
           </div>
           <Link
             href="/jobs"
-            className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-[#0070f3] hover:underline"
+            className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-[#d4d4d4] hover:text-white hover:underline"
           >
             All jobs <ArrowRight className="h-4 w-4" aria-hidden />
           </Link>
@@ -204,18 +204,18 @@ export default async function HomePage() {
             <li key={c.q}>
               <Link
                 href={`/jobs?q=${encodeURIComponent(c.q)}`}
-                className="feature-card glass-card card-sheen group block rounded-2xl border border-[#1f1f1f] p-6 transition hover:border-[#333] focus-visible:outline-2 focus-visible:outline-[#0070f3]"
+                className="feature-card glass-card card-sheen group block rounded-xl border border-[#262626] p-6 transition hover:border-[#525252]"
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#222] bg-[#111] text-[#888] transition group-hover:border-[#0070f3]/30 group-hover:text-[#0070f3]">
+                <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-[#333] bg-[#111] text-[#a3a3a3] transition group-hover:border-[#737373] group-hover:text-white">
                   <c.icon className="h-5 w-5" aria-hidden />
                 </span>
                 <span className="mt-5 block text-[15px] font-semibold tracking-tight text-white">
                   {c.label}
                 </span>
-                <span className="mt-1 block text-[13px] leading-5 text-[#555]">
+                <span className="mt-1 block text-[13px] leading-5 text-[#a3a3a3]">
                   {c.blurb}
                 </span>
-                <span className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-[#0070f3] opacity-0 transition group-hover:opacity-100">
+                <span className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-white opacity-0 transition group-hover:opacity-100">
                   Browse <ArrowRight className="h-3 w-3" aria-hidden />
                 </span>
               </Link>
@@ -231,17 +231,17 @@ export default async function HomePage() {
         aria-label="Job sources"
         className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8"
       >
-        <p className="font-mono text-xs text-[#444]">Aggregated from</p>
+        <p className="font-mono text-xs text-[#737373]">Aggregated from</p>
         <ul className="rail mt-4 flex flex-wrap gap-2">
           {(Object.keys(SOURCE_META) as (keyof typeof SOURCE_META)[]).map((s) => (
             <li key={s}>
               <Link
                 href={`/jobs?source=${s}`}
-                className="inline-flex items-center gap-2 rounded-full border border-[#1f1f1f] bg-[#0f0f0f] px-3.5 py-1.5 text-xs font-medium text-[#666] transition hover:border-[#333] hover:text-white focus-visible:outline-2 focus-visible:outline-[#0070f3]"
+                className="inline-flex items-center gap-2 rounded-full border border-[#333] bg-[#0a0a0a] px-3.5 py-1.5 text-xs font-medium text-[#a3a3a3] transition hover:border-[#737373] hover:text-white"
               >
                 <span aria-hidden className={`h-1.5 w-1.5 rounded-full source-dot-${s}`} />
                 {SOURCE_META[s].label}
-                <span className="font-mono text-[11px] text-[#333]">
+                <span className="font-mono text-[11px] text-[#737373]">
                   {counts[s] || 0}
                 </span>
               </Link>
@@ -259,14 +259,14 @@ export default async function HomePage() {
       >
         <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="font-mono text-xs text-[#0070f3]">Just filed</p>
+            <p className="font-mono text-xs text-[#a3a3a3]">Just filed</p>
             <h2
               id="latest-heading"
-              className="subhead mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl"
+              className="subhead mt-2 text-2xl font-semibold tracking-tight text-white sm:text-3xl"
             >
               Latest positions
             </h2>
-            <p className="mt-2 font-mono text-xs text-[#444]">
+            <p className="mt-2 font-mono text-xs text-[#737373]">
               {errors.length > 0 ? (
                 <>partial results · {errors.length} provider{errors.length === 1 ? "" : "s"} unreachable</>
               ) : (
@@ -276,7 +276,7 @@ export default async function HomePage() {
           </div>
           <Link
             href="/jobs"
-            className="inline-flex min-h-[44px] items-center gap-1.5 rounded-xl bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:bg-[#e8e8e8] focus-visible:outline-2 focus-visible:outline-[#0070f3]"
+            className="inline-flex min-h-[44px] items-center gap-1.5 rounded-md bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-[#d4d4d4]"
           >
             View all <ArrowUpRight className="h-4 w-4" aria-hidden />
           </Link>
@@ -285,12 +285,12 @@ export default async function HomePage() {
         {latest.length > 0 ? (
           <JobList jobs={latest} />
         ) : (
-          <div className="rounded-2xl border border-dashed border-[#1f1f1f] bg-[#0a0a0a] p-14 text-center">
-            <p className="text-sm leading-7 text-[#555]">
+          <div className="rounded-xl border border-dashed border-[#404040] bg-[#080808] p-14 text-center">
+            <p className="text-sm leading-7 text-[#a3a3a3]">
               Providers are temporarily unreachable. Try again in a minute, or browse directly on{" "}
-              <a className="font-medium text-[#0070f3] hover:underline" href="https://jobicy.com">Jobicy</a>{" "}
+              <a className="font-medium text-white underline underline-offset-4" href="https://jobicy.com">Jobicy</a>{" "}
               and{" "}
-              <a className="font-medium text-[#0070f3] hover:underline" href="https://himalayas.app">Himalayas</a>.
+              <a className="font-medium text-white underline underline-offset-4" href="https://himalayas.app">Himalayas</a>.
             </p>
           </div>
         )}
@@ -298,15 +298,15 @@ export default async function HomePage() {
 
       {/* ── CTA banner ── */}
       <section className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-2xl border border-[#1f1f1f] bg-black px-8 py-16 text-center">
+        <div className="relative overflow-hidden rounded-xl border border-[#262626] bg-[#080808] px-8 py-16 text-center">
           <div aria-hidden className="hero-grid pointer-events-none absolute inset-0 opacity-40" />
-          <div aria-hidden className="hero-glow pointer-events-none absolute inset-0 opacity-50" />
+          <div aria-hidden className="hero-glow pointer-events-none absolute inset-0 opacity-70" />
           <div className="relative">
-            <p className="font-mono text-xs text-[#0070f3]">RemoteBoard</p>
+            <p className="font-mono text-xs text-[#a3a3a3]">RemoteBoard</p>
             <h2 className="headline mx-auto mt-4 max-w-xl text-2xl font-bold sm:text-3xl">
               <span className="headline-gradient">Ready to find your next remote role?</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-md text-sm leading-6 text-[#555]">
+            <p className="mx-auto mt-4 max-w-md text-sm leading-6 text-[#a3a3a3]">
               Browse {total > 0 ? total.toLocaleString() : "thousands of"} live positions across
               engineering, design, marketing and more — no account required.
             </p>

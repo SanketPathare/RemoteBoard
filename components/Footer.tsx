@@ -13,7 +13,7 @@ const PAGES = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-[#1f1f1f] bg-black">
+    <footer className="border-t border-[#262626] bg-black">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.5fr_1fr_1fr] lg:px-8">
 
         {/* Brand */}
@@ -27,7 +27,7 @@ export function Footer() {
             </span>
             RemoteBoard
           </Link>
-          <p className="mt-4 max-w-sm text-sm leading-6 text-[#666]">
+          <p className="mt-4 max-w-sm text-sm leading-6 text-[#a3a3a3]">
             A stateless ledger of live remote filings. No accounts, no database.
             Every Apply button opens the original provider posting in a new tab.
           </p>
@@ -38,7 +38,7 @@ export function Footer() {
                   href={SOURCE_META[s].siteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-full border border-[#222] px-2.5 py-1 font-mono text-xs text-[#555] transition hover:border-[#0070f3]/40 hover:text-[#0070f3]"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-[#333] px-2.5 py-1 text-xs text-[#a3a3a3] transition hover:border-[#737373] hover:text-white"
                 >
                   <span aria-hidden className={`h-1.5 w-1.5 rounded-full source-dot-${s}`} />
                   {SOURCE_META[s].label}
@@ -50,7 +50,7 @@ export function Footer() {
 
         {/* Navigation */}
         <nav aria-label="Footer navigation">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-[#444]">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-[#737373]">
             Explore
           </p>
           <ul className="space-y-1">
@@ -58,12 +58,12 @@ export function Footer() {
               <li key={p.href}>
                 <Link
                   href={p.href}
-                  className="group block rounded-lg px-2 py-1.5 transition hover:bg-[#0f0f0f]"
+                  className="group block rounded-md px-2 py-1.5 transition hover:bg-[#111]"
                 >
-                  <span className="block text-sm text-[#666] transition group-hover:text-white">
+                  <span className="block text-sm text-[#a3a3a3] transition group-hover:text-white">
                     {p.label}
                   </span>
-                  <span className="block text-xs text-[#3a3a3a]">{p.desc}</span>
+                  <span className="block text-xs text-[#737373]">{p.desc}</span>
                 </Link>
               </li>
             ))}
@@ -72,10 +72,10 @@ export function Footer() {
 
         {/* Disclaimer */}
         <div>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-[#444]">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-[#737373]">
             Good to know
           </p>
-          <ul className="space-y-3 text-sm leading-6 text-[#555]">
+          <ul className="space-y-3 text-sm leading-6 text-[#a3a3a3]">
             <li>Filings belong to their providers. Verify details before applying.</li>
             <li>Missing pay means undisclosed, never zero.</li>
             <li>Worldwide appears only when the source confirms it.</li>
@@ -84,12 +84,12 @@ export function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-[#1f1f1f]">
-        <div className="mx-auto flex max-w-7xl flex-col gap-1.5 px-4 py-5 font-mono text-xs text-[#3a3a3a] sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+      <div className="border-t border-[#262626]">
+        <div className="mx-auto flex max-w-7xl flex-col gap-1.5 px-4 py-5 text-xs text-[#737373] sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
           <p>© {new Date().getFullYear()} RemoteBoard. Aggregated only as each provider permits.</p>
           <p>
             See{" "}
-            <Link href="/about" className="text-[#0070f3] hover:underline">
+            <Link href="/about" className="text-[#d4d4d4] hover:text-white hover:underline">
               About
             </Link>{" "}
             for attribution and terms.

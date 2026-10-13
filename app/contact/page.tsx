@@ -20,7 +20,7 @@ export default function ContactPage() {
       </p>
       <a
         href="mailto:hello@example.com?subject=RemoteBoard%20feedback"
-        className="mt-6 inline-flex min-h-[48px] items-center gap-2 rounded-md bg-black px-5 py-3 text-sm font-medium text-white transition hover:bg-[#333333] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0070F3] dark:bg-white dark:text-black dark:hover:bg-[#EAEAEA]"
+        className="mt-6 inline-flex min-h-[48px] items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-[#d4d4d4]"
       >
         <Mail className="h-4 w-4" aria-hidden /> hello@example.com
       </a>

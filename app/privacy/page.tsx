@@ -53,7 +53,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="headline text-lg font-bold text-black dark:text-white">5. Contact</h2>
           <p>
-            Privacy questions or takedown requests: <a className="text-[#0070F3] hover:underline" href="mailto:hello@example.com">hello@example.com</a>.
+            Privacy questions or takedown requests: <a className="text-white underline underline-offset-4" href="mailto:hello@example.com">hello@example.com</a>.
           </p>
         </section>
       </div>

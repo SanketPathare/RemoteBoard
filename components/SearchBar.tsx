@@ -13,7 +13,7 @@ export function SearchBar({
   onSearch: (q: string) => void;
   id?: string;
   size?: "default" | "hero";
-  /** @deprecated — kept for API compat; site is now dark-only */
+  /** @deprecated — retained for compatibility with older call sites. */
   tone?: "dark" | "auto";
 }) {
   const [value, setValue] = useState(defaultValue || "");
@@ -36,7 +36,7 @@ export function SearchBar({
       <div className="relative flex-1">
         <Search
           aria-hidden
-          className={`pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#444] ${
+          className={`pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#737373] ${
             hero ? "h-5 w-5" : "h-4 w-4"
           }`}
         />
@@ -45,9 +45,9 @@ export function SearchBar({
           type="search"
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          placeholder="$ search title, company, or skill"
+          placeholder="Search jobs by title, company, or skill"
           autoComplete="off"
-          className={`glass-input w-full rounded-xl border border-[#222] font-mono text-white placeholder:text-[#444] focus:border-[#0070f3] focus:outline-none focus:ring-4 focus:ring-[#0070f3]/20 ${
+          className={`glass-input w-full rounded-lg border border-[#404040] font-sans text-white placeholder:text-[#737373] focus:border-[#a3a3a3] focus:outline-none focus:ring-4 focus:ring-white/10 ${
             hero ? "py-4 pl-12 pr-11 text-base" : "py-3 pl-10 pr-9 text-sm"
           } [&::-webkit-search-cancel-button]:hidden`}
         />
@@ -56,7 +56,7 @@ export function SearchBar({
             type="button"
             aria-label="Clear search"
             onClick={() => { setValue(""); onSearch(""); }}
-            className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-[#444] transition hover:bg-[#1a1a1a] hover:text-white"
+            className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-1 text-[#737373] transition hover:bg-[#1a1a1a] hover:text-white"
           >
             <X className="h-4 w-4" aria-hidden />
           </button>
@@ -65,7 +65,7 @@ export function SearchBar({
 
       <button
         type="submit"
-        className={`rounded-xl bg-white font-medium text-black transition hover:bg-[#e8e8e8] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0070f3] ${
+        className={`rounded-lg border border-white bg-white font-semibold text-black transition hover:border-[#d4d4d4] hover:bg-[#d4d4d4] ${
           hero ? "px-7 py-4 text-base" : "min-h-[48px] px-5 py-3 text-sm"
         }`}
       >

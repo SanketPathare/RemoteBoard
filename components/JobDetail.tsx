@@ -55,7 +55,7 @@ export function JobDetail({ job }: { job: Job }) {
       href={job.applyUrl}
       target="_blank"
       rel={rel}
-      className="inline-flex min-h-[48px] w-full items-center justify-center gap-1.5 rounded-md bg-black px-5 py-3 text-sm font-medium text-white transition hover:bg-[#333333] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0070F3] dark:bg-white dark:text-black dark:hover:bg-[#EAEAEA]"
+      className="inline-flex min-h-[48px] w-full items-center justify-center gap-1.5 rounded-md bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-[#d4d4d4]"
     >
       Apply now on {job.sourceName} <ArrowUpRight className="h-4 w-4" aria-hidden />
     </a>
@@ -66,7 +66,7 @@ export function JobDetail({ job }: { job: Job }) {
       href={job.sourceUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex min-h-[48px] items-center justify-center gap-1.5 rounded-md border border-[#EAEAEA] px-5 py-3 text-sm font-medium text-black transition hover:border-[#999999] focus-visible:outline-2 focus-visible:outline-[#0070F3] dark:border-[#333333] dark:text-white dark:hover:border-[#666666]"
+      className="inline-flex min-h-[48px] items-center justify-center gap-1.5 rounded-md border border-[#404040] px-5 py-3 text-sm font-medium text-[#d4d4d4] transition hover:border-[#737373] hover:bg-[#111] hover:text-white"
     >
       <ExternalLink className="h-4 w-4" aria-hidden /> Read the original filing
     </a>
@@ -76,7 +76,7 @@ export function JobDetail({ job }: { job: Job }) {
     <div className="flex flex-col gap-4 pb-24 sm:gap-5 lg:pb-0">
       <Link
         href="/jobs"
-        className="inline-flex w-fit items-center gap-1.5 rounded-md px-1 py-1 font-mono text-xs text-[#666666] transition hover:text-black hover:underline focus-visible:outline-2 focus-visible:outline-[#0070F3] dark:text-[#888888] dark:hover:text-white"
+        className="inline-flex w-fit items-center gap-1.5 rounded-md px-1 py-1 text-xs text-[#a3a3a3] transition hover:text-white hover:underline"
       >
         <ArrowLeft className="h-4 w-4" aria-hidden /> back to all filings
       </Link>
@@ -84,7 +84,7 @@ export function JobDetail({ job }: { job: Job }) {
       <div className="grid items-start gap-4 sm:gap-5 lg:grid-cols-[minmax(0,1fr)_320px]">
         {/* Main column */}
         <div className="flex min-w-0 flex-col gap-4 sm:gap-5">
-          <article className="glass-card card-sheen rounded-lg border border-[#EAEAEA] p-5 sm:p-7 lg:p-8 dark:border-[#333333]">
+          <article className="glass-card card-sheen rounded-xl border border-[#262626] p-5 sm:p-7 lg:p-8">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div className="min-w-0">
                 <h1 className="headline text-balance text-3xl font-extrabold leading-tight text-black sm:text-4xl dark:text-white">
@@ -98,10 +98,10 @@ export function JobDetail({ job }: { job: Job }) {
               <SourceBadge source={job.source} />
             </div>
 
-            <dl className="mt-6 grid gap-x-6 gap-y-3 border-t border-[#EAEAEA] pt-5 sm:grid-cols-2 dark:border-[#333333]">
+            <dl className="mt-6 grid gap-x-6 gap-y-3 border-t border-[#262626] pt-5 sm:grid-cols-2">
               {facts.map((f) => (
                 <div key={f.label} className="flex items-start gap-2.5 text-sm">
-                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-[#EAEAEA] text-black dark:border-[#333333] dark:text-white">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-[#333] text-white">
                     {f.icon}
                   </span>
                   <span className="min-w-0">
@@ -132,18 +132,18 @@ export function JobDetail({ job }: { job: Job }) {
 
           <section
             aria-label="Job description"
-            className="glass-card card-sheen rounded-lg border border-[#EAEAEA] p-5 sm:p-7 lg:p-8 dark:border-[#333333]"
+            className="glass-card card-sheen rounded-xl border border-[#262626] p-5 sm:p-7 lg:p-8"
           >
             <h2 className="headline text-2xl font-bold text-black dark:text-white">About this role</h2>
             {job.excerpt && (
-              <p className="mt-3 border-l-2 border-black py-1 pl-3 pr-2 text-sm italic leading-6 text-[#666666] dark:border-white dark:text-[#888888]">
+              <p className="mt-3 border-l-2 border-[#737373] py-1 pl-3 pr-2 text-sm italic leading-6 text-[#a3a3a3]">
                 {job.excerpt}
               </p>
             )}
             <SafeHtml html={job.descriptionHtml} className="job-description mt-4" />
-            <p className="mt-6 border-t border-[#EAEAEA] pt-4 font-mono text-xs leading-5 text-[#999999] dark:border-[#333333]">
+            <p className="mt-6 border-t border-[#262626] pt-4 text-xs leading-5 text-[#a3a3a3]">
               filed by {job.sourceName} ·{" "}
-              <a href={job.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-[#0070F3] hover:underline">
+              <a href={job.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-4">
                 read the original filing
               </a>
             </p>
