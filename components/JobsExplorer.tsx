@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, TriangleAlert } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { SearchBar } from "./SearchBar";
 import { FilterPills } from "./FilterPills";
 import { JobList } from "./JobList";
@@ -180,16 +180,6 @@ export function JobsExplorer({ initialQuery = "", initialSource = "all" }: { ini
           />
         </div>
       </div>
-
-      {errors.length > 0 && !loading && (
-        <p role="status" className="flex items-start gap-2 rounded-lg border border-[#404040] bg-[#111] px-4 py-3 text-[13px] leading-5 text-[#a3a3a3]">
-          <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
-          <span>
-            {errors.length} listing feed{errors.length === 1 ? " is" : "s are"} temporarily
-            unavailable. Showing the listings that are currently available.
-          </span>
-        </p>
-      )}
 
       {/* Full-width Results Area */}
       <div className="w-full min-w-0" ref={resultsRef}>

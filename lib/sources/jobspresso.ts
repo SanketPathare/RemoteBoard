@@ -91,7 +91,9 @@ export async function fetchJobspresso(signal?: AbortSignal): Promise<Job[]> {
       headers: { Accept: "application/rss+xml, application/xml, text/xml" },
       cache: "no-store",
     });
-    if (!res.ok) throw new Error(`Jobspresso HTTP ${res.status}`);
+    if (!res.ok) {
+      return [];
+    }
     const xml = await res.text();
     const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "" });
     const parsed = parser.parse(xml) as { rss?: { channel?: { item?: RssItem | RssItem[] } } };
