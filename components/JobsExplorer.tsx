@@ -1,7 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { TriangleAlert } from "lucide-react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight, TriangleAlert } from "lucide-react";
 import { SearchBar } from "./SearchBar";
 import { FilterPanel } from "./FilterPanel";
 import { JobList } from "./JobList";
@@ -17,21 +17,102 @@ interface ApiPayload {
   errors: SourceError[];
 }
 
-/**
- * Client explorer: fetches ONCE per source selection (not per keystroke),
- * then filters/sorts/paginates locally. Query text filters client-side to
- * avoid repeated API calls on every UI interaction.
- */
+// ── Pagination bar ──────────────────────────────────────────────────────────
+function Pagination({
+  page,
+  totalPages,
+  onPage,
+}: {
+  page: number;
+  totalPages: number;
+  onPage: (p: number) => void;
+}) {
+  if (totalPages <= 1) return null;
+
+  // Build visible page numbers: always show first, last, current ±1, and ellipses
+  const pages: (number | "…")[] = [];
+  const add = (n: number) => {
+    if (!pages.includes(n)) pages.push(n);
+  };
+
+  add(1);
+  if (page - 2 > 2) pages.push("…");
+  for (let i = Math.max(2, page - 1); i <= Math.min(totalPages - 1, page + 1); i++) add(i);
+  if (page + 2 < totalPages - 1) pages.push("…");
+  if (totalPages > 1) add(totalPages);
+
+  const btnBase =
+    "inline-flex h-9 min-w-[36px] items-center justify-center rounded-lg border px-2 font-mono text-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40";
+
+  return (
+    <nav
+      aria-label="Pagination"
+      className="flex flex-wrap items-center justify-center gap-1.5 py-8"
+    >
+      {/* Prev */}
+      <button
+        type="button"
+        onClick={() => onPage(page - 1)}
+        disabled={page === 1}
+        aria-label="Previous page"
+        className={`${btnBase} gap-1 border-[#2a2a2a] bg-[#0d0d0d] text-[#a3a3a3] hover:border-[#404040] hover:text-white disabled:cursor-not-allowed disabled:opacity-30`}
+      >
+        <ChevronLeft className="h-3.5 w-3.5" aria-hidden />
+        <span className="hidden sm:inline">Prev</span>
+      </button>
+
+      {/* Page numbers */}
+      {pages.map((p, i) =>
+        p === "…" ? (
+          <span key={`ellipsis-${i}`} className="px-1 text-[#555] font-mono text-xs select-none">
+            …
+          </span>
+        ) : (
+          <button
+            key={p}
+            type="button"
+            onClick={() => onPage(p as number)}
+            aria-label={`Page ${p}`}
+            aria-current={p === page ? "page" : undefined}
+            className={`${btnBase} ${
+              p === page
+                ? "border-white bg-white text-black"
+                : "border-[#2a2a2a] bg-[#0d0d0d] text-[#a3a3a3] hover:border-[#404040] hover:text-white"
+            }`}
+          >
+            {p}
+          </button>
+        ),
+      )}
+
+      {/* Next */}
+      <button
+        type="button"
+        onClick={() => onPage(page + 1)}
+        disabled={page === totalPages}
+        aria-label="Next page"
+        className={`${btnBase} gap-1 border-[#2a2a2a] bg-[#0d0d0d] text-[#a3a3a3] hover:border-[#404040] hover:text-white disabled:cursor-not-allowed disabled:opacity-30`}
+      >
+        <span className="hidden sm:inline">Next</span>
+        <ChevronRight className="h-3.5 w-3.5" aria-hidden />
+      </button>
+    </nav>
+  );
+}
+
+// ── Main explorer ────────────────────────────────────────────────────────────
 export function JobsExplorer({ initialQuery = "", initialSource = "all" }: { initialQuery?: string; initialSource?: string }) {
   const [all, setAll] = useState<Job[]>([]);
   const [errors, setErrors] = useState<SourceError[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
-  const [visible, setVisible] = useState(PAGE_SIZE);
+  const [page, setPage] = useState(1);
   const [filters, setFilters] = useState<JobFilters>({ ...EMPTY_FILTERS, query: initialQuery, source: initialSource });
 
+  const resultsRef = useRef<HTMLDivElement>(null);
+
   const fetchAll = useCallback(async (source: string) => {
-    setVisible(PAGE_SIZE);
+    setPage(1);
     setLoading(true);
     setLoadError(null);
     try {
@@ -48,10 +129,6 @@ export function JobsExplorer({ initialQuery = "", initialSource = "all" }: { ini
     }
   }, []);
 
-  // Refetch only when the source bucket changes — never on text/filter tweaks.
-  // URL param changes remount this component via key (see jobs/page.tsx).
-  // Intentional data-fetch effect: synchronizes client state with the server
-  // feed (an external system), which is exactly what effects are for.
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchAll(filters.source);
@@ -62,26 +139,42 @@ export function JobsExplorer({ initialQuery = "", initialSource = "all" }: { ini
     [all, filters],
   );
 
-  const locations = useMemo(() => facetValues(all, (j) => j.location), [all]);
-  const categories = useMemo(
-    () => facetValues(all, (j) => j.category || j.tags[0]),
-    [all],
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+
+  // Clamp page when filters narrow results
+  const safePage = Math.min(page, totalPages);
+
+  const pageJobs = useMemo(
+    () => filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE),
+    [filtered, safePage],
   );
+
+  const locations     = useMemo(() => facetValues(all, (j) => j.location), [all]);
+  const categories    = useMemo(() => facetValues(all, (j) => j.category || j.tags[0]), [all]);
   const employmentTypes = useMemo(() => facetValues(all, (j) => j.employmentType), [all]);
 
-  const pct = filtered.length ? Math.min(100, Math.round((Math.min(visible, filtered.length) / filtered.length) * 100)) : 0;
+  function goToPage(p: number) {
+    setPage(p);
+    // Scroll results area back into view smoothly
+    resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function handleFilterChange(f: JobFilters) {
+    setFilters(f);
+    setPage(1);
+  }
+
+  const from = filtered.length === 0 ? 0 : (safePage - 1) * PAGE_SIZE + 1;
+  const to   = Math.min(safePage * PAGE_SIZE, filtered.length);
 
   return (
     <div className="flex flex-col gap-4 sm:gap-5">
-      {/* Keep search available while browsing the results. */}
+      {/* Sticky search bar */}
       <div className="glass-bar sticky top-16 z-30 -mx-4 border-b border-[#262626] px-4 py-3 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SearchBar
             defaultValue={filters.query}
-            onSearch={(q) => {
-              setFilters((f) => ({ ...f, query: q }));
-              setVisible(PAGE_SIZE);
-            }}
+            onSearch={(q) => handleFilterChange({ ...filters, query: q })}
           />
         </div>
       </div>
@@ -97,17 +190,12 @@ export function JobsExplorer({ initialQuery = "", initialSource = "all" }: { ini
       )}
 
       <div className="grid items-start gap-4 sm:gap-5 lg:grid-cols-[300px_minmax(0,1fr)]">
+        {/* Sidebar */}
         <div className="lg:sticky lg:top-36">
           <FilterPanel
             filters={filters}
-            onChange={(f) => {
-              setFilters(f);
-              setVisible(PAGE_SIZE);
-            }}
-            onClear={() => {
-              setFilters({ ...EMPTY_FILTERS, source: filters.source });
-              setVisible(PAGE_SIZE);
-            }}
+            onChange={handleFilterChange}
+            onClear={() => handleFilterChange({ ...EMPTY_FILTERS, source: filters.source })}
             locations={locations}
             categories={categories}
             employmentTypes={employmentTypes}
@@ -120,42 +208,31 @@ export function JobsExplorer({ initialQuery = "", initialSource = "all" }: { ini
           )}
         </div>
 
-        <div className="min-w-0">
+        {/* Results */}
+        <div className="min-w-0" ref={resultsRef}>
           {loading ? (
             null
           ) : loadError ? (
             <ErrorState message={loadError} onRetry={() => fetchAll(filters.source)} />
           ) : filtered.length === 0 ? (
-            <EmptyState
-              onClear={() => setFilters({ ...EMPTY_FILTERS, source: filters.source })}
-            />
+            <EmptyState onClear={() => handleFilterChange({ ...EMPTY_FILTERS, source: filters.source })} />
           ) : (
             <>
-              <JobList jobs={filtered.slice(0, visible)} />
-              <div className="mx-auto flex max-w-sm flex-col items-center gap-3 py-8">
-                <div
-                  className="h-1.5 w-full overflow-hidden rounded-full bg-[#262626]"
-                  role="progressbar"
-                  aria-valuenow={pct}
-                  aria-valuemin={0}
-                  aria-valuemax={100}
-                  aria-label="Filings shown"
-                >
-                  <div className="h-full rounded-full bg-white transition-all" style={{ width: `${pct}%` }} />
-                </div>
-                <p aria-live="polite" className="font-mono text-xs text-[#a3a3a3]">
-                  {Math.min(visible, filtered.length)} of {filtered.length} listings shown
+              {/* Result count row */}
+              <div className="mb-4 flex items-center justify-between gap-4">
+                <p aria-live="polite" className="font-mono text-xs text-[#737373]">
+                  {from}–{to} of {filtered.length} listing{filtered.length !== 1 ? "s" : ""}
                 </p>
-                {visible < filtered.length && (
-                  <button
-                    type="button"
-                    onClick={() => setVisible((v) => v + PAGE_SIZE)}
-                    className="min-h-[48px] w-full rounded-md bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-[#d4d4d4] sm:w-auto sm:min-w-56"
-                  >
-                    Load more
-                  </button>
+                {totalPages > 1 && (
+                  <p className="font-mono text-xs text-[#555]">
+                    Page {safePage} of {totalPages}
+                  </p>
                 )}
               </div>
+
+              <JobList jobs={pageJobs} />
+
+              <Pagination page={safePage} totalPages={totalPages} onPage={goToPage} />
             </>
           )}
         </div>
