@@ -19,9 +19,11 @@ import {
   BarChart3,
 } from "lucide-react";
 import { aggregateJobs } from "@/lib/aggregate";
+import { groupJobsByCompany } from "@/lib/companies";
 import { JobList } from "@/components/JobList";
 import { HomeSearch } from "@/components/HomeSearch";
 import { FilingsTicker } from "@/components/FilingsTicker";
+import { TopCompanies } from "@/components/TopCompanies";
 
 export const metadata: Metadata = {
   title: "RemoteBoard — Find Your Next Remote Job",
@@ -67,6 +69,9 @@ export default async function HomePage() {
   const { jobs, errors } = await aggregateJobs();
   const latest = jobs.slice(0, 9);
   const total = jobs.length;
+  const allCompanies = groupJobsByCompany(jobs);
+  const topCompanies = allCompanies.slice(0, 8);
+
   const ticks = jobs.slice(0, 12).map((j) => ({
     title: j.title,
     company: j.company,
@@ -249,6 +254,11 @@ export default async function HomePage() {
           ))}
         </ul>
       </section>
+
+      <div className="divider mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" />
+
+      {/* ── Top Hiring Companies ── */}
+      <TopCompanies companies={topCompanies} totalCompaniesCount={allCompanies.length} />
 
       <div className="divider mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" />
 
