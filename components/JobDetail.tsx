@@ -86,7 +86,7 @@ export function JobDetail({ job }: { job: Job }) {
         <ArrowLeft className="h-4 w-4" aria-hidden /> back to all jobs
       </Link>
 
-      <div className="grid items-start gap-4 sm:gap-5 lg:grid-cols-[minmax(0,1fr)_320px]">
+      <div className="grid gap-4 sm:gap-5 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-stretch">
         {/* Main column */}
         <div className="flex min-w-0 flex-col gap-4 sm:gap-5">
           <article className="glass-card card-sheen rounded-xl border border-neutral-200 bg-white p-5 sm:p-7 lg:p-8 dark:border-[#262626] dark:bg-transparent">
@@ -200,8 +200,8 @@ export function JobDetail({ job }: { job: Job }) {
         </div>
 
         {/* Sticky aside (desktop) */}
-        <aside className="hidden lg:block">
-          <div className="glass-card card-sheen sticky top-24 flex flex-col gap-3 rounded-lg border border-neutral-200 bg-white p-5 dark:border-[#333333] dark:bg-transparent">
+        <aside className="hidden lg:block h-full">
+          <div className="glass-card card-sheen sticky top-24 z-20 flex flex-col gap-3 rounded-lg border border-neutral-200 bg-white p-5 dark:border-[#333333] dark:bg-transparent">
             {/* Company Mini Card */}
             <div className="flex items-center gap-3 border-b border-neutral-200 pb-3.5 dark:border-[#262626]">
               <CompanyLogo name={job.company} logo={job.logo} size="md" />
