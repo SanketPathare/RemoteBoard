@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { BriefcaseBusiness } from "lucide-react";
 const PAGES = [
-  { href: "/jobs",    label: "Browse jobs",       desc: "Search and filter the live feed" },
-  { href: "/about",   label: "About RemoteBoard", desc: "How the job board works" },
-  { href: "/contact", label: "Contact",            desc: "Report a broken link" },
-  { href: "/privacy", label: "Privacy policy",     desc: "No accounts, no tracking" },
+  { href: "/jobs",      label: "Browse jobs",       desc: "Search and filter the live feed" },
+  { href: "/companies", label: "Companies",         desc: "Explore top remote-first teams" },
+  { href: "/about",     label: "About RemoteBoard", desc: "How the job board works" },
+  { href: "/contact",   label: "Contact",            desc: "Report a broken link" },
+  { href: "/privacy",   label: "Privacy policy",     desc: "No accounts, no tracking" },
 ];
 
 export function Footer() {

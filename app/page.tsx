@@ -361,8 +361,8 @@ export default async function HomePage() {
               <Link href="/jobs" className="btn-primary min-h-[48px] gap-2 px-7 text-base">
                 Start browsing <ArrowRight className="h-4 w-4" aria-hidden />
               </Link>
-              <Link href="/about" className="btn-secondary min-h-[48px] px-7 text-base">
-                Learn more
+              <Link href="/companies" className="btn-secondary min-h-[48px] px-7 text-base">
+                Browse companies
               </Link>
             </div>
           </div>

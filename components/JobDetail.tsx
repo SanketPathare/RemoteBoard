@@ -16,6 +16,7 @@ import { timeAgo } from "@/lib/format";
 import type { Job } from "@/lib/types";
 import { CompanyLogo } from "./CompanyLogo";
 import { SafeHtml } from "./SafeHtml";
+import { toCompanySlug } from "@/lib/companies";
 
 export function JobDetail({ job }: { job: Job }) {
   const rel =
@@ -31,8 +32,21 @@ export function JobDetail({ job }: { job: Job }) {
         day: "numeric",
       });
 
-  const facts: { icon: React.ReactNode; label: string; value: string }[] = [
-    { icon: <Building2 className="h-4 w-4" aria-hidden />, label: "Company", value: job.company },
+  const companySlug = toCompanySlug(job.company);
+
+  const facts: { icon: React.ReactNode; label: string; value: React.ReactNode }[] = [
+    {
+      icon: <Building2 className="h-4 w-4" aria-hidden />,
+      label: "Company",
+      value: (
+        <Link
+          href={`/companies/${companySlug}`}
+          className="text-white underline underline-offset-4 hover:text-[#d4d4d4]"
+        >
+          {job.company}
+        </Link>
+      ),
+    },
     { icon: <MapPin className="h-4 w-4" aria-hidden />, label: "Location", value: job.location },
     {
       icon: <Globe className="h-4 w-4" aria-hidden />,
@@ -123,7 +137,12 @@ export function JobDetail({ job }: { job: Job }) {
                 <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm">
                   <p className="flex items-center gap-1.5 font-semibold text-black dark:text-white">
                     <Building2 className="h-4 w-4 shrink-0 text-[#888888]" aria-hidden />
-                    {job.company}
+                    <Link
+                      href={`/companies/${companySlug}`}
+                      className="transition hover:underline hover:text-[#d4d4d4]"
+                    >
+                      {job.company}
+                    </Link>
                   </p>
                   {job.location && (
                     <p className="flex items-center gap-1.5 text-[#666666] dark:text-[#888888]">
@@ -198,9 +217,12 @@ export function JobDetail({ job }: { job: Job }) {
             <div className="flex items-center gap-3 border-b border-[#EAEAEA] pb-3.5 dark:border-[#262626]">
               <CompanyLogo name={job.company} logo={job.logo} size="md" />
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-semibold text-black dark:text-white">
+                <Link
+                  href={`/companies/${companySlug}`}
+                  className="block truncate text-sm font-semibold text-black transition hover:underline dark:text-white"
+                >
                   {job.company}
-                </p>
+                </Link>
                 <p className="truncate text-xs text-[#666666] dark:text-[#888888]">
                   {job.location || (job.remote ? "Remote" : "Worldwide")}
                 </p>

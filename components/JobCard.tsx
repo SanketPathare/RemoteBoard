@@ -6,6 +6,7 @@ import { timeAgo } from "@/lib/format";
 import type { Job } from "@/lib/types";
 
 import { CompanyLogo } from "./CompanyLogo";
+import { toCompanySlug } from "@/lib/companies";
 
 export function ApplyButtons({ job }: { job: Job }) {
   const rel =
@@ -51,7 +52,12 @@ export function JobCard({ job }: { job: Job }) {
             </h3>
             <p className="mt-1 flex items-center gap-1.5 truncate text-xs text-[#a3a3a3]">
               <Building2 className="h-3 w-3 shrink-0" aria-hidden />
-              <span className="truncate">{job.company}</span>
+              <Link
+                href={`/companies/${toCompanySlug(job.company)}`}
+                className="truncate transition hover:text-white hover:underline"
+              >
+                {job.company}
+              </Link>
             </p>
           </div>
         </div>
