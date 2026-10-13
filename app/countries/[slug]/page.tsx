@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowLeft,
-  ArrowRight,
   Building2,
   Globe,
   MapPin,

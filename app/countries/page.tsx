@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Globe, MapPin, Building2, Briefcase, Sparkles } from "lucide-react";
+import { Globe, Briefcase, Sparkles } from "lucide-react";
 import { aggregateJobs } from "@/lib/aggregate";
 import { groupJobsByCountry } from "@/lib/countries";
 import { CountriesExplorer } from "@/components/CountriesExplorer";

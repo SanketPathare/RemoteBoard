@@ -8,7 +8,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Globe2,
-  MapPin,
   Search,
 } from "lucide-react";
 import type { CountrySummary } from "@/lib/countries";
