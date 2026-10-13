@@ -51,6 +51,58 @@ export default async function CompaniesPage() {
         </div>
       </div>
 
+      {/* ── Featured Employer Portal: Hitachi ── */}
+      <section
+        aria-label="Featured Employer Portals"
+        className="glass-card card-sheen mb-10 overflow-hidden rounded-2xl border border-[#262626] bg-[#0c0c0c] p-6 sm:p-7"
+      >
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className="max-w-2xl">
+            <div className="flex items-center gap-2">
+              <span className="font-mono text-xs text-[#a3a3a3]">$ spotlight / enterprise</span>
+              <span className="inline-flex items-center gap-1 rounded-full border border-red-500/30 bg-red-500/10 px-2.5 py-0.5 text-[11px] font-semibold text-red-400">
+                Official Portals
+              </span>
+            </div>
+            <h2 className="headline mt-2 text-xl font-bold tracking-tight text-white sm:text-2xl">
+              Hitachi Careers & Global Opportunities
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-[#a3a3a3]">
+              Direct access to live openings across the Hitachi ecosystem — including Hitachi Energy,
+              Hitachi Vantara, Hitachi Solutions, and Hitachi Rail. Browse all international roles or filter
+              specifically for positions across India.
+            </p>
+          </div>
+
+          {/* Action Portal Links */}
+          <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center lg:flex-col lg:items-end">
+            <a
+              href="https://careers.hitachi.com/jobs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[44px] items-center justify-between gap-3 rounded-xl bg-white px-4 py-2.5 text-xs font-semibold text-black transition hover:bg-[#d4d4d4]"
+            >
+              <span>Hitachi Careers — all jobs</span>
+              <span className="rounded-md bg-black/10 px-1.5 py-0.5 font-mono text-[10px] text-black">
+                3,600+ roles ↗
+              </span>
+            </a>
+
+            <a
+              href="https://careers.hitachi.com/jobs?filter[country]=India"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[44px] items-center justify-between gap-3 rounded-xl border border-[#333] bg-[#141414] px-4 py-2.5 text-xs font-semibold text-white transition hover:border-white hover:bg-[#1f1f1f]"
+            >
+              <span>Hitachi India jobs</span>
+              <span className="rounded-md border border-white/20 bg-white/10 px-1.5 py-0.5 font-mono text-[10px] text-[#e5e5e5]">
+                600+ roles ↗
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Interactive Explorer */}
       <CompaniesExplorer initialCompanies={companies} />
     </div>

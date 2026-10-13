@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import {
   ArrowLeft,
   ArrowRight,
-  Briefcase,
+  ArrowUpRight,
   Building2,
   Clock,
-  Globe,
   MapPin,
-  Sparkles,
 } from "lucide-react";
 import { aggregateJobs } from "@/lib/aggregate";
 import { getCompanyBySlug, groupJobsByCompany } from "@/lib/companies";
@@ -133,6 +130,30 @@ export default async function CompanySlugPage({
             <p className="mt-2 text-sm text-[#a3a3a3]">
               Hiring remote professionals across distributed teams. View all open positions below and apply directly.
             </p>
+
+            {company.slug === "hitachi" && (
+              <div className="mt-4 flex flex-wrap items-center gap-2.5 rounded-xl border border-white/10 bg-white/5 p-3 sm:p-3.5">
+                <span className="font-mono text-xs font-semibold text-white">Official Portals:</span>
+                <a
+                  href="https://careers.hitachi.com/jobs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-[#333] bg-[#111] px-3 py-1.5 text-xs font-medium text-white transition hover:border-white hover:bg-[#1a1a1a]"
+                >
+                  <span>Hitachi Careers — all jobs</span>
+                  <ArrowUpRight className="h-3.5 w-3.5 text-[#888]" />
+                </a>
+                <a
+                  href="https://careers.hitachi.com/jobs?filter[country]=India"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-[#333] bg-[#111] px-3 py-1.5 text-xs font-medium text-white transition hover:border-white hover:bg-[#1a1a1a]"
+                >
+                  <span>Hitachi India jobs</span>
+                  <ArrowUpRight className="h-3.5 w-3.5 text-[#888]" />
+                </a>
+              </div>
+            )}
 
             {/* Quick badges & metadata */}
             <div className="mt-5 grid grid-cols-1 gap-3 border-t border-[#1f1f1f] pt-4 sm:grid-cols-3">

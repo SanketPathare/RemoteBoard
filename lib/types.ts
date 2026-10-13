@@ -17,7 +17,8 @@ export type SourceName =
   | "remotelanders"
   | "themuse"
   | "workingnomads"
-  | "hnhiring";
+  | "hnhiring"
+  | "hitachi";
 
 export interface Job {
   /** Composite id: `${source}:${sourceId}` — used for React keys, detail routes, dedup. */
@@ -144,6 +145,11 @@ export const SOURCE_META: Record<
     label: "HN Who is Hiring",
     siteUrl: "https://news.ycombinator.com",
     attribution: 'Jobs via Hacker News "Who is hiring"',
+  },
+  hitachi: {
+    label: "Hitachi Careers",
+    siteUrl: "https://careers.hitachi.com/jobs",
+    attribution: "Jobs via Hitachi Careers",
   },
 };
 

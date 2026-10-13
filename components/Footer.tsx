@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { BriefcaseBusiness } from "lucide-react";
+import { ArrowUpRight, BriefcaseBusiness } from "lucide-react";
+
 const PAGES = [
   { href: "/jobs",      label: "Browse jobs",       desc: "Search and filter the live feed" },
   { href: "/companies", label: "Companies",         desc: "Explore top remote-first teams" },
@@ -8,10 +9,23 @@ const PAGES = [
   { href: "/privacy",   label: "Privacy policy",     desc: "No accounts, no tracking" },
 ];
 
+const EMPLOYER_PORTALS = [
+  {
+    href: "https://careers.hitachi.com/jobs",
+    label: "Hitachi Careers — all jobs",
+    desc: "Global technology, energy & rail roles",
+  },
+  {
+    href: "https://careers.hitachi.com/jobs?filter[country]=India",
+    label: "Hitachi India jobs",
+    desc: "Positions across Bengaluru, Pune & remote",
+  },
+];
+
 export function Footer() {
   return (
     <footer className="border-t border-[#262626] bg-black">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.5fr_1fr_1fr] lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.3fr_1fr_1.1fr_1fr] lg:px-8">
 
         {/* Brand */}
         <div>
@@ -51,6 +65,31 @@ export function Footer() {
             ))}
           </ul>
         </nav>
+
+        {/* Career Portals */}
+        <div>
+          <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-[#737373]">
+            Featured Portals
+          </p>
+          <ul className="space-y-1">
+            {EMPLOYER_PORTALS.map((portal) => (
+              <li key={portal.href}>
+                <a
+                  href={portal.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block rounded-md px-2 py-1.5 transition hover:bg-[#111]"
+                >
+                  <span className="flex items-center gap-1 text-sm text-[#a3a3a3] transition group-hover:text-white">
+                    <span>{portal.label}</span>
+                    <ArrowUpRight className="h-3.5 w-3.5 text-[#737373] transition group-hover:text-white" />
+                  </span>
+                  <span className="block text-xs text-[#737373]">{portal.desc}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
 
         {/* Disclaimer */}
         <div>

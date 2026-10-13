@@ -11,6 +11,7 @@ Next.js App Router + TypeScript + Tailwind CSS v4 + Lucide icons. No Firebase, n
 | Arbeitnow | `https://www.arbeitnow.com/api/job-board-api` | `url` | Free, no key, EU-focused with `remote` flag. "As is", revocable. Link back required. |
 | Remote OK | `https://remoteok.com/api` | `apply_url` (fallback `url`) | Array with `[0] = legal notice`. **Requires a real `User-Agent`** (server-only). Follow link (no `nofollow`) + name mention required; **logo is trademarked — never rendered** (initial-avatar used). Salary 0 = undisclosed. |
 | We Work Remotely | Category RSS (`programming`, `design`, `marketing`, `customer-support`) | `link` (= `guid`) | No JSON API. Paid postings — excerpt + link back only, never rehosted as our own. |
+| Hitachi Careers | `https://careers.hitachi.com/jobs` (+ `?filter[country]=India`) | `applyURL` (Workday / SmartRecruiters ATS) | Enterprise recruitment portal across Hitachi Energy, Hitachi Vantara, Hitachi Solutions, and Hitachi Rail. Direct ATS application links. |
 
 None of these APIs are unlimited. Responses are cached ~10 min (`export const revalidate = 600` + `Cache-Control: s-maxage=600`); provider fetches use 9s timeouts and `Promise.allSettled` so one failure never blocks the others.
 
