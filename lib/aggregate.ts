@@ -5,6 +5,9 @@ import { fetchHimalayas } from "./sources/himalayas";
 import { fetchArbeitnow } from "./sources/arbeitnow";
 import { fetchRemoteOk } from "./sources/remoteok";
 import { fetchWwr } from "./sources/wwr";
+import { fetchRemotive } from "./sources/remotive";
+import { fetchJobspresso } from "./sources/jobspresso";
+import { fetchRemoteco } from "./sources/remoteco";
 
 const FETCHERS: Record<SourceName, () => Promise<Job[]>> = {
   jobicy: fetchJobicy,
@@ -12,9 +15,12 @@ const FETCHERS: Record<SourceName, () => Promise<Job[]>> = {
   arbeitnow: fetchArbeitnow,
   remoteok: fetchRemoteOk,
   wwr: fetchWwr,
+  remotive: fetchRemotive,
+  jobspresso: fetchJobspresso,
+  remoteco: fetchRemoteco,
 };
 
-const ALL_SOURCES: SourceName[] = ["jobicy", "himalayas", "arbeitnow", "remoteok", "wwr"];
+const ALL_SOURCES: SourceName[] = ["jobicy", "himalayas", "arbeitnow", "remoteok", "wwr", "remotive", "jobspresso", "remoteco"];
 
 /**
  * Stateless live aggregation. No DB, no cache writes — relies on Next.js
@@ -33,6 +39,9 @@ export async function aggregateJobs(sources?: SourceName[]): Promise<AggregatedR
     arbeitnow: 0,
     remoteok: 0,
     wwr: 0,
+    remotive: 0,
+    jobspresso: 0,
+    remoteco: 0,
   };
 
   settled.forEach((s, i) => {

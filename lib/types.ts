@@ -8,7 +8,10 @@ export type SourceName =
   | "himalayas"
   | "arbeitnow"
   | "remoteok"
-  | "wwr";
+  | "wwr"
+  | "remotive"
+  | "jobspresso"
+  | "remoteco";
 
 export interface Job {
   /** Composite id: `${source}:${sourceId}` — used for React keys, detail routes, dedup. */
@@ -90,6 +93,21 @@ export const SOURCE_META: Record<
     label: "We Work Remotely",
     siteUrl: "https://weworkremotely.com",
     attribution: "Jobs via We Work Remotely",
+  },
+  remotive: {
+    label: "Remotive",
+    siteUrl: "https://remotive.com",
+    attribution: "Jobs via Remotive",
+  },
+  jobspresso: {
+    label: "Jobspresso",
+    siteUrl: "https://jobspresso.co",
+    attribution: "Jobs via Jobspresso",
+  },
+  remoteco: {
+    label: "Remote.co",
+    siteUrl: "https://remote.co",
+    attribution: "Jobs via Remote.co",
   },
 };
 

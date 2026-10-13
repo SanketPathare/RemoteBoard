@@ -106,6 +106,13 @@ textarea {
 .source-dot-arbeitnow { background: #fbbf24; }
 .source-dot-remoteok { background: #fb7185; }
 .source-dot-wwr { background: #38bdf8; }
+.source-dot-remotive { background: #f97316; }
+.source-dot-jobspresso { background: #a3e635; }
+.source-dot-remoteco { background: #e879f9; }
+
+.source-tab-remotive { background: #f97316; }
+.source-tab-jobspresso { background: #a3e635; }
+.source-tab-remoteco { background: #e879f9; }
 
 .glass-bar {
   background: rgba(0, 0, 0, 0.88);
