@@ -19,6 +19,7 @@ type DropdownId =
   | "education"
   | "industry"
   | "date"
+  | "board"
   | null;
 
 export function FilterPills({
@@ -228,6 +229,19 @@ export function FilterPills({
     { label: "Past 30 days", value: "30d" },
   ];
 
+  const BOARD_OPTIONS = [
+    { label: "All boards", value: "all" },
+    { label: "Remote Landers (ATS)", value: "remotelanders" },
+    { label: "Remote OK", value: "remoteok" },
+    { label: "Startup Jobs", value: "startupjobs" },
+    { label: "Remote First", value: "remotefirst" },
+    { label: "Jobicy", value: "jobicy" },
+    { label: "Himalayas", value: "himalayas" },
+    { label: "Arbeitnow", value: "arbeitnow" },
+    { label: "We Work Remotely", value: "wwr" },
+    { label: "Remotive", value: "remotive" },
+  ];
+
   // ── Active states ──────────────────────────────────────────────────────────
   const isPayActive = filters.salaryOnly || filters.minSalary > 0;
   const isRemoteActive = filters.remoteOnly;
@@ -237,6 +251,7 @@ export function FilterPills({
   const isEducationActive = Boolean(filters.experienceLevel.trim());
   const isIndustryActive = Boolean(filters.category.trim());
   const isDateActive = Boolean(filters.datePosted && filters.datePosted !== "all");
+  const isBoardActive = Boolean(filters.source && filters.source !== "all");
 
   const totalActivePills =
     (isPayActive ? 1 : 0) +
@@ -246,7 +261,8 @@ export function FilterPills({
     (isLanguageActive ? 1 : 0) +
     (isEducationActive ? 1 : 0) +
     (isIndustryActive ? 1 : 0) +
-    (isDateActive ? 1 : 0);
+    (isDateActive ? 1 : 0) +
+    (isBoardActive ? 1 : 0);
 
   // Styles matching the screenshot
   const pillBase =
@@ -326,19 +342,30 @@ export function FilterPills({
           <ChevronDown className="h-3.5 w-3.5 opacity-60 ml-0.5" />
         </button>
 
-        {/* 4. Easily apply */}
+       
+
+        {/* Board / Source */}
         <button
           type="button"
-          onClick={() => {
-            if (hasDragged.current) return;
-            onChange({
-              ...filters,
-              query: filters.query.includes("apply") ? "" : filters.query,
-            });
-          }}
-          className={`${pillBase} ${inactivePillCls}`}
+          onClick={(e) => handlePillClick("board", e)}
+          className={`${pillBase} ${isBoardActive ? activePillCls : inactivePillCls}`}
+          aria-expanded={openDropdown === "board"}
         >
-          <span>Easily apply</span>
+          <span>
+            {filters.source === "remotelanders"
+              ? "Remote Landers"
+              : filters.source === "remoteok"
+              ? "Remote OK"
+              : filters.source === "startupjobs"
+              ? "Startup Jobs"
+              : filters.source === "remotefirst"
+              ? "Remote First"
+              : filters.source && filters.source !== "all"
+              ? filters.source
+              : "Job board"}
+          </span>
+          {isBoardActive && <span className={badgeCls}>1</span>}
+          <ChevronDown className="h-3.5 w-3.5 opacity-60 ml-0.5" />
         </button>
 
         {/* 5. Job type */}
@@ -448,6 +475,7 @@ export function FilterPills({
               {openDropdown === "education" && "Seniority & education"}
               {openDropdown === "industry" && "Industry & discipline"}
               {openDropdown === "date" && "Publication date"}
+              {openDropdown === "board" && "Job board source"}
             </span>
             <button
               type="button"
@@ -619,6 +647,29 @@ export function FilterPills({
                     type="button"
                     onClick={() => {
                       onChange({ ...filters, datePosted: opt.value });
+                      setOpenDropdown(null);
+                    }}
+                    className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-medium transition ${
+                      isSelected
+                        ? "bg-white text-black font-semibold"
+                        : "text-[#d4d4d4] hover:bg-[#1a1a1a] hover:text-white"
+                    }`}
+                  >
+                    <span>{opt.label}</span>
+                    {isSelected && <Check className="h-3.5 w-3.5" />}
+                  </button>
+                );
+              })}
+
+            {openDropdown === "board" &&
+              BOARD_OPTIONS.map((opt) => {
+                const isSelected = (filters.source || "all") === opt.value;
+                return (
+                  <button
+                    key={opt.value}
+                    type="button"
+                    onClick={() => {
+                      onChange({ ...filters, source: opt.value });
                       setOpenDropdown(null);
                     }}
                     className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-medium transition ${

@@ -13,7 +13,8 @@ export type SourceName =
   | "jobspresso"
   | "remoteco"
   | "remotefirst"
-  | "startupjobs";
+  | "startupjobs"
+  | "remotelanders";
 
 export interface Job {
   /** Composite id: `${source}:${sourceId}` — used for React keys, detail routes, dedup. */
@@ -120,6 +121,11 @@ export const SOURCE_META: Record<
     label: "Startup Jobs",
     siteUrl: "https://startup.jobs",
     attribution: "Jobs via Startup Jobs",
+  },
+  remotelanders: {
+    label: "Remote Landers",
+    siteUrl: "https://remotelanders.com",
+    attribution: "Job data provided by Remote Landers",
   },
 };
 

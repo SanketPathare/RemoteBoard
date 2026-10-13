@@ -14,6 +14,7 @@ export const FETCH_LIMITS: Record<SourceName, number> = {
   remoteco: 50,
   remotefirst: 50,
   startupjobs: 50,
+  remotelanders: 100,
 };
 
 /** WWR category RSS feeds aggregated server-side (excerpt + link back). */

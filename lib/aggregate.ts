@@ -10,6 +10,7 @@ import { fetchJobspresso } from "./sources/jobspresso";
 import { fetchRemoteco } from "./sources/remoteco";
 import { fetchRemoteFirst } from "./sources/remotefirst";
 import { fetchStartupJobs } from "./sources/startupjobs";
+import { fetchRemoteLanders } from "./sources/remotelanders";
 
 const FETCHERS: Record<SourceName, () => Promise<Job[]>> = {
   jobicy: fetchJobicy,
@@ -22,6 +23,7 @@ const FETCHERS: Record<SourceName, () => Promise<Job[]>> = {
   remoteco: fetchRemoteco,
   remotefirst: fetchRemoteFirst,
   startupjobs: fetchStartupJobs,
+  remotelanders: fetchRemoteLanders,
 };
 
 const ALL_SOURCES: SourceName[] = [
@@ -35,6 +37,7 @@ const ALL_SOURCES: SourceName[] = [
   "remoteco",
   "remotefirst",
   "startupjobs",
+  "remotelanders",
 ];
 
 /**
@@ -59,6 +62,7 @@ export async function aggregateJobs(sources?: SourceName[]): Promise<AggregatedR
     remoteco: 0,
     remotefirst: 0,
     startupjobs: 0,
+    remotelanders: 0,
   };
 
   settled.forEach((s, i) => {
