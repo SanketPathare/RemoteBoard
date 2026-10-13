@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, BriefcaseBusiness, Menu, X } from "lucide-react";
 import { useState } from "react";
-import { ThemeToggle } from "./ThemeToggle";
 
 const NAV = [
   { href: "/jobs", label: "Jobs" },
@@ -59,7 +58,6 @@ export function Header() {
         </ul>
 
         <div className="ml-auto hidden items-center gap-2 md:flex">
-          <ThemeToggle />
           <Link
             href="/jobs"
             className="inline-flex h-10 items-center gap-2 rounded-lg border border-neutral-300 bg-white px-3.5 text-[13px] font-medium text-neutral-800 shadow-sm transition hover:border-neutral-400 hover:bg-neutral-50 dark:border-[#404040] dark:bg-transparent dark:text-[#ededed] dark:hover:border-[#737373] dark:hover:bg-[#111]"
@@ -76,7 +74,6 @@ export function Header() {
         </div>
 
         <div className="ml-auto flex items-center gap-2 md:hidden">
-          <ThemeToggle />
           <button
             type="button"
             onClick={() => setOpen((value) => !value)}
