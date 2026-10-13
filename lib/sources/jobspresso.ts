@@ -48,6 +48,8 @@ export function normalizeJobspresso(item: RssItem): Job | null {
     ? rawCat.map((c) => safeString(c)).filter(Boolean)
     : rawCat ? [safeString(rawCat)] : [];
   const descriptionHtml = safeString(item["content:encoded"] || item.description);
+  const logoMatch = descriptionHtml.match(/<img[^>]+src="([^">]+)"/i);
+  const logo = logoMatch ? logoMatch[1] : null;
 
   return {
     id: makeJobId(SOURCE, link),
@@ -55,7 +57,7 @@ export function normalizeJobspresso(item: RssItem): Job | null {
     sourceId: link,
     title: role,
     company,
-    logo: null,
+    logo,
     location: "Remote",
     remote: true,
     remoteEligibility: "Remote",

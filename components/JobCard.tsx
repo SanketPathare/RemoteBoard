@@ -2,24 +2,10 @@
 
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Building2, MapPin, Clock } from "lucide-react";
-import { useState } from "react";
 import { timeAgo } from "@/lib/format";
 import type { Job } from "@/lib/types";
 
-function CompanyTile({ name }: { name: string }) {
-  const letter = (name.trim()[0] || "?").toUpperCase();
-  const hues = [220, 250, 170, 340, 30, 200];
-  const hue = hues[name.charCodeAt(0) % hues.length];
-  return (
-    <span
-      aria-hidden
-      style={{ background: `hsl(${hue} 60% 10%)`, color: `hsl(${hue} 80% 65%)` }}
-      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-sm font-semibold ring-1 ring-white/10"
-    >
-      {letter}
-    </span>
-  );
-}
+import { CompanyLogo } from "./CompanyLogo";
 
 export function ApplyButtons({ job }: { job: Job }) {
   const rel =
@@ -47,26 +33,12 @@ export function ApplyButtons({ job }: { job: Job }) {
 }
 
 export function JobCard({ job }: { job: Job }) {
-  const [logoOk, setLogoOk] = useState(true);
-  const showLogo = Boolean(job.logo) && logoOk;
-
   return (
     <article className="feature-card glass-card card-sheen group relative flex h-full flex-col overflow-hidden rounded-xl border border-[#262626] transition hover:border-[#525252]">
       <div className="flex h-full flex-col gap-4 p-5 sm:p-5">
         {/* Header */}
         <div className="flex items-start gap-3">
-          {showLogo ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={job.logo as string}
-              alt={`${job.company} logo`}
-              loading="lazy"
-              className="h-10 w-10 shrink-0 rounded-lg border border-[#333] bg-[#111] object-contain p-1.5"
-              onError={() => setLogoOk(false)}
-            />
-          ) : (
-            <CompanyTile name={job.company} />
-          )}
+          <CompanyLogo name={job.company} logo={job.logo} size="md" />
 
           <div className="min-w-0 flex-1">
             <h3 className="headline line-clamp-2 text-[15px] font-semibold leading-snug text-white">

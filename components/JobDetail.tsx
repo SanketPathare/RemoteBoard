@@ -6,6 +6,7 @@ import {
   Briefcase,
   Building2,
   Calendar,
+  Clock,
   ExternalLink,
   Globe,
   MapPin,
@@ -13,6 +14,7 @@ import {
 } from "lucide-react";
 import { timeAgo } from "@/lib/format";
 import type { Job } from "@/lib/types";
+import { CompanyLogo } from "./CompanyLogo";
 import { SafeHtml } from "./SafeHtml";
 
 export function JobDetail({ job }: { job: Job }) {
@@ -84,15 +86,56 @@ export function JobDetail({ job }: { job: Job }) {
         {/* Main column */}
         <div className="flex min-w-0 flex-col gap-4 sm:gap-5">
           <article className="glass-card card-sheen rounded-xl border border-[#262626] p-5 sm:p-7 lg:p-8">
-            <div className="flex flex-wrap items-start justify-between gap-3">
-              <div className="min-w-0">
-                <h1 className="headline text-balance text-3xl font-extrabold leading-tight text-black sm:text-4xl dark:text-white">
+            {/* Header: Company Logo & Job Info */}
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-6">
+              <CompanyLogo
+                name={job.company}
+                logo={job.logo}
+                size="xl"
+                priority
+              />
+              <div className="min-w-0 flex-1">
+                {/* Meta badges */}
+                <div className="mb-2.5 flex flex-wrap items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 rounded-md border border-[#262626] bg-[#111] px-2.5 py-0.5 text-xs font-medium text-[#a3a3a3]">
+                    <span
+                      className={`h-1.5 w-1.5 rounded-full source-dot-${job.source}`}
+                      aria-hidden
+                    />
+                    {job.sourceName}
+                  </span>
+                  {job.remote && (
+                    <span className="rounded-md border border-emerald-950/60 bg-emerald-950/30 px-2 py-0.5 text-xs font-medium text-emerald-400">
+                      Remote
+                    </span>
+                  )}
+                  {job.employmentType && (
+                    <span className="rounded-md border border-[#262626] bg-[#111] px-2 py-0.5 text-xs text-[#a3a3a3]">
+                      {job.employmentType}
+                    </span>
+                  )}
+                </div>
+
+                <h1 className="headline text-balance text-2xl font-extrabold leading-tight text-black sm:text-3xl lg:text-4xl dark:text-white">
                   {job.title}
                 </h1>
-                <p className="mt-1.5 flex items-center gap-1.5 text-base text-[#666666] dark:text-[#888888]">
-                  <Building2 className="h-4 w-4 shrink-0" aria-hidden />
-                  {job.company}
-                </p>
+
+                <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm">
+                  <p className="flex items-center gap-1.5 font-semibold text-black dark:text-white">
+                    <Building2 className="h-4 w-4 shrink-0 text-[#888888]" aria-hidden />
+                    {job.company}
+                  </p>
+                  {job.location && (
+                    <p className="flex items-center gap-1.5 text-[#666666] dark:text-[#888888]">
+                      <MapPin className="h-4 w-4 shrink-0 text-[#888888]" aria-hidden />
+                      {job.location}
+                    </p>
+                  )}
+                  <p className="flex items-center gap-1.5 text-[#666666] dark:text-[#888888]">
+                    <Clock className="h-4 w-4 shrink-0 text-[#888888]" aria-hidden />
+                    {timeAgo(job.postedAt)}
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -151,6 +194,19 @@ export function JobDetail({ job }: { job: Job }) {
         {/* Sticky aside (desktop) */}
         <aside className="hidden lg:block">
           <div className="glass-card card-sheen sticky top-24 flex flex-col gap-3 rounded-lg border border-[#EAEAEA] p-5 dark:border-[#333333]">
+            {/* Company Mini Card */}
+            <div className="flex items-center gap-3 border-b border-[#EAEAEA] pb-3.5 dark:border-[#262626]">
+              <CompanyLogo name={job.company} logo={job.logo} size="md" />
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm font-semibold text-black dark:text-white">
+                  {job.company}
+                </p>
+                <p className="truncate text-xs text-[#666666] dark:text-[#888888]">
+                  {job.location || (job.remote ? "Remote" : "Worldwide")}
+                </p>
+              </div>
+            </div>
+
             {job.salaryText && (
               <p className="border-b border-[#EAEAEA] pb-3 dark:border-[#333333]">
                 <span className="block font-mono text-xs text-[#999999]">
