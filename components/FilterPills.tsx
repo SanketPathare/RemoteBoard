@@ -269,25 +269,25 @@ export function FilterPills({
     "inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-[13px] font-medium transition-all select-none whitespace-nowrap cursor-pointer shrink-0";
 
   const inactivePillCls =
-    "border border-[#2a2a2a] bg-[#0c0c0c] text-[#e0e0e0] hover:border-[#484848] hover:bg-[#161616]";
+    "border border-neutral-300 bg-white text-neutral-800 shadow-sm hover:border-neutral-400 hover:bg-neutral-50 hover:text-black dark:border-[#2a2a2a] dark:bg-[#0c0c0c] dark:text-[#e0e0e0] dark:hover:border-[#484848] dark:hover:bg-[#161616]";
 
   const activePillCls =
-    "border-2 border-white bg-[#1e1e1e] text-white font-semibold shadow-md ring-1 ring-white/20";
+    "border-2 border-neutral-900 bg-neutral-900 text-white font-semibold shadow-md dark:border-white dark:bg-[#1e1e1e] dark:ring-1 dark:ring-white/20";
 
   const badgeCls =
-    "ml-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-white text-[10px] font-black text-black";
+    "ml-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-neutral-100 text-[10px] font-black text-neutral-900 dark:bg-white dark:text-black";
 
   return (
     <div ref={containerRef} className={`relative ${className}`}>
       {/* Left scroll control (desktop) */}
       {canScrollLeft && (
         <div className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-20 items-center">
-          <div className="pointer-events-none absolute -left-1 h-12 w-14 bg-gradient-to-r from-black via-black/90 to-transparent" />
+          <div className="pointer-events-none absolute -left-1 h-12 w-14 bg-gradient-to-r from-white via-white/90 to-transparent dark:from-black dark:via-black/90 dark:to-transparent" />
           <button
             type="button"
             onClick={() => scrollBy(-220)}
             aria-label="Scroll filters left"
-            className="relative z-30 flex h-7 w-7 items-center justify-center rounded-full border border-[#333] bg-[#111] text-[#e0e0e0] shadow-md transition hover:border-white hover:bg-[#222] hover:text-white"
+            className="relative z-30 flex h-7 w-7 items-center justify-center rounded-full border border-neutral-300 bg-white text-neutral-800 shadow-md transition hover:border-black hover:bg-neutral-50 hover:text-black dark:border-[#333] dark:bg-[#111] dark:text-[#e0e0e0] dark:hover:border-white dark:hover:bg-[#222] dark:hover:text-white"
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
@@ -436,7 +436,7 @@ export function FilterPills({
               if (hasDragged.current) return;
               onClear();
             }}
-            className="inline-flex shrink-0 items-center gap-1 rounded-full border border-dashed border-[#555] bg-[#111] px-3.5 py-1.5 text-xs font-medium text-[#aaa] transition hover:border-white hover:text-white"
+            className="inline-flex shrink-0 items-center gap-1 rounded-full border border-dashed border-neutral-400 bg-white px-3.5 py-1.5 text-xs font-medium text-neutral-700 shadow-sm transition hover:border-black hover:text-black dark:border-[#555] dark:bg-[#111] dark:text-[#aaa] dark:hover:border-white dark:hover:text-white"
           >
             <RotateCcw className="h-3 w-3" />
             <span>Reset ({totalActivePills})</span>
@@ -447,12 +447,12 @@ export function FilterPills({
       {/* Right scroll control (desktop) */}
       {canScrollRight && (
         <div className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 items-center">
-          <div className="pointer-events-none absolute -right-1 h-12 w-14 bg-gradient-to-l from-black via-black/90 to-transparent" />
+          <div className="pointer-events-none absolute -right-1 h-12 w-14 bg-gradient-to-l from-white via-white/90 to-transparent dark:from-black dark:via-black/90 dark:to-transparent" />
           <button
             type="button"
             onClick={() => scrollBy(220)}
             aria-label="Scroll filters right"
-            className="relative z-30 flex h-7 w-7 items-center justify-center rounded-full border border-[#333] bg-[#111] text-[#e0e0e0] shadow-md transition hover:border-white hover:bg-[#222] hover:text-white"
+            className="relative z-30 flex h-7 w-7 items-center justify-center rounded-full border border-neutral-300 bg-white text-neutral-800 shadow-md transition hover:border-black hover:bg-neutral-50 hover:text-black dark:border-[#333] dark:bg-[#111] dark:text-[#e0e0e0] dark:hover:border-white dark:hover:bg-[#222] dark:hover:text-white"
           >
             <ChevronRight className="h-4 w-4" />
           </button>
@@ -463,11 +463,11 @@ export function FilterPills({
       {openDropdown && (
         <div
           style={{ left: `${dropdownLeft}px` }}
-          className="absolute top-full z-50 mt-2.5 w-64 max-w-[calc(100vw-32px)] rounded-2xl border border-[#2a2a2a] bg-[#0d0d0d] p-2 shadow-2xl backdrop-blur-xl ring-1 ring-white/10"
+          className="absolute top-full z-50 mt-2.5 w-64 max-w-[calc(100vw-32px)] rounded-2xl border border-neutral-200 bg-white p-2 shadow-2xl ring-1 ring-black/5 dark:border-[#2a2a2a] dark:bg-[#0d0d0d] dark:ring-white/10"
         >
           {/* Header */}
-          <div className="mb-1 flex items-center justify-between border-b border-[#222] px-2.5 pb-2 pt-0.5">
-            <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-[#888]">
+          <div className="mb-1 flex items-center justify-between border-b border-neutral-100 px-2.5 pb-2 pt-0.5 dark:border-[#222]">
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-neutral-500 dark:text-[#888]">
               {openDropdown === "pay" && "Salary minimum"}
               {openDropdown === "distance" && "Location & region"}
               {openDropdown === "jobtype" && "Employment type"}
@@ -480,7 +480,7 @@ export function FilterPills({
             <button
               type="button"
               onClick={() => setOpenDropdown(null)}
-              className="rounded p-0.5 text-[#666] transition hover:bg-[#222] hover:text-white"
+              className="rounded p-0.5 text-neutral-400 transition hover:bg-neutral-100 hover:text-neutral-900 dark:text-[#666] dark:hover:bg-[#222] dark:hover:text-white"
             >
               <X className="h-3.5 w-3.5" />
             </button>
@@ -507,8 +507,8 @@ export function FilterPills({
                     }}
                     className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-medium transition ${
                       isSelected
-                        ? "bg-[#242424] text-white font-medium shadow-inner"
-                        : "text-[#d4d4d4] hover:bg-[#1a1a1a] hover:text-white"
+                        ? "bg-neutral-900 text-white font-medium shadow-sm dark:bg-[#242424] dark:text-white"
+                        : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 dark:text-[#d4d4d4] dark:hover:bg-[#1a1a1a] dark:hover:text-white"
                     }`}
                   >
                     <span>{opt.label}</span>
@@ -531,8 +531,8 @@ export function FilterPills({
                     }}
                     className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-medium transition ${
                       isSelected
-                        ? "bg-[#242424] text-white font-medium shadow-inner"
-                        : "text-[#d4d4d4] hover:bg-[#1a1a1a] hover:text-white"
+                        ? "bg-neutral-900 text-white font-medium shadow-sm dark:bg-[#242424] dark:text-white"
+                        : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 dark:text-[#d4d4d4] dark:hover:bg-[#1a1a1a] dark:hover:text-white"
                     }`}
                   >
                     <span>{opt.label}</span>
@@ -555,8 +555,8 @@ export function FilterPills({
                     }}
                     className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-medium transition ${
                       isSelected
-                        ? "bg-[#242424] text-white font-medium shadow-inner"
-                        : "text-[#d4d4d4] hover:bg-[#1a1a1a] hover:text-white"
+                        ? "bg-neutral-900 text-white font-medium shadow-sm dark:bg-[#242424] dark:text-white"
+                        : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 dark:text-[#d4d4d4] dark:hover:bg-[#1a1a1a] dark:hover:text-white"
                     }`}
                   >
                     <span>{opt.label}</span>
@@ -580,8 +580,8 @@ export function FilterPills({
                     }}
                     className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-medium transition ${
                       isSelected
-                        ? "bg-[#242424] text-white font-medium shadow-inner"
-                        : "text-[#d4d4d4] hover:bg-[#1a1a1a] hover:text-white"
+                        ? "bg-neutral-900 text-white font-medium shadow-sm dark:bg-[#242424] dark:text-white"
+                        : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 dark:text-[#d4d4d4] dark:hover:bg-[#1a1a1a] dark:hover:text-white"
                     }`}
                   >
                     <span>{opt.label}</span>
@@ -604,8 +604,8 @@ export function FilterPills({
                     }}
                     className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-medium transition ${
                       isSelected
-                        ? "bg-[#242424] text-white font-medium shadow-inner"
-                        : "text-[#d4d4d4] hover:bg-[#1a1a1a] hover:text-white"
+                        ? "bg-neutral-900 text-white font-medium shadow-sm dark:bg-[#242424] dark:text-white"
+                        : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 dark:text-[#d4d4d4] dark:hover:bg-[#1a1a1a] dark:hover:text-white"
                     }`}
                   >
                     <span>{opt.label}</span>
@@ -628,8 +628,8 @@ export function FilterPills({
                     }}
                     className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-medium transition ${
                       isSelected
-                        ? "bg-[#242424] text-white font-medium shadow-inner"
-                        : "text-[#d4d4d4] hover:bg-[#1a1a1a] hover:text-white"
+                        ? "bg-neutral-900 text-white font-medium shadow-sm dark:bg-[#242424] dark:text-white"
+                        : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 dark:text-[#d4d4d4] dark:hover:bg-[#1a1a1a] dark:hover:text-white"
                     }`}
                   >
                     <span>{opt.label}</span>
@@ -651,8 +651,8 @@ export function FilterPills({
                     }}
                     className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-medium transition ${
                       isSelected
-                        ? "bg-[#242424] text-white font-medium shadow-inner"
-                        : "text-[#d4d4d4] hover:bg-[#1a1a1a] hover:text-white"
+                        ? "bg-neutral-900 text-white font-medium shadow-sm dark:bg-[#242424] dark:text-white"
+                        : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 dark:text-[#d4d4d4] dark:hover:bg-[#1a1a1a] dark:hover:text-white"
                     }`}
                   >
                     <span>{opt.label}</span>
@@ -674,8 +674,8 @@ export function FilterPills({
                     }}
                     className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-medium transition ${
                       isSelected
-                        ? "bg-[#242424] text-white font-medium shadow-inner"
-                        : "text-[#d4d4d4] hover:bg-[#1a1a1a] hover:text-white"
+                        ? "bg-neutral-900 text-white font-medium shadow-sm dark:bg-[#242424] dark:text-white"
+                        : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 dark:text-[#d4d4d4] dark:hover:bg-[#1a1a1a] dark:hover:text-white"
                     }`}
                   >
                     <span>{opt.label}</span>

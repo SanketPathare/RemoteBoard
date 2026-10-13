@@ -56,7 +56,7 @@ function Pagination({
         onClick={() => onPage(page - 1)}
         disabled={page === 1}
         aria-label="Previous page"
-        className={`${btnBase} gap-1 border-[#2a2a2a] bg-[#0d0d0d] text-[#a3a3a3] hover:border-[#404040] hover:text-white disabled:cursor-not-allowed disabled:opacity-30`}
+        className={`${btnBase} gap-1 border-neutral-300 bg-white text-neutral-700 shadow-sm hover:border-black hover:text-black disabled:cursor-not-allowed disabled:opacity-30 dark:border-[#2a2a2a] dark:bg-[#0d0d0d] dark:text-[#a3a3a3] dark:hover:border-[#404040] dark:hover:text-white`}
       >
         <ChevronLeft className="h-3.5 w-3.5" aria-hidden />
         <span className="hidden sm:inline">Prev</span>
@@ -65,7 +65,7 @@ function Pagination({
       {/* Page numbers */}
       {pages.map((p, i) =>
         p === "…" ? (
-          <span key={`ellipsis-${i}`} className="px-1 text-[#555] font-mono text-xs select-none">
+          <span key={`ellipsis-${i}`} className="px-1 font-mono text-xs text-neutral-400 select-none dark:text-[#555]">
             …
           </span>
         ) : (
@@ -77,8 +77,8 @@ function Pagination({
             aria-current={p === page ? "page" : undefined}
             className={`${btnBase} ${
               p === page
-                ? "border-white bg-white text-black"
-                : "border-[#2a2a2a] bg-[#0d0d0d] text-[#a3a3a3] hover:border-[#404040] hover:text-white"
+                ? "border-neutral-900 bg-neutral-900 text-white font-semibold shadow-sm dark:border-white dark:bg-white dark:text-black"
+                : "border-neutral-300 bg-white text-neutral-700 shadow-sm hover:border-black hover:text-black dark:border-[#2a2a2a] dark:bg-[#0d0d0d] dark:text-[#a3a3a3] dark:hover:border-[#404040] dark:hover:text-white"
             }`}
           >
             {p}
@@ -92,7 +92,7 @@ function Pagination({
         onClick={() => onPage(page + 1)}
         disabled={page === totalPages}
         aria-label="Next page"
-        className={`${btnBase} gap-1 border-[#2a2a2a] bg-[#0d0d0d] text-[#a3a3a3] hover:border-[#404040] hover:text-white disabled:cursor-not-allowed disabled:opacity-30`}
+        className={`${btnBase} gap-1 border-neutral-300 bg-white text-neutral-700 shadow-sm hover:border-black hover:text-black disabled:cursor-not-allowed disabled:opacity-30 dark:border-[#2a2a2a] dark:bg-[#0d0d0d] dark:text-[#a3a3a3] dark:hover:border-[#404040] dark:hover:text-white`}
       >
         <span className="hidden sm:inline">Next</span>
         <ChevronRight className="h-3.5 w-3.5" aria-hidden />
@@ -167,7 +167,7 @@ export function JobsExplorer({ initialQuery = "", initialSource = "all" }: { ini
   return (
     <div className="flex flex-col gap-4 sm:gap-5">
       {/* Sticky search bar + Pill Filters */}
-      <div className="glass-bar sticky top-16 z-30 -mx-4 border-b border-[#262626] px-4 py-3 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+      <div className="glass-bar sticky top-16 z-30 -mx-4 border-b border-neutral-200 px-4 py-3 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 dark:border-[#262626]">
         <div className="mx-auto max-w-7xl space-y-2.5">
           <SearchBar
             defaultValue={filters.query}
@@ -192,20 +192,20 @@ export function JobsExplorer({ initialQuery = "", initialSource = "all" }: { ini
         ) : (
           <>
             {/* Result count & meta row */}
-            <div className="mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-[#1f1f1f] pb-3">
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-neutral-200 pb-3 dark:border-[#1f1f1f]">
               <div className="flex items-center gap-3">
-                <p aria-live="polite" className="font-mono text-xs text-[#a3a3a3]">
-                  <span className="font-semibold text-white">{filtered.length}</span> listings found
+                <p aria-live="polite" className="font-mono text-xs text-neutral-600 dark:text-[#a3a3a3]">
+                  <span className="font-semibold text-neutral-900 dark:text-white">{filtered.length}</span> listings found
                   {filtered.length > 0 && ` (${from}–${to})`}
                 </p>
-                <span className="hidden text-[#333] sm:inline">·</span>
-                <span className="hidden font-mono text-[11px] text-[#737373] sm:inline">
+                <span className="hidden text-neutral-300 sm:inline dark:text-[#333]">·</span>
+                <span className="hidden font-mono text-[11px] text-neutral-400 sm:inline dark:text-[#737373]">
                   newest first · pay and eligibility as reported
                 </span>
               </div>
               {totalPages > 1 && (
-                <p className="font-mono text-xs text-[#737373]">
-                  Page <span className="font-semibold text-white">{safePage}</span> of {totalPages}
+                <p className="font-mono text-xs text-neutral-500 dark:text-[#737373]">
+                  Page <span className="font-semibold text-neutral-900 dark:text-white">{safePage}</span> of {totalPages}
                 </p>
               )}
             </div>

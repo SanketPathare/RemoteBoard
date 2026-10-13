@@ -126,21 +126,21 @@ export function CustomSelect({
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         aria-label={ariaLabel || title || prefixLabel || "Select"}
-        className={`inline-flex h-11 min-w-[170px] select-none items-center justify-between gap-2.5 rounded-xl border border-[#333] bg-[#111] px-3.5 text-xs font-medium text-white transition-all duration-150 hover:border-[#555] hover:bg-[#161616] focus:border-white focus:outline-none focus:ring-1 focus:ring-white ${
-          isOpen ? "border-white bg-[#161616] ring-1 ring-white" : ""
+        className={`inline-flex h-11 min-w-[170px] select-none items-center justify-between gap-2.5 rounded-xl border border-neutral-300 bg-white px-3.5 text-xs font-medium text-neutral-900 shadow-sm transition-all duration-150 hover:border-neutral-400 hover:bg-neutral-50 focus:border-neutral-900 focus:outline-none focus:ring-1 focus:ring-neutral-900 dark:border-[#333] dark:bg-[#111] dark:text-white dark:hover:border-[#555] dark:hover:bg-[#161616] dark:focus:border-white dark:focus:ring-white ${
+          isOpen ? "border-neutral-900 bg-neutral-50 ring-1 ring-neutral-900 dark:border-white dark:bg-[#161616] dark:ring-white" : ""
         } ${triggerClassName}`}
       >
         <span className="flex items-center gap-1.5 truncate">
           {prefixLabel && (
-            <span className="font-mono text-[11px] text-[#888]">{prefixLabel}</span>
+            <span className="font-mono text-[11px] text-neutral-500 dark:text-[#888]">{prefixLabel}</span>
           )}
-          <span className="truncate text-white">
+          <span className="truncate text-neutral-900 dark:text-white">
             {selectedOption ? selectedOption.label : placeholder}
           </span>
         </span>
         <ChevronDown
-          className={`h-3.5 w-3.5 shrink-0 text-[#888] transition-transform duration-200 ${
-            isOpen ? "rotate-180 text-white" : ""
+          className={`h-3.5 w-3.5 shrink-0 text-neutral-500 transition-transform duration-200 dark:text-[#888] ${
+            isOpen ? "rotate-180 text-neutral-900 dark:text-white" : ""
           }`}
           aria-hidden
         />
@@ -155,11 +155,11 @@ export function CustomSelect({
           tabIndex={-1}
           className={`absolute ${
             align === "left" ? "left-0" : "right-0"
-          } top-full z-50 mt-2 w-64 max-w-[calc(100vw-32px)] rounded-2xl border border-[#262626] bg-[#0f0f0f] p-2.5 shadow-2xl shadow-black/90 backdrop-blur-xl ring-1 ring-white/5 animate-in fade-in-0 zoom-in-95 duration-100 ${menuClassName}`}
+          } top-full z-50 mt-2 w-64 max-w-[calc(100vw-32px)] rounded-2xl border border-neutral-200 bg-white p-2.5 shadow-2xl shadow-neutral-900/10 ring-1 ring-black/5 animate-in fade-in-0 zoom-in-95 duration-100 dark:border-[#262626] dark:bg-[#0f0f0f] dark:shadow-black/90 dark:ring-white/5 ${menuClassName}`}
         >
           {/* Header with Uppercase Title and Close Button */}
-          <div className="mb-1.5 flex items-center justify-between border-b border-[#222] px-2 pb-2 pt-0.5">
-            <span className="font-mono text-[10px] font-semibold uppercase tracking-widest text-[#737373]">
+          <div className="mb-1.5 flex items-center justify-between border-b border-neutral-100 px-2 pb-2 pt-0.5 dark:border-[#222]">
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-widest text-neutral-500 dark:text-[#737373]">
               {title || prefixLabel || "Select Option"}
             </span>
             <button
@@ -168,7 +168,7 @@ export function CustomSelect({
                 setIsOpen(false);
                 triggerRef.current?.focus();
               }}
-              className="rounded p-1 text-[#737373] transition hover:bg-[#202020] hover:text-white"
+              className="rounded p-1 text-neutral-400 transition hover:bg-neutral-100 hover:text-neutral-900 dark:text-[#737373] dark:hover:bg-[#202020] dark:hover:text-white"
               aria-label="Close options"
             >
               <X className="h-3.5 w-3.5" />
@@ -195,16 +195,16 @@ export function CustomSelect({
                   onMouseEnter={() => setHighlightedIndex(idx)}
                   className={`group flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-medium text-left transition ${
                     isSelected
-                      ? "bg-[#242424] text-white shadow-inner"
+                      ? "bg-neutral-900 text-white shadow-sm dark:bg-[#242424] dark:text-white"
                       : isHighlighted
-                      ? "bg-[#1c1c1c] text-white"
-                      : "text-[#cfcfcf] hover:bg-[#1a1a1a] hover:text-white"
+                      ? "bg-neutral-100 text-neutral-900 dark:bg-[#1c1c1c] dark:text-white"
+                      : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 dark:text-[#cfcfcf] dark:hover:bg-[#1a1a1a] dark:hover:text-white"
                   }`}
                 >
                   <span className="truncate">{opt.label}</span>
                   <div className="ml-2 flex items-center gap-1.5 shrink-0">
                     {opt.badge !== undefined && (
-                      <span className="rounded bg-[#1a1a1a] px-1.5 py-0.5 font-mono text-[10px] text-[#888] group-hover:text-[#aaa]">
+                      <span className="rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[10px] text-neutral-600 dark:bg-[#1a1a1a] dark:text-[#888] dark:group-hover:text-[#aaa]">
                         {opt.badge}
                       </span>
                     )}

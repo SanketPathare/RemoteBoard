@@ -17,7 +17,7 @@ interface Props {
 }
 
 const inputCls =
-  "w-full rounded-md border border-[#404040] bg-[#080808] px-3 py-2.5 text-sm text-white focus:border-[#a3a3a3] focus:outline-none focus:ring-4 focus:ring-white/10";
+  "w-full rounded-md border border-neutral-300 bg-white px-3 py-2.5 text-sm text-neutral-900 focus:border-neutral-900 focus:outline-none focus:ring-4 focus:ring-neutral-900/10 dark:border-[#404040] dark:bg-[#080808] dark:text-white dark:focus:border-[#a3a3a3] dark:focus:ring-white/10";
 
 function activeCount(f: JobFilters): number {
   let n = 0;
@@ -50,28 +50,28 @@ export function FilterPanel({
 
   const body = (
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-      <label className="flex min-h-[48px] cursor-pointer items-center gap-2.5 rounded-md border border-[#333] px-3 py-2.5 text-sm transition has-checked:border-[#737373] has-checked:bg-[#111]">
+      <label className="flex min-h-[48px] cursor-pointer items-center gap-2.5 rounded-md border border-neutral-300 bg-white px-3 py-2.5 text-sm transition has-checked:border-neutral-900 has-checked:bg-neutral-50 dark:border-[#333] dark:bg-transparent dark:has-checked:border-[#737373] dark:has-checked:bg-[#111]">
         <input
           type="checkbox"
           checked={filters.remoteOnly}
           onChange={(e) => set({ remoteOnly: e.target.checked })}
-          className="h-4 w-4 shrink-0 accent-white"
+          className="h-4 w-4 shrink-0 accent-neutral-900 dark:accent-white"
         />
-        <span className="font-medium text-white">Remote only</span>
+        <span className="font-medium text-neutral-900 dark:text-white">Remote only</span>
       </label>
 
-      <label className="flex min-h-[48px] cursor-pointer items-center gap-2.5 rounded-md border border-[#333] px-3 py-2.5 text-sm transition has-checked:border-[#737373] has-checked:bg-[#111]">
+      <label className="flex min-h-[48px] cursor-pointer items-center gap-2.5 rounded-md border border-neutral-300 bg-white px-3 py-2.5 text-sm transition has-checked:border-neutral-900 has-checked:bg-neutral-50 dark:border-[#333] dark:bg-transparent dark:has-checked:border-[#737373] dark:has-checked:bg-[#111]">
         <input
           type="checkbox"
           checked={filters.salaryOnly}
           onChange={(e) => set({ salaryOnly: e.target.checked })}
-          className="h-4 w-4 shrink-0 accent-white"
+          className="h-4 w-4 shrink-0 accent-neutral-900 dark:accent-white"
         />
-        <span className="font-medium text-white">Pay listed</span>
+        <span className="font-medium text-neutral-900 dark:text-white">Pay listed</span>
       </label>
 
       <div className="sm:col-span-2 lg:col-span-1 xl:col-span-2">
-        <label htmlFor="f-location" className="mb-1.5 block text-sm font-medium text-[#a3a3a3]">
+        <label htmlFor="f-location" className="mb-1.5 block text-sm font-medium text-neutral-700 dark:text-[#a3a3a3]">
           Location or eligibility
         </label>
         <input
@@ -90,9 +90,9 @@ export function FilterPanel({
       </div>
 
       <div>
-          <label htmlFor="f-category" className="mb-1.5 block text-sm font-medium text-[#a3a3a3]">
-            Category
-          </label>
+        <label htmlFor="f-category" className="mb-1.5 block text-sm font-medium text-neutral-700 dark:text-[#a3a3a3]">
+          Category
+        </label>
         <input
           id="f-category"
           list="category-options"
@@ -109,7 +109,7 @@ export function FilterPanel({
       </div>
 
       <div>
-        <label htmlFor="f-employment" className="mb-1.5 block text-sm font-medium text-[#a3a3a3]">
+        <label htmlFor="f-employment" className="mb-1.5 block text-sm font-medium text-neutral-700 dark:text-[#a3a3a3]">
           Employment type
         </label>
         <CustomSelect
@@ -117,7 +117,7 @@ export function FilterPanel({
           title="Employment Type"
           align="left"
           className="w-full"
-          triggerClassName="w-full h-11 bg-[#080808] border-[#404040]"
+          triggerClassName="w-full h-11 bg-white border-neutral-300 dark:bg-[#080808] dark:border-[#404040]"
           value={filters.employmentType}
           onChange={(val) => set({ employmentType: val })}
           options={[
@@ -132,36 +132,36 @@ export function FilterPanel({
   return (
     <section
       aria-label="Job filters"
-      className="glass-card card-sheen overflow-hidden rounded-xl border border-[#262626]"
+      className="glass-card card-sheen overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-[#262626] dark:bg-[#0a0a0a]"
     >
       <div className="flex items-center justify-between gap-2 px-4 py-3.5 sm:px-5">
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
-          className="flex items-center gap-2 rounded-md text-sm font-medium text-white lg:cursor-default"
+          className="flex items-center gap-2 rounded-md text-sm font-medium text-neutral-900 lg:cursor-default dark:text-white"
         >
-          <SlidersHorizontal className="h-4 w-4 text-[#a3a3a3]" aria-hidden />
+          <SlidersHorizontal className="h-4 w-4 text-neutral-500 dark:text-[#a3a3a3]" aria-hidden />
           Filters
           {count > 0 && (
-            <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-white px-1.5 font-mono text-[11px] font-bold text-black">
+            <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-neutral-900 px-1.5 font-mono text-[11px] font-bold text-white dark:bg-white dark:text-black">
               {count}
             </span>
           )}
           <ChevronDown
             aria-hidden
-            className={`h-4 w-4 text-[#737373] transition-transform lg:hidden ${open ? "rotate-180" : ""}`}
+            className={`h-4 w-4 text-neutral-400 transition-transform lg:hidden dark:text-[#737373] ${open ? "rotate-180" : ""}`}
           />
         </button>
         <div className="flex items-center gap-2">
-          <p aria-live="polite" className="rounded-full bg-[#171717] px-2.5 py-1 font-mono text-xs text-[#a3a3a3]">
+          <p aria-live="polite" className="rounded-full bg-neutral-100 px-2.5 py-1 font-mono text-xs text-neutral-700 dark:bg-[#171717] dark:text-[#a3a3a3]">
             {loading ? "loading…" : `${resultCount} result${resultCount === 1 ? "" : "s"}`}
           </p>
           {count > 0 && (
             <button
               type="button"
               onClick={onClear}
-              className="inline-flex items-center gap-1 rounded-md px-2 py-1.5 text-xs font-medium text-[#d4d4d4] transition hover:bg-[#171717] hover:text-white"
+              className="inline-flex items-center gap-1 rounded-md px-2 py-1.5 text-xs font-medium text-neutral-600 transition hover:bg-neutral-100 hover:text-neutral-900 dark:text-[#d4d4d4] dark:hover:bg-[#171717] dark:hover:text-white"
             >
               <RotateCcw className="h-3 w-3" aria-hidden /> Clear filters
             </button>
@@ -170,7 +170,7 @@ export function FilterPanel({
       </div>
 
       {/* Mobile collapsible / always open on desktop */}
-      <div className={`${open ? "block" : "hidden"} border-t border-[#262626] px-4 py-4 sm:px-5 lg:block`}>
+      <div className={`${open ? "block" : "hidden"} border-t border-neutral-200 px-4 py-4 sm:px-5 lg:block dark:border-[#262626]`}>
         {body}
       </div>
     </section>

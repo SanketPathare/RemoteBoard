@@ -44,31 +44,31 @@ export default async function CategoriesPage() {
     <div className="mx-auto max-w-7xl px-4 pb-16 pt-6 sm:px-6 sm:pt-8 lg:px-8">
       {/* ── Hero Header ── */}
       <div className="mb-8 max-w-3xl">
-        <p className="font-mono text-xs text-[#999999]">$ directory / categories</p>
-        <h1 className="headline mt-2 text-3xl font-extrabold text-black sm:text-4xl dark:text-white">
+        <p className="font-mono text-xs text-neutral-500 dark:text-[#999999]">$ directory / categories</p>
+        <h1 className="headline mt-2 text-3xl font-extrabold text-neutral-900 sm:text-4xl dark:text-white">
           Browse jobs by category
         </h1>
-        <p className="mt-2 max-w-2xl text-sm leading-6 text-[#666666] dark:text-[#888888]">
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-neutral-600 dark:text-[#888888]">
           Explore open positions structured by department, skill, and industry. Find roles that fit
           your exact expertise across hundreds of verified hiring employers.
         </p>
 
         {/* Quick stat chips */}
         <div className="mt-5 flex flex-wrap items-center gap-3">
-          <div className="inline-flex items-center gap-2 rounded-lg border border-[#262626] bg-[#0d0d0d] px-3 py-1.5 text-xs text-[#a3a3a3]">
-            <Layers className="h-3.5 w-3.5 text-white" />
+          <div className="inline-flex items-center gap-2 rounded-lg border border-neutral-200 bg-neutral-100 px-3 py-1.5 text-xs text-neutral-700 dark:border-[#262626] dark:bg-[#0d0d0d] dark:text-[#a3a3a3]">
+            <Layers className="h-3.5 w-3.5 text-neutral-900 dark:text-white" />
             <span>
-              <strong className="font-semibold text-white">{categories.length}</strong> active categories
+              <strong className="font-semibold text-neutral-900 dark:text-white">{categories.length}</strong> active categories
             </span>
           </div>
-          <div className="inline-flex items-center gap-2 rounded-lg border border-[#262626] bg-[#0d0d0d] px-3 py-1.5 text-xs text-[#a3a3a3]">
-            <Users className="h-3.5 w-3.5 text-white" />
+          <div className="inline-flex items-center gap-2 rounded-lg border border-neutral-200 bg-neutral-100 px-3 py-1.5 text-xs text-neutral-700 dark:border-[#262626] dark:bg-[#0d0d0d] dark:text-[#a3a3a3]">
+            <Users className="h-3.5 w-3.5 text-neutral-900 dark:text-white" />
             <span>
-              <strong className="font-semibold text-white">{totalRoles}</strong> categorized positions
+              <strong className="font-semibold text-neutral-900 dark:text-white">{totalRoles}</strong> categorized positions
             </span>
           </div>
-          <div className="inline-flex items-center gap-2 rounded-lg border border-[#262626] bg-[#0d0d0d] px-3 py-1.5 text-xs text-[#a3a3a3]">
-            <Globe className="h-3.5 w-3.5 text-white" />
+          <div className="inline-flex items-center gap-2 rounded-lg border border-neutral-200 bg-neutral-100 px-3 py-1.5 text-xs text-neutral-700 dark:border-[#262626] dark:bg-[#0d0d0d] dark:text-[#a3a3a3]">
+            <Globe className="h-3.5 w-3.5 text-neutral-900 dark:text-white" />
             <span>100% remote & distributed</span>
           </div>
         </div>
@@ -82,12 +82,12 @@ export default async function CategoriesPage() {
             <Link
               key={c.name}
               href={`/jobs?category=${encodeURIComponent(c.query)}`}
-              className="glass-card card-sheen group flex flex-col items-center justify-center rounded-xl border border-[#262626] bg-[#0c0c0c] p-3.5 text-center transition hover:-translate-y-0.5 hover:border-white hover:bg-[#141414]"
+              className="glass-card card-sheen group flex flex-col items-center justify-center rounded-xl border border-neutral-200 bg-white p-3.5 text-center shadow-sm transition hover:-translate-y-0.5 hover:border-neutral-900 dark:border-[#262626] dark:bg-[#0c0c0c] dark:hover:border-white dark:hover:bg-[#141414]"
             >
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#2a2a2a] bg-[#141414] text-white transition group-hover:border-white group-hover:bg-white group-hover:text-black">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-200 bg-neutral-50 text-neutral-900 transition group-hover:border-neutral-900 group-hover:bg-neutral-900 group-hover:text-white dark:border-[#2a2a2a] dark:bg-[#141414] dark:text-white dark:group-hover:border-white dark:group-hover:bg-white dark:group-hover:text-black">
                 <c.icon className="h-4 w-4" />
               </div>
-              <span className="mt-2 text-xs font-semibold text-white group-hover:text-white">
+              <span className="mt-2 text-xs font-semibold text-neutral-900 group-hover:text-neutral-900 dark:text-white dark:group-hover:text-white">
                 {c.name}
               </span>
             </Link>

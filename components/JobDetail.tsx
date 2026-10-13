@@ -41,7 +41,7 @@ export function JobDetail({ job }: { job: Job }) {
       value: (
         <Link
           href={`/companies/${companySlug}`}
-          className="text-white underline underline-offset-4 hover:text-[#d4d4d4]"
+          className="text-neutral-900 underline underline-offset-4 hover:text-neutral-600 dark:text-white dark:hover:text-[#d4d4d4]"
         >
           {job.company}
         </Link>
@@ -70,7 +70,7 @@ export function JobDetail({ job }: { job: Job }) {
       href={job.applyUrl}
       target="_blank"
       rel={rel}
-      className="inline-flex min-h-[48px] w-full items-center justify-center gap-1.5 rounded-md bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-[#d4d4d4]"
+      className="inline-flex min-h-[48px] w-full items-center justify-center gap-1.5 rounded-md bg-neutral-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-[#d4d4d4]"
     >
       Apply now <ArrowUpRight className="h-4 w-4" aria-hidden />
     </a>
@@ -81,7 +81,7 @@ export function JobDetail({ job }: { job: Job }) {
       href={job.sourceUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex min-h-[48px] items-center justify-center gap-1.5 rounded-md border border-[#404040] px-5 py-3 text-sm font-medium text-[#d4d4d4] transition hover:border-[#737373] hover:bg-[#111] hover:text-white"
+      className="inline-flex min-h-[48px] items-center justify-center gap-1.5 rounded-md border border-neutral-300 bg-white px-5 py-3 text-sm font-medium text-neutral-800 transition hover:border-neutral-900 hover:text-neutral-900 dark:border-[#404040] dark:bg-transparent dark:text-[#d4d4d4] dark:hover:border-[#737373] dark:hover:bg-[#111] dark:hover:text-white"
     >
       <ExternalLink className="h-4 w-4" aria-hidden /> View original listing
     </a>
@@ -91,7 +91,7 @@ export function JobDetail({ job }: { job: Job }) {
     <div className="flex flex-col gap-4 pb-24 sm:gap-5 lg:pb-0">
       <Link
         href="/jobs"
-        className="inline-flex w-fit items-center gap-1.5 rounded-md px-1 py-1 text-xs text-[#a3a3a3] transition hover:text-white hover:underline"
+        className="inline-flex w-fit items-center gap-1.5 rounded-md px-1 py-1 text-xs text-neutral-600 transition hover:text-neutral-900 hover:underline dark:text-[#a3a3a3] dark:hover:text-white"
       >
         <ArrowLeft className="h-4 w-4" aria-hidden /> back to all jobs
       </Link>
@@ -99,7 +99,7 @@ export function JobDetail({ job }: { job: Job }) {
       <div className="grid items-start gap-4 sm:gap-5 lg:grid-cols-[minmax(0,1fr)_320px]">
         {/* Main column */}
         <div className="flex min-w-0 flex-col gap-4 sm:gap-5">
-          <article className="glass-card card-sheen rounded-xl border border-[#262626] p-5 sm:p-7 lg:p-8">
+          <article className="glass-card card-sheen rounded-xl border border-neutral-200 bg-white p-5 sm:p-7 lg:p-8 dark:border-[#262626] dark:bg-transparent">
             {/* Header: Company Logo & Job Info */}
             <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-6">
               <CompanyLogo
@@ -111,7 +111,7 @@ export function JobDetail({ job }: { job: Job }) {
               <div className="min-w-0 flex-1">
                 {/* Meta badges */}
                 <div className="mb-2.5 flex flex-wrap items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 rounded-md border border-[#262626] bg-[#111] px-2.5 py-0.5 text-xs font-medium text-[#a3a3a3]">
+                  <span className="inline-flex items-center gap-1.5 rounded-md border border-neutral-200 bg-neutral-100 px-2.5 py-0.5 text-xs font-medium text-neutral-700 dark:border-[#262626] dark:bg-[#111] dark:text-[#a3a3a3]">
                     <span
                       className={`h-1.5 w-1.5 rounded-full source-dot-${job.source}`}
                       aria-hidden
@@ -119,56 +119,56 @@ export function JobDetail({ job }: { job: Job }) {
                     {job.sourceName}
                   </span>
                   {job.remote && (
-                    <span className="rounded-md border border-emerald-950/60 bg-emerald-950/30 px-2 py-0.5 text-xs font-medium text-emerald-400">
+                    <span className="rounded-md border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:border-emerald-950/60 dark:bg-emerald-950/30 dark:text-emerald-400">
                       Remote
                     </span>
                   )}
                   {job.employmentType && (
-                    <span className="rounded-md border border-[#262626] bg-[#111] px-2 py-0.5 text-xs text-[#a3a3a3]">
+                    <span className="rounded-md border border-neutral-200 bg-neutral-100 px-2 py-0.5 text-xs text-neutral-700 dark:border-[#262626] dark:bg-[#111] dark:text-[#a3a3a3]">
                       {job.employmentType}
                     </span>
                   )}
                 </div>
 
-                <h1 className="headline text-balance text-2xl font-extrabold leading-tight text-black sm:text-3xl lg:text-4xl dark:text-white">
+                <h1 className="headline text-balance text-2xl font-extrabold leading-tight text-neutral-900 sm:text-3xl lg:text-4xl dark:text-white">
                   {job.title}
                 </h1>
 
                 <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm">
-                  <p className="flex items-center gap-1.5 font-semibold text-black dark:text-white">
-                    <Building2 className="h-4 w-4 shrink-0 text-[#888888]" aria-hidden />
+                  <p className="flex items-center gap-1.5 font-semibold text-neutral-900 dark:text-white">
+                    <Building2 className="h-4 w-4 shrink-0 text-neutral-500 dark:text-[#888888]" aria-hidden />
                     <Link
                       href={`/companies/${companySlug}`}
-                      className="transition hover:underline hover:text-[#d4d4d4]"
+                      className="transition hover:underline hover:text-neutral-600 dark:hover:text-[#d4d4d4]"
                     >
                       {job.company}
                     </Link>
                   </p>
                   {job.location && (
-                    <p className="flex items-center gap-1.5 text-[#666666] dark:text-[#888888]">
-                      <MapPin className="h-4 w-4 shrink-0 text-[#888888]" aria-hidden />
+                    <p className="flex items-center gap-1.5 text-neutral-600 dark:text-[#888888]">
+                      <MapPin className="h-4 w-4 shrink-0 text-neutral-500 dark:text-[#888888]" aria-hidden />
                       {job.location}
                     </p>
                   )}
-                  <p className="flex items-center gap-1.5 text-[#666666] dark:text-[#888888]">
-                    <Clock className="h-4 w-4 shrink-0 text-[#888888]" aria-hidden />
+                  <p className="flex items-center gap-1.5 text-neutral-600 dark:text-[#888888]">
+                    <Clock className="h-4 w-4 shrink-0 text-neutral-500 dark:text-[#888888]" aria-hidden />
                     {timeAgo(job.postedAt)}
                   </p>
                 </div>
               </div>
             </div>
 
-            <dl className="mt-6 grid gap-x-6 gap-y-3 border-t border-[#262626] pt-5 sm:grid-cols-2">
+            <dl className="mt-6 grid gap-x-6 gap-y-3 border-t border-neutral-200 pt-5 dark:border-[#262626] sm:grid-cols-2">
               {facts.map((f) => (
                 <div key={f.label} className="flex items-start gap-2.5 text-sm">
-                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-[#333] text-white">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-neutral-200 bg-neutral-100 text-neutral-800 dark:border-[#333] dark:bg-transparent dark:text-white">
                     {f.icon}
                   </span>
                   <span className="min-w-0">
-                    <dt className="text-sm text-[#666666] dark:text-[#888888]">
+                    <dt className="text-sm text-neutral-500 dark:text-[#888888]">
                       {f.label}
                     </dt>
-                    <dd className="break-words font-medium text-black dark:text-white">{f.value}</dd>
+                    <dd className="break-words font-medium text-neutral-900 dark:text-white">{f.value}</dd>
                   </span>
                 </div>
               ))}
@@ -176,8 +176,8 @@ export function JobDetail({ job }: { job: Job }) {
 
             {(job.skills.length > 0 || job.tags.length > 0) && (
               <div className="mt-5">
-                <h2 className="text-sm font-medium text-[#666666] dark:text-[#888888]">Skills and tags</h2>
-                <p className="mt-2 font-mono text-xs leading-6 text-[#666666] dark:text-[#888888]">
+                <h2 className="text-sm font-medium text-neutral-500 dark:text-[#888888]">Skills and tags</h2>
+                <p className="mt-2 font-mono text-xs leading-6 text-neutral-700 dark:text-[#888888]">
                   {[...new Set([...job.skills, ...job.tags])].slice(0, 16).join(", ")}
                 </p>
               </div>
@@ -192,18 +192,18 @@ export function JobDetail({ job }: { job: Job }) {
 
           <section
             aria-label="Job description"
-            className="glass-card card-sheen rounded-xl border border-[#262626] p-5 sm:p-7 lg:p-8"
+            className="glass-card card-sheen rounded-xl border border-neutral-200 bg-white p-5 sm:p-7 lg:p-8 dark:border-[#262626] dark:bg-transparent"
           >
-            <h2 className="headline text-2xl font-bold text-black dark:text-white">About this role</h2>
+            <h2 className="headline text-2xl font-bold text-neutral-900 dark:text-white">About this role</h2>
             {job.excerpt && (
-              <p className="mt-3 border-l-2 border-[#737373] py-1 pl-3 pr-2 text-sm italic leading-6 text-[#a3a3a3]">
+              <p className="mt-3 border-l-2 border-neutral-300 py-1 pl-3 pr-2 text-sm italic leading-6 text-neutral-700 dark:border-[#737373] dark:text-[#a3a3a3]">
                 {job.excerpt}
               </p>
             )}
             <SafeHtml html={job.descriptionHtml} className="job-description mt-4" />
-            <p className="mt-6 border-t border-[#262626] pt-4 text-xs leading-5 text-[#a3a3a3]">
+            <p className="mt-6 border-t border-neutral-200 pt-4 text-xs leading-5 text-neutral-500 dark:border-[#262626] dark:text-[#a3a3a3]">
               Listing details may change.{" "}
-              <a href={job.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-4">
+              <a href={job.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-neutral-900 underline underline-offset-4 dark:text-white">
                 check the original listing
               </a>
             </p>
@@ -212,37 +212,37 @@ export function JobDetail({ job }: { job: Job }) {
 
         {/* Sticky aside (desktop) */}
         <aside className="hidden lg:block">
-          <div className="glass-card card-sheen sticky top-24 flex flex-col gap-3 rounded-lg border border-[#EAEAEA] p-5 dark:border-[#333333]">
+          <div className="glass-card card-sheen sticky top-24 flex flex-col gap-3 rounded-lg border border-neutral-200 bg-white p-5 dark:border-[#333333] dark:bg-transparent">
             {/* Company Mini Card */}
-            <div className="flex items-center gap-3 border-b border-[#EAEAEA] pb-3.5 dark:border-[#262626]">
+            <div className="flex items-center gap-3 border-b border-neutral-200 pb-3.5 dark:border-[#262626]">
               <CompanyLogo name={job.company} logo={job.logo} size="md" />
               <div className="min-w-0 flex-1">
                 <Link
                   href={`/companies/${companySlug}`}
-                  className="block truncate text-sm font-semibold text-black transition hover:underline dark:text-white"
+                  className="block truncate text-sm font-semibold text-neutral-900 transition hover:underline dark:text-white"
                 >
                   {job.company}
                 </Link>
-                <p className="truncate text-xs text-[#666666] dark:text-[#888888]">
+                <p className="truncate text-xs text-neutral-500 dark:text-[#888888]">
                   {job.location || (job.remote ? "Remote" : "Worldwide")}
                 </p>
               </div>
             </div>
 
             {job.salaryText && (
-              <p className="border-b border-[#EAEAEA] pb-3 dark:border-[#333333]">
-                <span className="block font-mono text-xs text-[#999999]">
+              <p className="border-b border-neutral-200 pb-3 dark:border-[#333333]">
+                <span className="block font-mono text-xs text-neutral-500 dark:text-[#999999]">
                   reported pay
                 </span>
-                <span className="block text-lg font-semibold tabular-nums text-black dark:text-white">
+                <span className="block text-lg font-semibold tabular-nums text-neutral-900 dark:text-white">
                   {job.salaryText}
-                  <span className="font-mono text-xs font-normal text-[#999999]"> /yr</span>
+                  <span className="font-mono text-xs font-normal text-neutral-500 dark:text-[#999999]"> /yr</span>
                 </span>
               </p>
             )}
             {applyBtn}
             {originalBtn}
-            <p className="font-mono text-[11px] leading-5 text-[#999999]">
+            <p className="font-mono text-[11px] leading-5 text-neutral-500 dark:text-[#999999]">
               nothing is tracked here · confirm details on the original listing
             </p>
           </div>
@@ -250,7 +250,7 @@ export function JobDetail({ job }: { job: Job }) {
       </div>
 
       {/* Sticky bottom apply bar (mobile only) */}
-      <div className="glass-bar fixed inset-x-0 bottom-0 z-40 border-t border-[#EAEAEA] px-4 py-3 sm:hidden dark:border-[#333333]">
+      <div className="glass-bar fixed inset-x-0 bottom-0 z-40 border-t border-neutral-200 bg-white/90 px-4 py-3 sm:hidden dark:border-[#333333] dark:bg-black/85">
         <div className="mx-auto max-w-7xl">{applyBtn}</div>
       </div>
     </div>

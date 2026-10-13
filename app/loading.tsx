@@ -43,7 +43,7 @@ export default function Loading() {
     <div
       role="status"
       aria-label="Loading page…"
-      className="flex min-h-screen flex-col items-center justify-center gap-8 bg-black"
+      className="flex min-h-screen flex-col items-center justify-center gap-8 bg-white text-neutral-900 transition-colors duration-200 dark:bg-black dark:text-[#ededed]"
     >
       <style>{`
         @keyframes spin   { to { transform: rotate(360deg); } }
@@ -69,45 +69,35 @@ export default function Loading() {
       `}</style>
 
       {/* ── Outer ring + spinner ── */}
-      <div style={{ position: "relative", width: 72, height: 72 }}>
+      <div className="relative h-[72px] w-[72px]">
         {/* Static track */}
-        <div style={{
-          position: "absolute", inset: 0, borderRadius: "50%",
-          border: "1.5px solid #1f1f1f",
-        }} aria-hidden />
+        <div className="absolute inset-0 rounded-full border-[1.5px] border-neutral-200 dark:border-[#1f1f1f]" aria-hidden />
         {/* Spinning arc */}
-        <div className="ld-spinner" style={{
-          position: "absolute", inset: 0, borderRadius: "50%",
-          border: "1.5px solid transparent",
-          borderTopColor: "#ffffff",
-          borderRightColor: "rgba(255,255,255,0.25)",
+        <div className="ld-spinner absolute inset-0 rounded-full border-[1.5px] border-transparent border-t-neutral-900 border-r-neutral-900/30 dark:border-t-white dark:border-r-white/25" style={{
           animation: "spin 0.9s cubic-bezier(0.6,0.2,0.4,0.8) infinite",
         }} aria-hidden />
         {/* Inner dot */}
-        <div style={{
-          position: "absolute", inset: 0,
-          display: "flex", alignItems: "center", justifyContent: "center",
-        }} aria-hidden>
-          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#ffffff", opacity: 0.7 }} />
+        <div className="absolute inset-0 flex items-center justify-center" aria-hidden>
+          <div className="h-1.5 w-1.5 rounded-full bg-neutral-900 opacity-70 dark:bg-white" />
         </div>
       </div>
 
       {/* ── Icon wave row ── */}
       <div
         aria-hidden
-        style={{ display: "flex", gap: 20, alignItems: "center", color: "#ffffff" }}
+        className="flex items-center gap-5 text-neutral-800 dark:text-white"
       >
         {ICONS.map((icon, i) => (
-          <span key={i} className="ld-icon" style={{ display: "flex" }}>
+          <span key={i} className="ld-icon flex">
             {icon}
           </span>
         ))}
       </div>
 
       {/* ── Animated label ── */}
-      <div style={{ height: 20, display: "flex", alignItems: "center" }}>
+      <div className="flex h-5 items-center">
         <p
-          className={`ld-label ${visible ? "ld-label-in" : "ld-label-out"} font-mono text-xs text-[#737373]`}
+          className={`ld-label ${visible ? "ld-label-in" : "ld-label-out"} font-mono text-xs text-neutral-500 dark:text-[#737373]`}
         >
           {LABELS[labelIdx]}
         </p>

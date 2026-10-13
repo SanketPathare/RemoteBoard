@@ -26,21 +26,21 @@ const EMPLOYER_PORTALS = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-[#262626] bg-black">
+    <footer className="border-t border-neutral-200 bg-neutral-50 text-neutral-800 transition-colors duration-200 dark:border-[#262626] dark:bg-black dark:text-white">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.3fr_1fr_1.1fr_1fr] lg:px-8">
 
         {/* Brand */}
         <div>
           <Link
             href="/"
-            className="inline-flex items-center gap-2.5 text-sm font-semibold tracking-[-0.02em] text-white"
+            className="inline-flex items-center gap-2.5 text-sm font-semibold tracking-[-0.02em] text-neutral-900 transition-colors dark:text-white"
           >
-            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-white text-black">
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-neutral-900 text-white shadow-sm dark:bg-white dark:text-black">
               <BriefcaseBusiness className="h-4 w-4" aria-hidden />
             </span>
             RemoteBoard
           </Link>
-          <p className="mt-4 max-w-sm text-sm leading-6 text-[#a3a3a3]">
+          <p className="mt-4 max-w-sm text-sm leading-6 text-neutral-600 dark:text-[#a3a3a3]">
             A simple place to find remote work. No accounts, no database.
             Apply directly to the original job listing.
           </p>
@@ -48,7 +48,7 @@ export function Footer() {
 
         {/* Navigation */}
         <nav aria-label="Footer navigation">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-[#737373]">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-[#737373]">
             Explore
           </p>
           <ul className="space-y-1">
@@ -56,12 +56,12 @@ export function Footer() {
               <li key={p.href}>
                 <Link
                   href={p.href}
-                  className="group block rounded-md px-2 py-1.5 transition hover:bg-[#111]"
+                  className="group block rounded-md px-2 py-1.5 transition hover:bg-neutral-200/60 dark:hover:bg-[#111]"
                 >
-                  <span className="block text-sm text-[#a3a3a3] transition group-hover:text-white">
+                  <span className="block text-sm text-neutral-700 transition group-hover:text-neutral-900 dark:text-[#a3a3a3] dark:group-hover:text-white">
                     {p.label}
                   </span>
-                  <span className="block text-xs text-[#737373]">{p.desc}</span>
+                  <span className="block text-xs text-neutral-500 dark:text-[#737373]">{p.desc}</span>
                 </Link>
               </li>
             ))}
@@ -70,7 +70,7 @@ export function Footer() {
 
         {/* Career Portals */}
         <div>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-[#737373]">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-[#737373]">
             Featured Portals
           </p>
           <ul className="space-y-1">
@@ -80,13 +80,13 @@ export function Footer() {
                   href={portal.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group block rounded-md px-2 py-1.5 transition hover:bg-[#111]"
+                  className="group block rounded-md px-2 py-1.5 transition hover:bg-neutral-200/60 dark:hover:bg-[#111]"
                 >
-                  <span className="flex items-center gap-1 text-sm text-[#a3a3a3] transition group-hover:text-white">
+                  <span className="flex items-center gap-1 text-sm text-neutral-700 transition group-hover:text-neutral-900 dark:text-[#a3a3a3] dark:group-hover:text-white">
                     <span>{portal.label}</span>
-                    <ArrowUpRight className="h-3.5 w-3.5 text-[#737373] transition group-hover:text-white" />
+                    <ArrowUpRight className="h-3.5 w-3.5 text-neutral-400 transition group-hover:text-neutral-900 dark:text-[#737373] dark:group-hover:text-white" />
                   </span>
-                  <span className="block text-xs text-[#737373]">{portal.desc}</span>
+                  <span className="block text-xs text-neutral-500 dark:text-[#737373]">{portal.desc}</span>
                 </a>
               </li>
             ))}
@@ -95,10 +95,10 @@ export function Footer() {
 
         {/* Disclaimer */}
         <div>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-[#737373]">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-[#737373]">
             Good to know
           </p>
-          <ul className="space-y-3 text-sm leading-6 text-[#a3a3a3]">
+          <ul className="space-y-3 text-sm leading-6 text-neutral-600 dark:text-[#a3a3a3]">
             <li>Check the original listing for the latest role details.</li>
             <li>Missing pay means undisclosed, never zero.</li>
             <li>Worldwide appears only when the listing confirms it.</li>
@@ -107,12 +107,12 @@ export function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-[#262626]">
-        <div className="mx-auto flex max-w-7xl flex-col gap-1.5 px-4 py-5 text-xs text-[#737373] sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+      <div className="border-t border-neutral-200 dark:border-[#262626]">
+        <div className="mx-auto flex max-w-7xl flex-col gap-1.5 px-4 py-5 text-xs text-neutral-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8 dark:text-[#737373]">
           <p>© {new Date().getFullYear()} RemoteBoard. Find your next remote role.</p>
           <p>
             See{" "}
-            <Link href="/about" className="text-[#d4d4d4] hover:text-white hover:underline">
+            <Link href="/about" className="text-neutral-700 hover:text-neutral-900 hover:underline dark:text-[#d4d4d4] dark:hover:text-white">
               About RemoteBoard
             </Link>{" "}
             for more information.

@@ -393,7 +393,7 @@ export function CountryFlag({
 
   return (
     <div
-      className={`relative inline-flex shrink-0 items-center justify-center overflow-hidden border border-white/20 shadow-sm ring-1 ring-black/20 ${sizeClass} ${className}`}
+      className={`relative inline-flex shrink-0 items-center justify-center overflow-hidden border border-neutral-300 shadow-sm ring-1 ring-black/5 dark:border-white/20 dark:ring-black/20 ${sizeClass} ${className}`}
       aria-hidden
     >
       {renderFlag()}

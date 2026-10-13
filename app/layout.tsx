@@ -42,9 +42,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark h-full" suppressHydrationWarning>
+    <html lang="en" className="h-full" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} flex min-h-full flex-col bg-black font-sans antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} flex min-h-full flex-col bg-white text-neutral-900 transition-colors duration-200 dark:bg-black dark:text-[#ededed] font-sans antialiased`}
       >
         <ThemeProvider>
           <a

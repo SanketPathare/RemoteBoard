@@ -23,6 +23,12 @@
 }
 
 :root {
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #09090b;
+}
+
+.dark {
   color-scheme: dark;
   --background: #000000;
   --foreground: #ededed;
@@ -41,6 +47,11 @@ body {
 }
 
 ::selection {
+  background: #09090b;
+  color: #ffffff;
+}
+
+.dark ::selection {
   background: #ededed;
   color: #000000;
 }
@@ -54,6 +65,11 @@ textarea {
 }
 
 :focus-visible {
+  outline: 2px solid #525252;
+  outline-offset: 3px;
+}
+
+.dark :focus-visible {
   outline: 2px solid #a3a3a3;
   outline-offset: 3px;
 }
@@ -64,6 +80,13 @@ textarea {
 }
 
 .headline-gradient {
+  background: linear-gradient(180deg, #09090b 20%, #71717a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.dark .headline-gradient {
   background: linear-gradient(180deg, #ffffff 20%, #a3a3a3 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -75,12 +98,25 @@ textarea {
 }
 
 .hero-grid {
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.17) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
   background-size: 32px 32px;
   mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black 15%, transparent 100%);
 }
 
+.dark .hero-grid {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.17) 1px, transparent 1px);
+}
+
 .hero-glow {
+  background: radial-gradient(
+    ellipse 75% 48% at 50% -8%,
+    rgba(0, 0, 0, 0.04) 0%,
+    rgba(0, 0, 0, 0.01) 48%,
+    transparent 80%
+  );
+}
+
+.dark .hero-glow {
   background: radial-gradient(
     ellipse 75% 48% at 50% -8%,
     rgba(255, 255, 255, 0.12) 0%,
@@ -127,15 +163,23 @@ textarea {
 .source-tab-hnhiring { background: #ff6600; }
 
 .glass-bar {
-  background: rgba(0, 0, 0, 0.88);
+  background: rgba(255, 255, 255, 0.88);
   -webkit-backdrop-filter: saturate(180%) blur(16px);
   backdrop-filter: saturate(180%) blur(16px);
 }
 
+.dark .glass-bar {
+  background: rgba(0, 0, 0, 0.88);
+}
+
 .glass-card {
-  background: #0a0a0a;
+  background: #ffffff;
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
+}
+
+.dark .glass-card {
+  background: #0a0a0a;
 }
 
 .card-sheen {
@@ -143,17 +187,28 @@ textarea {
 }
 
 .glass-input {
-  background: #0a0a0a;
+  background: #ffffff;
+  color: #09090b;
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
 
 .glass-input:focus-within {
+  background: #ffffff;
+}
+
+.dark .glass-input {
+  background: #0a0a0a;
+  color: #ededed;
+}
+
+.dark .glass-input:focus-within {
   background: #0a0a0a;
 }
 
 @media (prefers-reduced-transparency: reduce) {
-  .glass-bar { background: #000000; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .glass-bar { background: #ffffff; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .dark .glass-bar { background: #000000; }
 }
 
 .btn-primary {
@@ -161,17 +216,29 @@ textarea {
   align-items: center;
   justify-content: center;
   gap: 0.375rem;
-  border: 1px solid #ffffff;
+  border: 1px solid #09090b;
   border-radius: 0.5rem;
-  background: #ffffff;
-  color: #000000;
+  background: #09090b;
+  color: #ffffff;
   font-size: 0.875rem;
   font-weight: 600;
   padding: 0.625rem 1.25rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   transition: background 0.15s, border-color 0.15s;
 }
 
 .btn-primary:hover {
+  border-color: #27272a;
+  background: #27272a;
+}
+
+.dark .btn-primary {
+  border: 1px solid #ffffff;
+  background: #ffffff;
+  color: #000000;
+}
+
+.dark .btn-primary:hover {
   border-color: #d4d4d4;
   background: #d4d4d4;
 }
@@ -181,16 +248,30 @@ textarea {
   align-items: center;
   justify-content: center;
   gap: 0.375rem;
-  border: 1px solid #404040;
+  border: 1px solid #e4e4e7;
   border-radius: 0.5rem;
-  color: #d4d4d4;
+  background: #ffffff;
+  color: #27272a;
   font-size: 0.875rem;
   font-weight: 500;
   padding: 0.625rem 1.25rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   transition: border-color 0.15s, color 0.15s, background 0.15s;
 }
 
 .btn-secondary:hover {
+  border-color: #a1a1aa;
+  background: #f4f4f5;
+  color: #09090b;
+}
+
+.dark .btn-secondary {
+  border: 1px solid #404040;
+  background: transparent;
+  color: #d4d4d4;
+}
+
+.dark .btn-secondary:hover {
   border-color: #737373;
   background: #111111;
   color: #ffffff;
@@ -202,6 +283,11 @@ textarea {
 }
 
 .feature-card:hover {
+  border-color: #d4d4d4;
+  background-color: #fafafa;
+}
+
+.dark .feature-card:hover {
   border-color: #525252;
   background-color: #0d0d0d;
 }
@@ -211,10 +297,14 @@ textarea {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent 60%);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.02), transparent 60%);
   opacity: 0;
   transition: opacity 0.3s;
   pointer-events: none;
+}
+
+.dark .feature-card::before {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent 60%);
 }
 
 .feature-card:hover::before { opacity: 1; }
@@ -280,18 +370,24 @@ textarea {
 
 .divider {
   height: 1px;
+  background: #e4e4e7;
+}
+
+.dark .divider {
   background: #262626;
 }
 
 /* ==========================================================================
-   Custom Scrollbar System — Sleek Auto-Hide (Cross-Browser Dark)
-   The thumb stays invisible until the scrolling element is hovered, then
-   fades in. Dragging reveals a brighter, higher-contrast grabber.
+   Custom Scrollbar System — Sleek Auto-Hide (Cross-Browser Light & Dark)
    ========================================================================== */
 
 /* 1. Global scrollbars: document + every standard scroll container */
 * {
   scrollbar-width: thin;
+  scrollbar-color: #d4d4d8 #f4f4f5;
+}
+
+.dark * {
   scrollbar-color: #383838 #0a0a0a;
 }
 
@@ -301,26 +397,47 @@ textarea {
 }
 
 *::-webkit-scrollbar-track {
+  background: #f4f4f5;
+}
+
+.dark *::-webkit-scrollbar-track {
   background: #0a0a0a;
 }
 
 *::-webkit-scrollbar-corner {
+  background: #f4f4f5;
+}
+
+.dark *::-webkit-scrollbar-corner {
   background: #0a0a0a;
 }
 
 /* Always visible custom pill thumb */
 *::-webkit-scrollbar-thumb {
-  background-color: #333333;
-  border: 2px solid #0a0a0a;
+  background-color: #d4d4d8;
+  border: 2px solid #f4f4f5;
   border-radius: 9999px;
   transition: background-color 0.15s ease;
 }
 
+.dark *::-webkit-scrollbar-thumb {
+  background-color: #333333;
+  border: 2px solid #0a0a0a;
+}
+
 *::-webkit-scrollbar-thumb:hover {
+  background-color: #a1a1aa;
+}
+
+.dark *::-webkit-scrollbar-thumb:hover {
   background-color: #555555;
 }
 
 *::-webkit-scrollbar-thumb:active {
+  background-color: #71717a;
+}
+
+.dark *::-webkit-scrollbar-thumb:active {
   background-color: #888888;
 }
 
@@ -334,6 +451,10 @@ textarea {
 /* 2. Horizontal rail (filter pills, carousels) — ALWAYS VISIBLE custom scrollbar */
 .custom-scrollbar-x {
   scrollbar-width: thin;
+  scrollbar-color: #a1a1aa #f4f4f5;
+}
+
+.dark .custom-scrollbar-x {
   scrollbar-color: #525252 #141414;
 }
 
@@ -342,30 +463,41 @@ textarea {
 }
 
 .custom-scrollbar-x::-webkit-scrollbar-track {
-  background: #141414;
+  background: #f4f4f5;
   border-radius: 9999px;
   margin: 0 4px;
 }
 
+.dark .custom-scrollbar-x::-webkit-scrollbar-track {
+  background: #141414;
+}
+
 .custom-scrollbar-x::-webkit-scrollbar-thumb {
-  background: #444444;
+  background: #d4d4d8;
   border-radius: 9999px;
-  border: 1px solid #1a1a1a;
+  border: 1px solid #e4e4e7;
   transition: background-color 0.15s ease;
 }
 
+.dark .custom-scrollbar-x::-webkit-scrollbar-thumb {
+  background: #444444;
+  border: 1px solid #1a1a1a;
+}
+
 .custom-scrollbar-x::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+.dark .custom-scrollbar-x::-webkit-scrollbar-thumb:hover {
   background: #737373;
 }
 
 .custom-scrollbar-x::-webkit-scrollbar-thumb:active {
-  background: #a3a3a3;
+  background: #71717a;
 }
 
-.custom-scrollbar-x::-webkit-scrollbar-button {
-  display: none !important;
-  width: 0 !important;
-  height: 0 !important;
+.dark .custom-scrollbar-x::-webkit-scrollbar-thumb:active {
+  background: #a3a3a3;
 }
 
 .custom-scrollbar-x::-webkit-scrollbar-button {
@@ -378,6 +510,11 @@ textarea {
 .custom-scrollbar,
 .custom-scrollbar-y {
   scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.dark .custom-scrollbar,
+.dark .custom-scrollbar-y {
   scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
 }
 
@@ -393,25 +530,45 @@ textarea {
 
 .custom-scrollbar::-webkit-scrollbar-thumb,
 .custom-scrollbar-y::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.22);
+  background-color: rgba(0, 0, 0, 0.15);
   background-clip: padding-box;
   border: 2px solid transparent;
   border-radius: 9999px;
   transition: background-color 0.25s ease;
 }
 
+.dark .custom-scrollbar::-webkit-scrollbar-thumb,
+.dark .custom-scrollbar-y::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.22);
+}
+
 .custom-scrollbar:hover::-webkit-scrollbar-thumb,
 .custom-scrollbar-y:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.dark .custom-scrollbar:hover::-webkit-scrollbar-thumb,
+.dark .custom-scrollbar-y:hover::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.18);
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover,
 .custom-scrollbar-y::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.35);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover,
+.dark .custom-scrollbar-y::-webkit-scrollbar-thumb:hover {
   background-color: rgba(255, 255, 255, 0.4);
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:active,
 .custom-scrollbar-y::-webkit-scrollbar-thumb:active {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:active,
+.dark .custom-scrollbar-y::-webkit-scrollbar-thumb:active {
   background-color: rgba(255, 255, 255, 0.55);
 }
 
@@ -425,6 +582,10 @@ textarea {
 /* Legacy rail alias */
 .rail {
   scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.dark .rail {
   scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
 }
 
@@ -445,10 +606,18 @@ textarea {
 }
 
 .rail:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.18);
+}
+
+.dark .rail:hover::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.18);
 }
 
 .rail::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.35);
+}
+
+.dark .rail::-webkit-scrollbar-thumb:hover {
   background-color: rgba(255, 255, 255, 0.4);
 }
 
@@ -469,14 +638,14 @@ textarea {
 }
 
 .job-description {
-  @apply text-sm leading-7 text-[#a3a3a3];
+  @apply text-sm leading-7 text-neutral-600 dark:text-[#a3a3a3];
 }
 
 .job-description h1,
 .job-description h2,
 .job-description h3,
 .job-description h4 {
-  @apply mt-6 mb-2 font-semibold text-white;
+  @apply mt-6 mb-2 font-semibold text-neutral-900 dark:text-white;
 }
 
 .job-description h1 { @apply text-xl; }
@@ -488,8 +657,8 @@ textarea {
 .job-description ul { @apply list-disc; }
 .job-description ol { @apply list-decimal; }
 .job-description li { @apply leading-7; }
-.job-description a { @apply font-medium text-white underline underline-offset-4; }
-.job-description strong { @apply font-semibold text-white; }
+.job-description a { @apply font-medium text-neutral-900 underline underline-offset-4 dark:text-white; }
+.job-description strong { @apply font-semibold text-neutral-900 dark:text-white; }
 .job-description img { @apply my-4 max-w-full rounded-lg; }
 
 @keyframes shimmer {

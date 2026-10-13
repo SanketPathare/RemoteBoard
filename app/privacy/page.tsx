@@ -9,13 +9,13 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
-      <p className="font-mono text-xs text-[#999999]">$ privacy</p>
-      <h1 className="headline mt-2 text-3xl font-extrabold text-black sm:text-4xl dark:text-white">Privacy policy</h1>
-      <p className="mt-1 font-mono text-xs text-[#999999]">last updated: october 2026</p>
+      <p className="font-mono text-xs text-neutral-500 dark:text-[#999999]">$ privacy</p>
+      <h1 className="headline mt-2 text-3xl font-extrabold text-neutral-900 sm:text-4xl dark:text-white">Privacy policy</h1>
+      <p className="mt-1 font-mono text-xs text-neutral-500 dark:text-[#999999]">last updated: october 2026</p>
 
-      <div className="mt-6 space-y-6 text-[15px] leading-7 text-[#333333] dark:text-[#EAEAEA]">
+      <div className="mt-6 space-y-6 text-[15px] leading-7 text-neutral-700 dark:text-[#EAEAEA]">
         <section>
-          <h2 className="headline text-lg font-bold text-black dark:text-white">1. No accounts, no job database</h2>
+          <h2 className="headline text-lg font-bold text-neutral-900 dark:text-white">1. No accounts, no job database</h2>
           <p>
             RemoteBoard has no sign-up, no login, and no database of jobs or
             users. Job listings are fetched live when requested and never
@@ -24,7 +24,7 @@ export default function PrivacyPage() {
           </p>
         </section>
         <section>
-          <h2 className="headline text-lg font-bold text-black dark:text-white">2. What we (don’t) store</h2>
+          <h2 className="headline text-lg font-bold text-neutral-900 dark:text-white">2. What we (don’t) store</h2>
           <ul className="list-disc space-y-1.5 pl-5">
             <li>No <code>localStorage</code> or <code>sessionStorage</code> is used for job data.</li>
             <li>Theme preference (light/dark) is kept locally in your browser only.</li>
@@ -33,7 +33,7 @@ export default function PrivacyPage() {
           </ul>
         </section>
         <section>
-          <h2 className="headline text-lg font-bold text-black dark:text-white">3. External application links</h2>
+          <h2 className="headline text-lg font-bold text-neutral-900 dark:text-white">3. External application links</h2>
           <p>
             Every Apply button opens the original job listing in a new tab.
             That destination may have its own privacy practices, set cookies,
@@ -42,7 +42,7 @@ export default function PrivacyPage() {
           </p>
         </section>
         <section>
-          <h2 className="headline text-lg font-bold text-black dark:text-white">4. Cookies &amp; analytics</h2>
+          <h2 className="headline text-lg font-bold text-neutral-900 dark:text-white">4. Cookies &amp; analytics</h2>
           <p>
             This starter ships with no analytics and no advertising cookies. If
             you add analytics at deploy time, disclose it here and obtain
@@ -50,9 +50,9 @@ export default function PrivacyPage() {
           </p>
         </section>
         <section>
-          <h2 className="headline text-lg font-bold text-black dark:text-white">5. Contact</h2>
+          <h2 className="headline text-lg font-bold text-neutral-900 dark:text-white">5. Contact</h2>
           <p>
-            Privacy questions or takedown requests: <a className="text-white underline underline-offset-4" href="mailto:hello@example.com">hello@example.com</a>.
+            Privacy questions or takedown requests: <a className="text-neutral-900 underline underline-offset-4 dark:text-white" href="mailto:hello@example.com">hello@example.com</a>.
           </p>
         </section>
       </div>

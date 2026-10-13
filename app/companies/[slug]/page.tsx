@@ -55,24 +55,24 @@ export default async function CompanySlugPage({
   if (!company) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-20 text-center sm:px-6">
-        <p className="font-mono text-xs text-[#999999]">$ 404 / company not found</p>
-        <h1 className="headline mt-3 text-3xl font-extrabold text-white">
+        <p className="font-mono text-xs text-neutral-500 dark:text-[#999999]">$ 404 / company not found</p>
+        <h1 className="headline mt-3 text-3xl font-extrabold text-neutral-900 dark:text-white">
           Company Not Found
         </h1>
-        <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-[#a3a3a3]">
+        <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-neutral-600 dark:text-[#a3a3a3]">
           This company currently doesn&apos;t have any live remote postings or the listings have expired.
         </p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <Link
             href="/companies"
-            className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-[#d4d4d4]"
+            className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-neutral-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-[#d4d4d4]"
           >
             <Building2 className="h-4 w-4" />
             Browse all companies
           </Link>
           <Link
             href="/jobs"
-            className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-[#404040] bg-[#111] px-5 py-2.5 text-sm font-medium text-white transition hover:border-[#737373]"
+            className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-neutral-300 bg-white px-5 py-2.5 text-sm font-medium text-neutral-800 shadow-sm transition hover:border-neutral-900 hover:text-neutral-900 dark:border-[#404040] dark:bg-[#111] dark:text-white dark:hover:border-[#737373]"
           >
             Browse all jobs
           </Link>
@@ -93,18 +93,18 @@ export default async function CompanySlugPage({
       <div className="mb-6 flex items-center justify-between">
         <Link
           href="/companies"
-          className="inline-flex items-center gap-1.5 text-xs font-medium text-[#a3a3a3] transition hover:text-white"
+          className="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-600 transition hover:text-neutral-900 dark:text-[#a3a3a3] dark:hover:text-white"
         >
           <ArrowLeft className="h-3.5 w-3.5" />
           <span>Back to companies</span>
         </Link>
-        <span className="font-mono text-xs text-[#737373]">
+        <span className="font-mono text-xs text-neutral-500 dark:text-[#737373]">
           {company.openJobsCount} {company.openJobsCount === 1 ? "listing" : "listings"} active
         </span>
       </div>
 
       {/* ── Company Profile Hero Header ── */}
-      <div className="glass-card card-sheen relative overflow-hidden rounded-2xl border border-[#262626] p-6 sm:p-8">
+      <div className="glass-card card-sheen relative overflow-hidden rounded-2xl border border-neutral-200 bg-white p-6 sm:p-8 dark:border-[#262626] dark:bg-transparent">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-7">
           {/* Company Logo */}
           <div className="relative shrink-0">
@@ -114,52 +114,52 @@ export default async function CompanySlugPage({
           {/* Info */}
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2.5">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-0.5 text-xs font-semibold text-emerald-400">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-0.5 text-xs font-semibold text-emerald-700 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-400">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500 dark:bg-emerald-400" />
                 Actively Hiring Remote
               </span>
-              <span className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-2.5 py-0.5 font-mono text-xs font-semibold text-white">
+              <span className="inline-flex items-center rounded-full border border-neutral-200 bg-neutral-100 px-2.5 py-0.5 font-mono text-xs font-semibold text-neutral-800 dark:border-white/20 dark:bg-white/10 dark:text-white">
                 {company.openJobsCount} {company.openJobsCount === 1 ? "Open Position" : "Open Positions"}
               </span>
             </div>
 
-            <h1 className="headline mt-3 text-2xl font-extrabold tracking-tight text-white sm:text-3xl lg:text-4xl">
+            <h1 className="headline mt-3 text-2xl font-extrabold tracking-tight text-neutral-900 sm:text-3xl lg:text-4xl dark:text-white">
               {company.name}
             </h1>
 
-            <p className="mt-2 text-sm text-[#a3a3a3]">
+            <p className="mt-2 text-sm text-neutral-600 dark:text-[#a3a3a3]">
               Hiring remote professionals across distributed teams. View all open positions below and apply directly.
             </p>
 
             {company.slug === "hitachi" && (
-              <div className="mt-4 flex flex-wrap items-center gap-2.5 rounded-xl border border-white/10 bg-white/5 p-3 sm:p-3.5">
-                <span className="font-mono text-xs font-semibold text-white">Official Portals:</span>
+              <div className="mt-4 flex flex-wrap items-center gap-2.5 rounded-xl border border-neutral-200 bg-neutral-50 p-3 sm:p-3.5 dark:border-white/10 dark:bg-white/5">
+                <span className="font-mono text-xs font-semibold text-neutral-900 dark:text-white">Official Portals:</span>
                 <a
                   href="https://careers.hitachi.com/jobs"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-[#333] bg-[#111] px-3 py-1.5 text-xs font-medium text-white transition hover:border-white hover:bg-[#1a1a1a]"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-neutral-300 bg-white px-3 py-1.5 text-xs font-medium text-neutral-800 shadow-sm transition hover:border-neutral-900 hover:text-neutral-900 dark:border-[#333] dark:bg-[#111] dark:text-white dark:hover:border-white dark:hover:bg-[#1a1a1a]"
                 >
                   <span>Hitachi Careers — all jobs</span>
-                  <ArrowUpRight className="h-3.5 w-3.5 text-[#888]" />
+                  <ArrowUpRight className="h-3.5 w-3.5 text-neutral-500 dark:text-[#888]" />
                 </a>
                 <a
                   href="https://careers.hitachi.com/jobs?filter[country]=India"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-[#333] bg-[#111] px-3 py-1.5 text-xs font-medium text-white transition hover:border-white hover:bg-[#1a1a1a]"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-neutral-300 bg-white px-3 py-1.5 text-xs font-medium text-neutral-800 shadow-sm transition hover:border-neutral-900 hover:text-neutral-900 dark:border-[#333] dark:bg-[#111] dark:text-white dark:hover:border-white dark:hover:bg-[#1a1a1a]"
                 >
                   <span>Hitachi India jobs</span>
-                  <ArrowUpRight className="h-3.5 w-3.5 text-[#888]" />
+                  <ArrowUpRight className="h-3.5 w-3.5 text-neutral-500 dark:text-[#888]" />
                 </a>
               </div>
             )}
 
             {/* Quick badges & metadata */}
-            <div className="mt-5 grid grid-cols-1 gap-3 border-t border-[#1f1f1f] pt-4 sm:grid-cols-3">
+            <div className="mt-5 grid grid-cols-1 gap-3 border-t border-neutral-200 pt-4 dark:border-[#1f1f1f] sm:grid-cols-3">
               {/* Disciplines */}
               <div>
-                <p className="font-mono text-[11px] uppercase tracking-wider text-[#737373]">
+                <p className="font-mono text-[11px] uppercase tracking-wider text-neutral-500 dark:text-[#737373]">
                   Hiring Disciplines
                 </p>
                 <div className="mt-1 flex flex-wrap gap-1">
@@ -167,24 +167,24 @@ export default async function CompanySlugPage({
                     company.categories.map((cat) => (
                       <span
                         key={cat}
-                        className="rounded-md border border-[#262626] bg-[#111] px-2 py-0.5 text-xs font-medium text-[#d4d4d4]"
+                        className="rounded-md border border-neutral-200 bg-neutral-100 px-2 py-0.5 text-xs font-medium text-neutral-700 dark:border-[#262626] dark:bg-[#111] dark:text-[#d4d4d4]"
                       >
                         {cat}
                       </span>
                     ))
                   ) : (
-                    <span className="text-xs text-[#737373]">Engineering & Product</span>
+                    <span className="text-xs text-neutral-500 dark:text-[#737373]">Engineering & Product</span>
                   )}
                 </div>
               </div>
 
               {/* Locations */}
               <div>
-                <p className="font-mono text-[11px] uppercase tracking-wider text-[#737373]">
+                <p className="font-mono text-[11px] uppercase tracking-wider text-neutral-500 dark:text-[#737373]">
                   Locations / Timezones
                 </p>
-                <div className="mt-1 flex items-center gap-1 text-xs text-[#d4d4d4]">
-                  <MapPin className="h-3.5 w-3.5 shrink-0 text-[#888]" />
+                <div className="mt-1 flex items-center gap-1 text-xs text-neutral-700 dark:text-[#d4d4d4]">
+                  <MapPin className="h-3.5 w-3.5 shrink-0 text-neutral-400 dark:text-[#888]" />
                   <span className="truncate">
                     {company.locations.length > 0
                       ? company.locations.join(", ")
@@ -195,11 +195,11 @@ export default async function CompanySlugPage({
 
               {/* Latest role posted */}
               <div>
-                <p className="font-mono text-[11px] uppercase tracking-wider text-[#737373]">
+                <p className="font-mono text-[11px] uppercase tracking-wider text-neutral-500 dark:text-[#737373]">
                   Latest Role Posted
                 </p>
-                <div className="mt-1 flex items-center gap-1.5 text-xs text-[#d4d4d4]">
-                  <Clock className="h-3.5 w-3.5 shrink-0 text-[#888]" />
+                <div className="mt-1 flex items-center gap-1.5 text-xs text-neutral-700 dark:text-[#d4d4d4]">
+                  <Clock className="h-3.5 w-3.5 shrink-0 text-neutral-400 dark:text-[#888]" />
                   <span>{timeAgo(company.latestPostedAt)}</span>
                 </div>
               </div>
@@ -212,14 +212,14 @@ export default async function CompanySlugPage({
       <section className="mt-10" aria-label={`Open positions at ${company.name}`}>
         <div className="mb-5 flex items-center justify-between">
           <div>
-            <h2 className="headline text-xl font-bold text-white sm:text-2xl">
+            <h2 className="headline text-xl font-bold text-neutral-900 sm:text-2xl dark:text-white">
               Open Positions at {company.name}
             </h2>
-            <p className="mt-1 text-xs text-[#737373]">
+            <p className="mt-1 text-xs text-neutral-500 dark:text-[#737373]">
               Showing all verified live listings available for direct application
             </p>
           </div>
-          <span className="hidden font-mono text-xs text-[#888] sm:inline">
+          <span className="hidden font-mono text-xs text-neutral-500 sm:inline dark:text-[#888]">
             Sorted newest first
           </span>
         </div>
@@ -229,19 +229,19 @@ export default async function CompanySlugPage({
 
       {/* ── Explore More Companies ── */}
       {otherCompanies.length > 0 && (
-        <section className="mt-16 border-t border-[#1f1f1f] pt-10">
+        <section className="mt-16 border-t border-neutral-200 pt-10 dark:border-[#1f1f1f]">
           <div className="mb-6 flex items-center justify-between">
             <div>
-              <h3 className="headline text-lg font-bold text-white sm:text-xl">
+              <h3 className="headline text-lg font-bold text-neutral-900 sm:text-xl dark:text-white">
                 Other Companies Hiring Remotely
               </h3>
-              <p className="text-xs text-[#737373]">
+              <p className="text-xs text-neutral-500 dark:text-[#737373]">
                 Explore more remote teams with open positions
               </p>
             </div>
             <Link
               href="/companies"
-              className="inline-flex items-center gap-1 text-xs font-semibold text-white transition hover:underline"
+              className="inline-flex items-center gap-1 text-xs font-semibold text-neutral-900 transition hover:underline dark:text-white"
             >
               View all companies <ArrowRight className="h-3.5 w-3.5" />
             </Link>
@@ -252,25 +252,25 @@ export default async function CompanySlugPage({
               <Link
                 key={c.slug}
                 href={`/companies/${c.slug}`}
-                className="feature-card glass-card card-sheen group flex flex-col justify-between rounded-xl border border-[#262626] p-4 transition hover:-translate-y-0.5 hover:border-white"
+                className="feature-card glass-card card-sheen group flex flex-col justify-between rounded-xl border border-neutral-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-neutral-900 hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] dark:border-[#262626] dark:bg-transparent dark:hover:border-white"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
                     <CompanyLogo name={c.name} logo={c.logo} size="md" />
-                    <span className="rounded-full border border-white/10 bg-[#161616] px-2 py-0.5 font-mono text-[11px] font-medium text-white">
+                    <span className="rounded-full border border-neutral-200 bg-neutral-100 px-2 py-0.5 font-mono text-[11px] font-medium text-neutral-800 dark:border-white/10 dark:bg-[#161616] dark:text-white">
                       {c.openJobsCount} {c.openJobsCount === 1 ? "role" : "roles"}
                     </span>
                   </div>
-                  <h4 className="mt-3 truncate text-sm font-bold text-white group-hover:text-white">
+                  <h4 className="mt-3 truncate text-sm font-bold text-neutral-900 group-hover:text-neutral-900 dark:text-white dark:group-hover:text-white">
                     {c.name}
                   </h4>
                   {c.categories.length > 0 && (
-                    <p className="mt-1 truncate text-xs text-[#737373]">
+                    <p className="mt-1 truncate text-xs text-neutral-500 dark:text-[#737373]">
                       {c.categories.slice(0, 2).join(", ")}
                     </p>
                   )}
                 </div>
-                <div className="mt-3 flex items-center justify-between border-t border-[#1f1f1f] pt-2 text-[11px] text-[#a3a3a3] group-hover:text-white">
+                <div className="mt-3 flex items-center justify-between border-t border-neutral-200 pt-2 text-[11px] text-neutral-600 group-hover:text-neutral-900 dark:border-[#1f1f1f] dark:text-[#a3a3a3] dark:group-hover:text-white">
                   <span>View jobs</span>
                   <ArrowRight className="h-3 w-3 transition group-hover:translate-x-0.5" />
                 </div>

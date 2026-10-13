@@ -63,11 +63,11 @@ export function CompaniesExplorer({ initialCompanies }: { initialCompanies: Comp
   return (
     <div className="space-y-6">
       {/* ── Search & Filter Controls ── */}
-      <div className="glass-card card-sheen space-y-4 rounded-2xl border border-[#262626] p-4 sm:p-6">
+      <div className="glass-card card-sheen space-y-4 rounded-2xl border border-neutral-200 bg-white p-4 sm:p-6 dark:border-[#262626] dark:bg-transparent">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           {/* Search bar */}
           <div className="relative min-w-0 flex-1">
-            <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#737373]" />
+            <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400 dark:text-[#737373]" />
             <input
               type="text"
               value={query}
@@ -76,7 +76,7 @@ export function CompaniesExplorer({ initialCompanies }: { initialCompanies: Comp
                 setPage(1);
               }}
               placeholder="Search companies by name, skill, or role..."
-              className="h-11 w-full rounded-xl border border-[#333] bg-[#111] pl-10 pr-4 text-sm text-white placeholder-[#666] outline-none transition focus:border-white focus:ring-1 focus:ring-white"
+              className="h-11 w-full rounded-xl border border-neutral-300 bg-neutral-50 pl-10 pr-4 text-sm text-neutral-900 placeholder-neutral-400 outline-none transition focus:border-neutral-900 focus:bg-white focus:ring-1 focus:ring-neutral-900 dark:border-[#333] dark:bg-[#111] dark:text-white dark:placeholder-[#666] dark:focus:border-white dark:focus:ring-white"
             />
             {query && (
               <button
@@ -85,7 +85,7 @@ export function CompaniesExplorer({ initialCompanies }: { initialCompanies: Comp
                   setQuery("");
                   setPage(1);
                 }}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#888] hover:text-white"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-neutral-500 hover:text-neutral-900 dark:text-[#888] dark:hover:text-white"
               >
                 Clear
               </button>
@@ -94,7 +94,7 @@ export function CompaniesExplorer({ initialCompanies }: { initialCompanies: Comp
 
           {/* Sort Selector */}
           <div className="flex shrink-0 items-center gap-2">
-            <span className="hidden font-mono text-xs text-[#888] sm:inline">
+            <span className="hidden font-mono text-xs text-neutral-500 sm:inline dark:text-[#888]">
               Sort:
             </span>
             <CustomSelect
@@ -125,8 +125,8 @@ export function CompaniesExplorer({ initialCompanies }: { initialCompanies: Comp
               }}
               className={`rounded-full px-3 py-1 text-xs font-medium transition ${
                 selectedCategory === "all"
-                  ? "bg-white text-black font-semibold"
-                  : "border border-[#2a2a2a] bg-[#111] text-[#a3a3a3] hover:border-[#444] hover:text-white"
+                  ? "bg-neutral-900 text-white font-semibold dark:bg-white dark:text-black"
+                  : "border border-neutral-200 bg-neutral-100 text-neutral-600 hover:border-neutral-400 hover:text-neutral-900 dark:border-[#2a2a2a] dark:bg-[#111] dark:text-[#a3a3a3] dark:hover:border-[#444] dark:hover:text-white"
               }`}
             >
               All disciplines
@@ -141,8 +141,8 @@ export function CompaniesExplorer({ initialCompanies }: { initialCompanies: Comp
                 }}
                 className={`whitespace-nowrap rounded-full px-3 py-1 text-xs font-medium transition ${
                   selectedCategory.toLowerCase() === cat.toLowerCase()
-                    ? "bg-white text-black font-semibold"
-                    : "border border-[#2a2a2a] bg-[#111] text-[#a3a3a3] hover:border-[#444] hover:text-white"
+                    ? "bg-neutral-900 text-white font-semibold dark:bg-white dark:text-black"
+                    : "border border-neutral-200 bg-neutral-100 text-neutral-600 hover:border-neutral-400 hover:text-neutral-900 dark:border-[#2a2a2a] dark:bg-[#111] dark:text-[#a3a3a3] dark:hover:border-[#444] dark:hover:text-white"
                 }`}
               >
                 {cat}
@@ -153,31 +153,31 @@ export function CompaniesExplorer({ initialCompanies }: { initialCompanies: Comp
       </div>
 
       {/* ── Summary & Count ── */}
-      <div className="flex items-center justify-between border-b border-[#1f1f1f] pb-3">
-        <p className="font-mono text-xs text-[#a3a3a3]">
-          <span className="font-semibold text-white">{filtered.length}</span> hiring companies found
+      <div className="flex items-center justify-between border-b border-neutral-200 pb-3 dark:border-[#1f1f1f]">
+        <p className="font-mono text-xs text-neutral-600 dark:text-[#a3a3a3]">
+          <span className="font-semibold text-neutral-900 dark:text-white">{filtered.length}</span> hiring companies found
           {filtered.length > 0 && ` (${from}–${to})`}
         </p>
         {totalPages > 1 && (
-          <p className="font-mono text-xs text-[#737373]">
-            Page <span className="text-white">{safePage}</span> of {totalPages}
+          <p className="font-mono text-xs text-neutral-500 dark:text-[#737373]">
+            Page <span className="text-neutral-900 dark:text-white">{safePage}</span> of {totalPages}
           </p>
         )}
       </div>
 
       {/* ── Company Cards Grid ── */}
       {filtered.length === 0 ? (
-        <div className="rounded-2xl border border-[#262626] bg-[#0c0c0c] px-6 py-16 text-center">
-          <Building2 className="mx-auto mb-3 h-10 w-10 text-[#404040]" />
-          <h3 className="text-base font-semibold text-white">No companies match your search</h3>
-          <p className="mt-1 text-xs text-[#737373]">Try searching for a different keyword or reset filters.</p>
+        <div className="rounded-2xl border border-neutral-200 bg-neutral-50 px-6 py-16 text-center dark:border-[#262626] dark:bg-[#0c0c0c]">
+          <Building2 className="mx-auto mb-3 h-10 w-10 text-neutral-400 dark:text-[#404040]" />
+          <h3 className="text-base font-semibold text-neutral-900 dark:text-white">No companies match your search</h3>
+          <p className="mt-1 text-xs text-neutral-500 dark:text-[#737373]">Try searching for a different keyword or reset filters.</p>
           <button
             type="button"
             onClick={() => {
               setQuery("");
               setSelectedCategory("all");
             }}
-            className="mt-4 rounded-lg border border-[#404040] bg-[#141414] px-4 py-2 text-xs font-medium text-white hover:border-white"
+            className="mt-4 rounded-lg border border-neutral-300 bg-white px-4 py-2 text-xs font-medium text-neutral-900 shadow-sm hover:border-neutral-900 dark:border-[#404040] dark:bg-[#141414] dark:text-white dark:hover:border-white"
           >
             Reset search
           </button>
@@ -188,19 +188,19 @@ export function CompaniesExplorer({ initialCompanies }: { initialCompanies: Comp
             <li key={c.slug} className="flex min-w-0">
               <Link
                 href={`/companies/${c.slug}`}
-                className="feature-card glass-card card-sheen group relative flex w-full flex-col justify-between rounded-2xl border border-[#262626] p-5 transition-all duration-200 hover:-translate-y-1 hover:border-white hover:shadow-lg"
+                className="feature-card glass-card card-sheen group relative flex w-full flex-col justify-between rounded-2xl border border-neutral-200 bg-white p-5 transition-all duration-200 hover:-translate-y-1 hover:border-neutral-900 hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] dark:border-[#262626] dark:bg-transparent dark:hover:border-white dark:hover:shadow-lg"
               >
                 <div>
                   {/* Header: Logo + Roles count badge */}
                   <div className="flex items-start justify-between gap-3">
                     <CompanyLogo name={c.name} logo={c.logo} size="lg" />
-                    <span className="inline-flex shrink-0 items-center rounded-full border border-white/20 bg-white/10 px-2.5 py-0.5 font-mono text-[11px] font-semibold text-white">
+                    <span className="inline-flex shrink-0 items-center rounded-full border border-neutral-200 bg-neutral-100 px-2.5 py-0.5 font-mono text-[11px] font-semibold text-neutral-800 dark:border-white/20 dark:bg-white/10 dark:text-white">
                       {c.openJobsCount} {c.openJobsCount === 1 ? "role" : "roles"}
                     </span>
                   </div>
 
                   {/* Company name */}
-                  <h3 className="mt-4 text-base font-bold tracking-tight text-white transition group-hover:text-white">
+                  <h3 className="mt-4 text-base font-bold tracking-tight text-neutral-900 transition group-hover:text-neutral-900 dark:text-white dark:group-hover:text-white">
                     {c.name}
                   </h3>
 
@@ -210,7 +210,7 @@ export function CompaniesExplorer({ initialCompanies }: { initialCompanies: Comp
                       {c.categories.slice(0, 3).map((cat) => (
                         <span
                           key={cat}
-                          className="rounded-md border border-[#262626] bg-[#111] px-2 py-0.5 text-[11px] font-medium text-[#a3a3a3]"
+                          className="rounded-md border border-neutral-200 bg-neutral-100 px-2 py-0.5 text-[11px] font-medium text-neutral-700 dark:border-[#262626] dark:bg-[#111] dark:text-[#a3a3a3]"
                         >
                           {cat}
                         </span>
@@ -220,7 +220,7 @@ export function CompaniesExplorer({ initialCompanies }: { initialCompanies: Comp
 
                   {/* Locations */}
                   {c.locations.length > 0 && (
-                    <p className="mt-3 flex items-center gap-1.5 text-xs text-[#737373]">
+                    <p className="mt-3 flex items-center gap-1.5 text-xs text-neutral-500 dark:text-[#737373]">
                       <MapPin className="h-3 w-3 shrink-0" />
                       <span className="truncate">{c.locations.join(", ")}</span>
                     </p>
@@ -228,7 +228,7 @@ export function CompaniesExplorer({ initialCompanies }: { initialCompanies: Comp
                 </div>
 
                 {/* Footer Link */}
-                <div className="mt-5 flex items-center justify-between border-t border-[#1f1f1f] pt-3 text-xs font-medium text-[#a3a3a3] transition group-hover:text-white">
+                <div className="mt-5 flex items-center justify-between border-t border-neutral-200 pt-3 text-xs font-medium text-neutral-600 transition group-hover:text-neutral-900 dark:border-[#1f1f1f] dark:text-[#a3a3a3] dark:group-hover:text-white">
                   <span>View open jobs</span>
                   <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
                 </div>
@@ -245,18 +245,18 @@ export function CompaniesExplorer({ initialCompanies }: { initialCompanies: Comp
             type="button"
             onClick={() => setPage((p) => Math.max(1, p - 1))}
             disabled={safePage === 1}
-            className="inline-flex h-9 items-center gap-1 rounded-lg border border-[#333] bg-[#111] px-3 font-mono text-xs text-[#a3a3a3] transition hover:border-white hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
+            className="inline-flex h-9 items-center gap-1 rounded-lg border border-neutral-300 bg-white px-3 font-mono text-xs text-neutral-700 shadow-sm transition hover:border-neutral-900 hover:text-neutral-900 disabled:cursor-not-allowed disabled:opacity-40 dark:border-[#333] dark:bg-[#111] dark:text-[#a3a3a3] dark:hover:border-white dark:hover:text-white"
           >
             <ChevronLeft className="h-3.5 w-3.5" /> Prev
           </button>
-          <span className="font-mono text-xs text-[#737373] px-2">
+          <span className="font-mono text-xs text-neutral-500 px-2 dark:text-[#737373]">
             Page {safePage} of {totalPages}
           </span>
           <button
             type="button"
             onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
             disabled={safePage === totalPages}
-            className="inline-flex h-9 items-center gap-1 rounded-lg border border-[#333] bg-[#111] px-3 font-mono text-xs text-[#a3a3a3] transition hover:border-white hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
+            className="inline-flex h-9 items-center gap-1 rounded-lg border border-neutral-300 bg-white px-3 font-mono text-xs text-neutral-700 shadow-sm transition hover:border-neutral-900 hover:text-neutral-900 disabled:cursor-not-allowed disabled:opacity-40 dark:border-[#333] dark:bg-[#111] dark:text-[#a3a3a3] dark:hover:border-white dark:hover:text-white"
           >
             Next <ChevronRight className="h-3.5 w-3.5" />
           </button>
