@@ -507,7 +507,7 @@ export function FilterPills({
                     }}
                     className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-medium transition ${
                       isSelected
-                        ? "bg-white text-black font-semibold"
+                        ? "bg-[#242424] text-white font-medium shadow-inner"
                         : "text-[#d4d4d4] hover:bg-[#1a1a1a] hover:text-white"
                     }`}
                   >
@@ -531,7 +531,7 @@ export function FilterPills({
                     }}
                     className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-medium transition ${
                       isSelected
-                        ? "bg-white text-black font-semibold"
+                        ? "bg-[#242424] text-white font-medium shadow-inner"
                         : "text-[#d4d4d4] hover:bg-[#1a1a1a] hover:text-white"
                     }`}
                   >
@@ -555,7 +555,7 @@ export function FilterPills({
                     }}
                     className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-medium transition ${
                       isSelected
-                        ? "bg-white text-black font-semibold"
+                        ? "bg-[#242424] text-white font-medium shadow-inner"
                         : "text-[#d4d4d4] hover:bg-[#1a1a1a] hover:text-white"
                     }`}
                   >
@@ -580,7 +580,7 @@ export function FilterPills({
                     }}
                     className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-medium transition ${
                       isSelected
-                        ? "bg-white text-black font-semibold"
+                        ? "bg-[#242424] text-white font-medium shadow-inner"
                         : "text-[#d4d4d4] hover:bg-[#1a1a1a] hover:text-white"
                     }`}
                   >
@@ -604,7 +604,7 @@ export function FilterPills({
                     }}
                     className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-medium transition ${
                       isSelected
-                        ? "bg-white text-black font-semibold"
+                        ? "bg-[#242424] text-white font-medium shadow-inner"
                         : "text-[#d4d4d4] hover:bg-[#1a1a1a] hover:text-white"
                     }`}
                   >
@@ -628,7 +628,7 @@ export function FilterPills({
                     }}
                     className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-medium transition ${
                       isSelected
-                        ? "bg-white text-black font-semibold"
+                        ? "bg-[#242424] text-white font-medium shadow-inner"
                         : "text-[#d4d4d4] hover:bg-[#1a1a1a] hover:text-white"
                     }`}
                   >
@@ -651,7 +651,7 @@ export function FilterPills({
                     }}
                     className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-medium transition ${
                       isSelected
-                        ? "bg-white text-black font-semibold"
+                        ? "bg-[#242424] text-white font-medium shadow-inner"
                         : "text-[#d4d4d4] hover:bg-[#1a1a1a] hover:text-white"
                     }`}
                   >
@@ -674,7 +674,7 @@ export function FilterPills({
                     }}
                     className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-medium transition ${
                       isSelected
-                        ? "bg-white text-black font-semibold"
+                        ? "bg-[#242424] text-white font-medium shadow-inner"
                         : "text-[#d4d4d4] hover:bg-[#1a1a1a] hover:text-white"
                     }`}
                   >

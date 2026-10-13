@@ -2,9 +2,10 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Building2, ChevronLeft, ChevronRight, MapPin, Search, Sparkles } from "lucide-react";
+import { ArrowRight, Building2, ChevronLeft, ChevronRight, MapPin, Search } from "lucide-react";
 import type { CompanySummary } from "@/lib/companies";
 import { CompanyLogo } from "./CompanyLogo";
+import { CustomSelect } from "./CustomSelect";
 
 const PAGE_SIZE = 24;
 
@@ -93,22 +94,23 @@ export function CompaniesExplorer({ initialCompanies }: { initialCompanies: Comp
 
           {/* Sort Selector */}
           <div className="flex shrink-0 items-center gap-2">
-            <label htmlFor="company-sort" className="font-mono text-xs text-[#888] hidden sm:inline">
+            <span className="hidden font-mono text-xs text-[#888] sm:inline">
               Sort:
-            </label>
-            <select
+            </span>
+            <CustomSelect
               id="company-sort"
+              title="Sort Companies"
               value={sortBy}
-              onChange={(e) => {
-                setSortBy(e.target.value as "roles" | "alpha" | "recent");
+              onChange={(val) => {
+                setSortBy(val as "roles" | "alpha" | "recent");
                 setPage(1);
               }}
-              className="h-11 rounded-xl border border-[#333] bg-[#111] px-3.5 text-xs font-medium text-[#d4d4d4] outline-none transition hover:border-[#555] focus:border-white"
-            >
-              <option value="roles">Most open positions</option>
-              <option value="recent">Recently active</option>
-              <option value="alpha">Alphabetical (A–Z)</option>
-            </select>
+              options={[
+                { value: "roles", label: "Most open positions" },
+                { value: "recent", label: "Recently active" },
+                { value: "alpha", label: "Alphabetical (A–Z)" },
+              ]}
+            />
           </div>
         </div>
 

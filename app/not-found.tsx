@@ -5,8 +5,6 @@ import {
   Building2,
   Compass,
   Home,
-  Search,
-  Sparkles,
 } from "lucide-react";
 
 export default function NotFound() {

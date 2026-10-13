@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronDown, RotateCcw, SlidersHorizontal } from "lucide-react";
 import type { JobFilters } from "@/lib/filters";
+import { CustomSelect } from "./CustomSelect";
 
 interface Props {
   filters: JobFilters;
@@ -108,22 +109,22 @@ export function FilterPanel({
       </div>
 
       <div>
-          <label htmlFor="f-employment" className="mb-1.5 block text-sm font-medium text-[#a3a3a3]">
-            Employment type
-          </label>
-        <select
+        <label htmlFor="f-employment" className="mb-1.5 block text-sm font-medium text-[#a3a3a3]">
+          Employment type
+        </label>
+        <CustomSelect
           id="f-employment"
+          title="Employment Type"
+          align="left"
+          className="w-full"
+          triggerClassName="w-full h-11 bg-[#080808] border-[#404040]"
           value={filters.employmentType}
-          onChange={(e) => set({ employmentType: e.target.value })}
-          className={inputCls}
-        >
-          <option value="">Any type</option>
-          {employmentTypes.map((t) => (
-            <option key={t} value={t.toLowerCase()}>
-              {t}
-            </option>
-          ))}
-        </select>
+          onChange={(val) => set({ employmentType: val })}
+          options={[
+            { value: "", label: "Any type" },
+            ...employmentTypes.map((t) => ({ value: t.toLowerCase(), label: t })),
+          ]}
+        />
       </div>
     </div>
   );

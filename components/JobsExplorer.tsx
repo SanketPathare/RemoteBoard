@@ -104,7 +104,7 @@ function Pagination({
 // ── Main explorer ────────────────────────────────────────────────────────────
 export function JobsExplorer({ initialQuery = "", initialSource = "all" }: { initialQuery?: string; initialSource?: string }) {
   const [all, setAll] = useState<Job[]>([]);
-  const [errors, setErrors] = useState<SourceError[]>([]);
+  const [, setErrors] = useState<SourceError[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [page, setPage] = useState(1);

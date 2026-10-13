@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Building2, MapPin, Sparkles } from "lucide-react";
+import { ArrowRight, ArrowUpRight, MapPin } from "lucide-react";
 import type { CompanySummary } from "@/lib/companies";
 import { CompanyLogo } from "./CompanyLogo";
 
