@@ -231,6 +231,7 @@ export function FilterPills({
 
   const BOARD_OPTIONS = [
     { label: "All boards", value: "all" },
+    { label: "WorkIndia (WFH)", value: "workindia" },
     { label: "Remote Landers (ATS)", value: "remotelanders" },
     { label: "Remote OK", value: "remoteok" },
     { label: "Startup Jobs", value: "startupjobs" },
@@ -352,7 +353,9 @@ export function FilterPills({
           aria-expanded={openDropdown === "board"}
         >
           <span>
-            {filters.source === "remotelanders"
+            {filters.source === "workindia"
+              ? "WorkIndia"
+              : filters.source === "remotelanders"
               ? "Remote Landers"
               : filters.source === "remoteok"
               ? "Remote OK"

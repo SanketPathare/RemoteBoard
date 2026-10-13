@@ -7,7 +7,6 @@ import {
   Building2,
   Calendar,
   Clock,
-  ExternalLink,
   Globe,
   MapPin,
   Tag,
@@ -60,7 +59,7 @@ export function JobDetail({ job }: { job: Job }) {
       ? [{ icon: <Tag className="h-4 w-4" aria-hidden />, label: "Experience level", value: job.experienceLevel }]
       : []),
     ...(job.salaryText
-      ? [{ icon: <Banknote className="h-4 w-4" aria-hidden />, label: "Pay", value: `${job.salaryText}/yr` }]
+      ? [{ icon: <Banknote className="h-4 w-4" aria-hidden />, label: "Pay", value: job.salaryText.includes("/") ? job.salaryText : `${job.salaryText}/yr` }]
       : []),
     { icon: <Calendar className="h-4 w-4" aria-hidden />, label: "Published", value: `${postedLabel} (${timeAgo(job.postedAt)})` },
   ];
@@ -76,16 +75,7 @@ export function JobDetail({ job }: { job: Job }) {
     </a>
   );
 
-  const originalBtn = (
-    <a
-      href={job.sourceUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex min-h-[48px] items-center justify-center gap-1.5 rounded-md border border-neutral-300 bg-white px-5 py-3 text-sm font-medium text-neutral-800 transition hover:border-neutral-900 hover:text-neutral-900 dark:border-[#404040] dark:bg-transparent dark:text-[#d4d4d4] dark:hover:border-[#737373] dark:hover:bg-[#111] dark:hover:text-white"
-    >
-      <ExternalLink className="h-4 w-4" aria-hidden /> View original listing
-    </a>
-  );
+
 
   return (
     <div className="flex flex-col gap-4 pb-24 sm:gap-5 lg:pb-0">
@@ -186,7 +176,6 @@ export function JobDetail({ job }: { job: Job }) {
             {/* Inline apply (tablet/desktop; mobile uses sticky bottom bar) */}
             <div className="mt-6 hidden flex-col gap-2 sm:flex lg:hidden xl:flex">
               {applyBtn}
-              {originalBtn}
             </div>
           </article>
 
@@ -236,12 +225,13 @@ export function JobDetail({ job }: { job: Job }) {
                 </span>
                 <span className="block text-lg font-semibold tabular-nums text-neutral-900 dark:text-white">
                   {job.salaryText}
-                  <span className="font-mono text-xs font-normal text-neutral-500 dark:text-[#999999]"> /yr</span>
+                  {!job.salaryText.includes("/") && (
+                    <span className="font-mono text-xs font-normal text-neutral-500 dark:text-[#999999]"> /yr</span>
+                  )}
                 </span>
               </p>
             )}
             {applyBtn}
-            {originalBtn}
             <p className="font-mono text-[11px] leading-5 text-neutral-500 dark:text-[#999999]">
               nothing is tracked here · confirm details on the original listing
             </p>

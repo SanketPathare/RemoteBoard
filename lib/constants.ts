@@ -24,6 +24,7 @@ export const FETCH_LIMITS: Record<SourceName, number> = {
   ashby: 50,
   recruitee: 50,
   personio: 50,
+  workindia: 50,
 };
 
 /**

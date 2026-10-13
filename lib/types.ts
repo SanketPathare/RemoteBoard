@@ -23,7 +23,8 @@ export type SourceName =
   | "lever"
   | "ashby"
   | "recruitee"
-  | "personio";
+  | "personio"
+  | "workindia";
 
 export interface Job {
   /** Composite id: `${source}:${sourceId}` — used for React keys, detail routes, dedup. */
@@ -180,6 +181,11 @@ export const SOURCE_META: Record<
     label: "Personio",
     siteUrl: "https://www.personio.com",
     attribution: "Jobs via Personio XML Feed",
+  },
+  workindia: {
+    label: "WorkIndia",
+    siteUrl: "https://www.workindia.in",
+    attribution: "Jobs via WorkIndia Work From Home",
   },
 };
 

@@ -21,6 +21,7 @@ import { fetchLever } from "./sources/lever";
 import { fetchAshby } from "./sources/ashby";
 import { fetchRecruitee } from "./sources/recruitee";
 import { fetchPersonio } from "./sources/personio";
+import { fetchWorkIndia } from "./sources/workindia";
 
 const FETCHERS: Record<SourceName, () => Promise<Job[]>> = {
   jobicy: fetchJobicy,
@@ -43,6 +44,7 @@ const FETCHERS: Record<SourceName, () => Promise<Job[]>> = {
   ashby: fetchAshby,
   recruitee: fetchRecruitee,
   personio: fetchPersonio,
+  workindia: fetchWorkIndia,
 };
 
 const ALL_SOURCES: SourceName[] = [
@@ -66,6 +68,7 @@ const ALL_SOURCES: SourceName[] = [
   "ashby",
   "recruitee",
   "personio",
+  "workindia",
 ];
 
 /**
@@ -100,6 +103,7 @@ export async function aggregateJobs(sources?: SourceName[]): Promise<AggregatedR
     ashby: 0,
     recruitee: 0,
     personio: 0,
+    workindia: 0,
   };
 
   settled.forEach((s, i) => {
