@@ -12,6 +12,7 @@ interface Props {
   categories: string[];
   employmentTypes: string[];
   resultCount: number;
+  loading?: boolean;
 }
 
 const inputCls =
@@ -29,7 +30,16 @@ function activeCount(f: JobFilters): number {
   return n;
 }
 
-export function FilterPanel({ filters, onChange, onClear, locations, categories, employmentTypes, resultCount }: Props) {
+export function FilterPanel({
+  filters,
+  onChange,
+  onClear,
+  locations,
+  categories,
+  employmentTypes,
+  resultCount,
+  loading = false,
+}: Props) {
   const [open, setOpen] = useState(false);
   const set = (patch: Partial<JobFilters>) => onChange({ ...filters, ...patch });
   const count = activeCount(filters);
@@ -141,7 +151,7 @@ export function FilterPanel({ filters, onChange, onClear, locations, categories,
         </button>
         <div className="flex items-center gap-2">
           <p aria-live="polite" className="rounded-full bg-[#171717] px-2.5 py-1 font-mono text-xs text-[#a3a3a3]">
-            {resultCount} result{resultCount === 1 ? "" : "s"}
+            {loading ? "loading…" : `${resultCount} result${resultCount === 1 ? "" : "s"}`}
           </p>
           {count > 0 && (
             <button

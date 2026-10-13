@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, TriangleAlert } from "lucide-react";
 import { SearchBar } from "./SearchBar";
 import { FilterPanel } from "./FilterPanel";
 import { JobList } from "./JobList";
+import { JobListSkeleton } from "./JobSkeleton";
 import { EmptyState, ErrorState } from "./States";
 import { EMPTY_FILTERS, facetValues, filterJobs, sortNewestFirst, type JobFilters } from "@/lib/filters";
 import type { Job, SourceError } from "@/lib/types";
@@ -200,6 +201,7 @@ export function JobsExplorer({ initialQuery = "", initialSource = "all" }: { ini
             categories={categories}
             employmentTypes={employmentTypes}
             resultCount={filtered.length}
+            loading={loading}
           />
           {!loading && !loadError && filtered.length > 0 && (
             <p className="mt-3 hidden rounded-lg border border-[#262626] bg-[#080808] px-4 py-3 font-mono text-xs leading-5 text-[#a3a3a3] lg:block">
@@ -211,7 +213,7 @@ export function JobsExplorer({ initialQuery = "", initialSource = "all" }: { ini
         {/* Results */}
         <div className="min-w-0" ref={resultsRef}>
           {loading ? (
-            null
+            <JobListSkeleton count={9} />
           ) : loadError ? (
             <ErrorState message={loadError} onRetry={() => fetchAll(filters.source)} />
           ) : filtered.length === 0 ? (
