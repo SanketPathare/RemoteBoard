@@ -5,6 +5,7 @@ const PAGES = [
   { href: "/jobs",       label: "Browse jobs",       desc: "Search and filter the live feed" },
   { href: "/companies",  label: "Companies",         desc: "Explore top remote-first teams" },
   { href: "/categories", label: "Categories",        desc: "Browse jobs by department & role" },
+  { href: "/countries",  label: "Countries",         desc: "Browse jobs by country & region" },
   { href: "/about",      label: "About RemoteBoard", desc: "How the job board works" },
   { href: "/contact",    label: "Contact",            desc: "Report a broken link" },
   { href: "/privacy",    label: "Privacy policy",     desc: "No accounts, no tracking" },
