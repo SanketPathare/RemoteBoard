@@ -5,7 +5,6 @@ import { TriangleAlert } from "lucide-react";
 import { SearchBar } from "./SearchBar";
 import { FilterPanel } from "./FilterPanel";
 import { JobList } from "./JobList";
-
 import { EmptyState, ErrorState } from "./States";
 import { EMPTY_FILTERS, facetValues, filterJobs, sortNewestFirst, type JobFilters } from "@/lib/filters";
 import type { Job, SourceError } from "@/lib/types";
