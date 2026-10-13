@@ -18,7 +18,12 @@ export type SourceName =
   | "themuse"
   | "workingnomads"
   | "hnhiring"
-  | "hitachi";
+  | "hitachi"
+  | "greenhouse"
+  | "lever"
+  | "ashby"
+  | "recruitee"
+  | "personio";
 
 export interface Job {
   /** Composite id: `${source}:${sourceId}` — used for React keys, detail routes, dedup. */
@@ -150,6 +155,31 @@ export const SOURCE_META: Record<
     label: "Hitachi Careers",
     siteUrl: "https://careers.hitachi.com/jobs",
     attribution: "Jobs via Hitachi Careers",
+  },
+  greenhouse: {
+    label: "Greenhouse",
+    siteUrl: "https://www.greenhouse.io",
+    attribution: "Jobs via Greenhouse Boards API",
+  },
+  lever: {
+    label: "Lever",
+    siteUrl: "https://www.lever.co",
+    attribution: "Jobs via Lever Postings API",
+  },
+  ashby: {
+    label: "Ashby",
+    siteUrl: "https://www.ashbyhq.com",
+    attribution: "Jobs via Ashby Job Board API",
+  },
+  recruitee: {
+    label: "Recruitee",
+    siteUrl: "https://recruitee.com",
+    attribution: "Jobs via Recruitee Offers API",
+  },
+  personio: {
+    label: "Personio",
+    siteUrl: "https://www.personio.com",
+    attribution: "Jobs via Personio XML Feed",
   },
 };
 

@@ -1,5 +1,6 @@
 import type { AggregatedResult, Job, SourceError, SourceName } from "./types";
 import { dedupKey } from "./types";
+import { mixJobs } from "./filters";
 import { fetchJobicy } from "./sources/jobicy";
 import { fetchHimalayas } from "./sources/himalayas";
 import { fetchArbeitnow } from "./sources/arbeitnow";
@@ -15,6 +16,11 @@ import { fetchTheMuse } from "./sources/themuse";
 import { fetchWorkingNomads } from "./sources/workingnomads";
 import { fetchHnHiring } from "./sources/hnhiring";
 import { fetchHitachi } from "./sources/hitachi";
+import { fetchGreenhouse } from "./sources/greenhouse";
+import { fetchLever } from "./sources/lever";
+import { fetchAshby } from "./sources/ashby";
+import { fetchRecruitee } from "./sources/recruitee";
+import { fetchPersonio } from "./sources/personio";
 
 const FETCHERS: Record<SourceName, () => Promise<Job[]>> = {
   jobicy: fetchJobicy,
@@ -32,6 +38,11 @@ const FETCHERS: Record<SourceName, () => Promise<Job[]>> = {
   workingnomads: fetchWorkingNomads,
   hnhiring: fetchHnHiring,
   hitachi: fetchHitachi,
+  greenhouse: fetchGreenhouse,
+  lever: fetchLever,
+  ashby: fetchAshby,
+  recruitee: fetchRecruitee,
+  personio: fetchPersonio,
 };
 
 const ALL_SOURCES: SourceName[] = [
@@ -50,6 +61,11 @@ const ALL_SOURCES: SourceName[] = [
   "workingnomads",
   "hnhiring",
   "hitachi",
+  "greenhouse",
+  "lever",
+  "ashby",
+  "recruitee",
+  "personio",
 ];
 
 /**
@@ -79,6 +95,11 @@ export async function aggregateJobs(sources?: SourceName[]): Promise<AggregatedR
     workingnomads: 0,
     hnhiring: 0,
     hitachi: 0,
+    greenhouse: 0,
+    lever: 0,
+    ashby: 0,
+    recruitee: 0,
+    personio: 0,
   };
 
   settled.forEach((s, i) => {
@@ -105,7 +126,9 @@ export async function aggregateJobs(sources?: SourceName[]): Promise<AggregatedR
     return true;
   });
 
-  return { jobs: deduped, total: deduped.length, errors, counts };
+  const mixed = mixJobs(deduped);
+
+  return { jobs: mixed, total: mixed.length, errors, counts };
 }
 
 /** Stateless detail lookup — re-fetch live, find by composite key. */

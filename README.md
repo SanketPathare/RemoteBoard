@@ -12,6 +12,11 @@ Next.js App Router + TypeScript + Tailwind CSS v4 + Lucide icons. No Firebase, n
 | Remote OK | `https://remoteok.com/api` | `apply_url` (fallback `url`) | Array with `[0] = legal notice`. **Requires a real `User-Agent`** (server-only). Follow link (no `nofollow`) + name mention required; **logo is trademarked — never rendered** (initial-avatar used). Salary 0 = undisclosed. |
 | We Work Remotely | Category RSS (`programming`, `design`, `marketing`, `customer-support`) | `link` (= `guid`) | No JSON API. Paid postings — excerpt + link back only, never rehosted as our own. |
 | Hitachi Careers | `https://careers.hitachi.com/jobs` (+ `?filter[country]=India`) | `applyURL` (Workday / SmartRecruiters ATS) | Enterprise recruitment portal across Hitachi Energy, Hitachi Vantara, Hitachi Solutions, and Hitachi Rail. Direct ATS application links. |
+| Greenhouse | `https://boards-api.greenhouse.io/v1/boards/{company}/jobs` | `absolute_url` | Public ATS boards API. Configurable company handles in `lib/constants.ts` (e.g. `gitlab`). |
+| Lever | `https://api.lever.co/v0/postings/{company}?mode=json` | `applyUrl` / `hostedUrl` | Public ATS postings API. Configurable company handles in `lib/constants.ts` (e.g. `spotify`). |
+| Ashby | `https://api.ashbyhq.com/posting-api/job-board/{company}` | `jobUrl` | Modern tech ATS job board API. Configurable company handles in `lib/constants.ts` (e.g. `linear`). |
+| Recruitee | `https://{company}.recruitee.com/api/offers/` | `careers_url` | Public offers API. Configurable company handles in `lib/constants.ts` (e.g. `bunq`). |
+| Personio | `https://{company}.jobs.personio.com/xml` | Direct job portal link | Public XML feed parsed server-side via `fast-xml-parser`. Configurable company handles in `lib/constants.ts` (e.g. `personio`). |
 
 None of these APIs are unlimited. Responses are cached ~10 min (`export const revalidate = 600` + `Cache-Control: s-maxage=600`); provider fetches use 9s timeouts and `Promise.allSettled` so one failure never blocks the others.
 

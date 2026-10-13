@@ -19,6 +19,27 @@ export const FETCH_LIMITS: Record<SourceName, number> = {
   workingnomads: 50,
   hnhiring: 100,
   hitachi: 50,
+  greenhouse: 50,
+  lever: 50,
+  ashby: 50,
+  recruitee: 50,
+  personio: 50,
+};
+
+/**
+ * Direct ATS company handles. Add any company slug to fetch its public job board:
+ * - Greenhouse: https://boards-api.greenhouse.io/v1/boards/{company}/jobs
+ * - Lever: https://api.lever.co/v0/postings/{company}?mode=json
+ * - Ashby: https://api.ashbyhq.com/posting-api/job-board/{company}
+ * - Recruitee: https://{company}.recruitee.com/api/offers/
+ * - Personio: https://{company}.jobs.personio.com/xml
+ */
+export const ATS_COMPANIES: Record<"greenhouse" | "lever" | "ashby" | "recruitee" | "personio", string[]> = {
+  greenhouse: ["gitlab"],
+  lever: ["spotify"],
+  ashby: ["linear"],
+  recruitee: ["bunq"],
+  personio: ["personio"],
 };
 
 /** WWR category RSS feeds aggregated server-side (excerpt + link back). */
