@@ -112,6 +112,9 @@ textarea {
 .source-dot-remotefirst { background: #06b6d4; }
 .source-dot-startupjobs { background: #ec4899; }
 .source-dot-remotelanders { background: #10b981; }
+.source-dot-themuse { background: #2dd4bf; }
+.source-dot-workingnomads { background: #818cf8; }
+.source-dot-hnhiring { background: #ff6600; }
 
 .source-tab-remotive { background: #f97316; }
 .source-tab-jobspresso { background: #a3e635; }
@@ -119,6 +122,9 @@ textarea {
 .source-tab-remotefirst { background: #06b6d4; }
 .source-tab-startupjobs { background: #ec4899; }
 .source-tab-remotelanders { background: #10b981; }
+.source-tab-themuse { background: #2dd4bf; }
+.source-tab-workingnomads { background: #818cf8; }
+.source-tab-hnhiring { background: #ff6600; }
 
 .glass-bar {
   background: rgba(0, 0, 0, 0.88);

@@ -14,7 +14,10 @@ export type SourceName =
   | "remoteco"
   | "remotefirst"
   | "startupjobs"
-  | "remotelanders";
+  | "remotelanders"
+  | "themuse"
+  | "workingnomads"
+  | "hnhiring";
 
 export interface Job {
   /** Composite id: `${source}:${sourceId}` — used for React keys, detail routes, dedup. */
@@ -126,6 +129,21 @@ export const SOURCE_META: Record<
     label: "Remote Landers",
     siteUrl: "https://remotelanders.com",
     attribution: "Job data provided by Remote Landers",
+  },
+  themuse: {
+    label: "The Muse",
+    siteUrl: "https://www.themuse.com",
+    attribution: "Jobs via The Muse",
+  },
+  workingnomads: {
+    label: "Working Nomads",
+    siteUrl: "https://www.workingnomads.com",
+    attribution: "Jobs via Working Nomads",
+  },
+  hnhiring: {
+    label: "HN Who is Hiring",
+    siteUrl: "https://news.ycombinator.com",
+    attribution: 'Jobs via Hacker News "Who is hiring"',
   },
 };
 
