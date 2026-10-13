@@ -5,7 +5,7 @@ import { TriangleAlert } from "lucide-react";
 import { SearchBar } from "./SearchBar";
 import { FilterPanel } from "./FilterPanel";
 import { JobList } from "./JobList";
-import { JobGridSkeleton } from "./Skeleton";
+
 import { EmptyState, ErrorState } from "./States";
 import { EMPTY_FILTERS, facetValues, filterJobs, sortNewestFirst, type JobFilters } from "@/lib/filters";
 import type { Job, SourceError } from "@/lib/types";
@@ -123,7 +123,7 @@ export function JobsExplorer({ initialQuery = "", initialSource = "all" }: { ini
 
         <div className="min-w-0">
           {loading ? (
-            <JobGridSkeleton />
+            null
           ) : loadError ? (
             <ErrorState message={loadError} onRetry={() => fetchAll(filters.source)} />
           ) : filtered.length === 0 ? (
