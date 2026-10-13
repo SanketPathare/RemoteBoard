@@ -4,6 +4,7 @@ import { Globe, Briefcase, Sparkles } from "lucide-react";
 import { aggregateJobs } from "@/lib/aggregate";
 import { groupJobsByCountry } from "@/lib/countries";
 import { CountriesExplorer } from "@/components/CountriesExplorer";
+import { CountryFlag } from "@/components/CountryFlag";
 
 export const revalidate = 600;
 
@@ -73,10 +74,8 @@ export default async function CountriesPage() {
                 href={`/countries/${c.slug}`}
                 className="group flex flex-col rounded-xl border border-[#262626] bg-[#0d0d0d] p-3 transition hover:border-[#444] hover:bg-[#141414]"
               >
-                <div className="flex items-center gap-2">
-                  <span className="text-xl" role="img" aria-label={c.name}>
-                    {c.flag}
-                  </span>
+                <div className="flex items-center gap-2.5">
+                  <CountryFlag code={c.code} slug={c.slug} size="sm" />
                   <span className="truncate text-xs font-semibold text-white group-hover:text-white">
                     {c.name}
                   </span>

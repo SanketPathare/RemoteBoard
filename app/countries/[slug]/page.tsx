@@ -10,6 +10,7 @@ import {
 import { aggregateJobs } from "@/lib/aggregate";
 import { getCountryBySlug, groupJobsByCountry } from "@/lib/countries";
 import { JobList } from "@/components/JobList";
+import { CountryFlag } from "@/components/CountryFlag";
 
 export const revalidate = 600;
 
@@ -103,9 +104,9 @@ export default async function CountrySlugPage({
       {/* ── Country Hero Header ── */}
       <div className="glass-card card-sheen relative overflow-hidden rounded-2xl border border-[#262626] p-6 sm:p-8">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-7">
-          {/* Big Flag Display */}
-          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-[#333] bg-[#141414] text-4xl shadow-inner">
-            {country.flag}
+          {/* Big Real SVG Flag Display */}
+          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-[#333] bg-[#141414] shadow-inner">
+            <CountryFlag code={country.code} slug={country.slug} size="xl" />
           </div>
 
           <div className="min-w-0 flex-1">
@@ -221,8 +222,8 @@ export default async function CountrySlugPage({
                     href={`/countries/${rc.slug}`}
                     className="flex items-center justify-between py-2.5 text-xs text-[#a3a3a3] transition hover:text-white"
                   >
-                    <div className="flex items-center gap-2">
-                      <span>{rc.flag}</span>
+                    <div className="flex items-center gap-2.5">
+                      <CountryFlag code={rc.code} slug={rc.slug} size="sm" />
                       <span className="font-medium text-white">{rc.name}</span>
                     </div>
                     <span className="font-mono text-[11px] text-[#737373]">

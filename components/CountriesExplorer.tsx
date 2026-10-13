@@ -13,6 +13,7 @@ import {
 import type { CountrySummary } from "@/lib/countries";
 import { COUNTRY_REGIONS, type CountryRegion } from "@/lib/countries";
 import { CustomSelect } from "./CustomSelect";
+import { CountryFlag } from "./CountryFlag";
 
 const PAGE_SIZE = 18;
 
@@ -192,8 +193,8 @@ export function CountriesExplorer({ initialCountries }: CountriesExplorerProps) 
                 {/* Header: Flag, Name, Region Badge & Arrow */}
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#262626] bg-[#141414] text-2xl shadow-inner transition-transform duration-200 group-hover:scale-105">
-                      {country.flag}
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#262626] bg-[#141414] shadow-inner transition-transform duration-200 group-hover:scale-105">
+                      <CountryFlag code={country.code} slug={country.slug} size="lg" />
                     </div>
                     <div>
                       <h2 className="text-base font-bold tracking-tight text-white transition-colors group-hover:text-white">
