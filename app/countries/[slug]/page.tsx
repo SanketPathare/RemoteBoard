@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import { aggregateJobs } from "@/lib/aggregate";
 import { getCountryBySlug, groupJobsByCountry } from "@/lib/countries";
-import { JobList } from "@/components/JobList";
+import { PaginatedJobList } from "@/components/PaginatedJobList";
 import { CountryFlag } from "@/components/CountryFlag";
 
 export const revalidate = 600;
@@ -177,16 +177,10 @@ export default async function CountrySlugPage({
       <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-4">
         {/* Jobs Column */}
         <div className="lg:col-span-3">
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-lg font-bold text-neutral-900 dark:text-white">
-              Open Positions in {country.name}
-            </h2>
-            <span className="font-mono text-xs text-neutral-500 dark:text-[#737373]">
-              Showing {country.jobs.length} jobs
-            </span>
-          </div>
-
-          <JobList jobs={country.jobs} />
+          <PaginatedJobList
+            jobs={country.jobs}
+            title={`Open Positions in ${country.name}`}
+          />
         </div>
 
         {/* Sidebar Column */}

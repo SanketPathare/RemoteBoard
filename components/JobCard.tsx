@@ -97,7 +97,11 @@ export function JobCard({ job }: { job: Job }) {
         {/* Salary */}
         <div className="flex flex-wrap items-center justify-between gap-2">
           <p className="text-sm font-semibold tabular-nums text-neutral-900 dark:text-white">
-            {job.salaryText ? (job.salaryText.includes("/") ? job.salaryText : `${job.salaryText}/yr`) : (
+            {job.salaryText ? (
+              /[\/]|per\s|\b(yr|year|mo|month|hr|hour|day|week)s?\b/i.test(job.salaryText)
+                ? job.salaryText
+                : `${job.salaryText}/yr`
+            ) : (
               <span className="font-normal text-neutral-400 dark:text-[#737373]">Pay undisclosed</span>
             )}
           </p>
